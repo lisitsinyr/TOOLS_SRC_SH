@@ -1,0 +1,48 @@
+﻿Brace Expansion Example Output
+--------------------------------------------
+{start..end}    {1..3}  1 2 3
+{start..end..increment} {2..10..2}  2 4 6 8 10
+{start..end..decrement} {5..1..-1}  5 4 3 2 1
+{start..end}{start..end}    {a..c}{1..3}    a1 a2 a3 b1 b2 b3 c1 c2 c3
+{start..end..increment}{start..end} {1..3..1}{a..c} 1a 2a 3a 1b 2b 3b 1c 2c 3c
+
+Valid Range Example Output
+-----------------------------------------
+Numeric Sequences   {1..5}  1 2 3 4 5
+Alphabetical Sequences  {a..e}  a b c d e
+Combined Sequences  {a..e}{1..3}    a1 a2 a3 b1 b2 b3 c1 c2 c3 d1 d2 d3 e1 e2 e3
+Leading Zeros   {01..05}    01 02 03 04 05
+
+Invalid Range   Example
+-------------------------------------------
+Non-Numeric Ranges  {01/01..12/31} -Date like ranges doesn’t work.
+Arithmetic Expressions  {1+1..5+5} won’t expand as an arithmetic sequence.
+Variable Values x=3; {1..$x} will not expand as expected.
+Nested Ranges   {1..{3..5}} is an invalid nested range.
+Alphanumeric Sequences with Gaps    {a..f..2} won’t expand as “a c e“
+
+
+A. Expansion With Only Preamble
+Preamble or prefix means certain text that is added before brace expansion. This structure is quite helpful when the common prefix is too long. A basic example of a preamble in brace expansion can be the following.
+
+#!/bin/bash
+"I love scripting in "{Ubuntu, Fedora, Kali}
+
+B. Expansion With Postscript in Bash
+Like a preamble, postscript, or suffix to brace expansion enhances its functionality, especially when you want to include longer text after the expansion. Let’s begin by examining a straightforward example of brace expansion with a postscript.
+
+#!/bin/bash
+echo {readme,bug,update}".txt has been processed."
+
+#!/bin/bash
+rm {1..31}.txt
+echo "Successfully deleted the files"
+
+C. Expansion With Preamble and Postscript
+One can use preamble and postscript together to perform more complex and exceptional tasks. It can be file creation, globbing or any other task. Just see the basic example to have an idea of how it works.
+
+echo "I know "{Anita,Mohammed,Kelly}" as an adroit programmer."
+# Output:I know Anita as an adroit programmer. I know Mohammed as an adroit programmer. I know Kelly as an adroit programmer.
+
+
+
