@@ -3,15 +3,9 @@
 # LYRDateTime.sh
 # -----------------------------------------------
 
-#:begin
-# echo '01.НАЗВАНИЕ'
-# echo '    *** - ***'
-
-# echo '02.СИНТАКСИС'
-# echo '    *** [параметры] ***'
-
-# echo '03.ОПИСАНИЕ'
-# echo '    ***'
+# =================================================
+# ФУНКЦИИ
+# =================================================
 
 #--------------------------------------------------------------------------------
 # procedure LYRDateTime ()
@@ -27,7 +21,7 @@ function LYRDateTime () {
 #endfunction
 
 #--------------------------------------------------------------------------------
-# function YYYYMMDDHHMMSS ()
+# function YYYYMMDDHHMMSS () -> YYYYMMDDHHMMSS
 #--------------------------------------------------------------------------------
 function YYYYMMDDHHMMSS () {
 #beginfunction
@@ -42,7 +36,7 @@ function YYYYMMDDHHMMSS () {
 #endfunction
 
 #--------------------------------------------------------------------------------
-# function DateTime (FORMAT)
+# function DateTime (AFORMAT) -> DateTime
 #--------------------------------------------------------------------------------
 function DateTime () {
 #beginfunction
@@ -50,8 +44,8 @@ function DateTime () {
         echo DEBUG: function $FUNCNAME ... >$(tty)
     fi
 
-    FORMAT="$1"
-    printf "%($FORMAT)T"
+    AFORMAT="$1"
+    printf "%($AFORMAT)T"
 
     return 0
 }

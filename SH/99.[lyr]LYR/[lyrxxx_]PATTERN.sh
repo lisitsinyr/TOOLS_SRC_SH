@@ -75,7 +75,7 @@ function MAIN_INIT () {
     # -------------------------------------------------------------------
     # запуск скриптов БИБЛИОТЕКИ LYR
     # -------------------------------------------------------------------
-    source "$LIB_SH/__SET_LIB.sh"
+    source "$LIB_SH/LYRConst.sh"
     source "$LIB_SH/LYRFileUtils.sh"
     source "$LIB_SH/LYRLog.sh"
     source "$LIB_SH/LYRConst.sh"

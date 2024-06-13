@@ -3,15 +3,28 @@
 # LYRFileUtils.sh
 # -----------------------------------------------
 
-#:begin
-# echo '01.НАЗВАНИЕ'
-# echo '    *** - ***'
+# -------------------------------------------------------------------
+# ФУНКЦИИ
+# -------------------------------------------------------------------
+# ФУНКЦИИ
+#     LYRFileUtils
+#     ExtractFileDir
+#     ExtractFileName
+#     ExtractFileNameWithoutExt
+#     ExtractFileExt
+#     FileAttr
+#     CurrentDir
+#     FileSize (AFileName)
+#     CreateDir (ADIRECTORY)
+#     CreateFile (AFILENAME)
+#     CheckFile (AFILENAME)
+#     COPY_FILES (DIR_FROM, DIR_TO, MASK, ARG)
+#     XCOPY_FILES (DIR_FROM, DIR_TO, MASK, ARG)
+# -------------------------------------------------------------------
 
-# echo '02.СИНТАКСИС'
-# echo '    *** [параметры] ***'
-
-# echo '03.ОПИСАНИЕ'
-# echo '    ***'
+# =================================================
+# ФУНКЦИИ
+# =================================================
 
 #--------------------------------------------------------------------------------
 # procedure LYRFileUtils ()
@@ -124,6 +137,102 @@ function ExtractFileExt () {
     fi
 
     return $(( $LError ))
+}
+#endfunction
+
+#--------------------------------------------------------------------------------
+# function FileAttr (AFileName)
+#--------------------------------------------------------------------------------
+function FileAttr () {
+#beginfunction
+    if [[ "$DEBUG" -eq 1 ]] ; then
+        echo DEBUG: function $FUNCNAME ... >$(tty)
+    fi
+
+}
+#endfunction
+
+#--------------------------------------------------------------------------------
+# function CurrentDir ()
+#--------------------------------------------------------------------------------
+function CurrentDir () {
+#beginfunction
+    if [[ "$DEBUG" -eq 1 ]] ; then
+        echo DEBUG: function $FUNCNAME ... >$(tty)
+    fi
+
+}
+#endfunction
+
+#--------------------------------------------------------------------------------
+# function FileSize (AFileName)
+#--------------------------------------------------------------------------------
+function FileSize () {
+#beginfunction
+    if [[ "$DEBUG" -eq 1 ]] ; then
+        echo DEBUG: function $FUNCNAME ... >$(tty)
+    fi
+
+}
+#endfunction
+
+#--------------------------------------------------------------------------------
+# function CreateDir (ADIRECTORY)
+#--------------------------------------------------------------------------------
+function CreateDir () {
+#beginfunction
+    if [[ "$DEBUG" -eq 1 ]] ; then
+        echo DEBUG: function $FUNCNAME ... >$(tty)
+    fi
+
+}
+#endfunction
+
+#--------------------------------------------------------------------------------
+# function CreateFile (AFILENAME)
+#--------------------------------------------------------------------------------
+function CreateFile () {
+#beginfunction
+    if [[ "$DEBUG" -eq 1 ]] ; then
+        echo DEBUG: function $FUNCNAME ... >$(tty)
+    fi
+
+}
+#endfunction
+
+#--------------------------------------------------------------------------------
+# function CheckFile (AFILENAME)
+#--------------------------------------------------------------------------------
+function CheckFile () {
+#beginfunction
+    if [[ "$DEBUG" -eq 1 ]] ; then
+        echo DEBUG: function $FUNCNAME ... >$(tty)
+    fi
+
+}
+#endfunction
+
+#--------------------------------------------------------------------------------
+# procedure COPY_FILES (DIR_FROM, DIR_TO, MASK, ARG)
+#--------------------------------------------------------------------------------
+function COPY_FILES () {
+#beginfunction
+    if [[ "$DEBUG" -eq 1 ]] ; then
+        echo DEBUG: function $FUNCNAME ... >$(tty)
+    fi
+
+}
+#endfunction
+
+#--------------------------------------------------------------------------------
+# procedure XCOPY_FILES (DIR_FROM, DIR_TO, MASK, ARG)
+#--------------------------------------------------------------------------------
+function XCOPY_FILES () {
+#beginfunction
+    if [[ "$DEBUG" -eq 1 ]] ; then
+        echo DEBUG: function $FUNCNAME ... >$(tty)
+    fi
+
 }
 #endfunction
 

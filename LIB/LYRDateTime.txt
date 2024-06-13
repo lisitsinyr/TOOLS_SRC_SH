@@ -1,8 +1,6 @@
-﻿01.НАЗВАНИЕ
-    ***
+﻿procedure LYRDateTime ()
 
-02.СИНТАКСИС
-    *** [параметры] ***
+function YYYYMMDDHHMMSS () -> YYYYMMDDHHMMSS
 
-03.ОПИСАНИЕ
-    ***
+function DateTime (AFORMAT) -> DateTime
+    AFORMAT

@@ -1,8 +1,64 @@
-﻿01.НАЗВАНИЕ
-    ***
+﻿procedure LYRConst ()
 
-02.СИНТАКСИС
-    *** [параметры] ***
+procedure SET_LIB (ASCRIPT)
+    ASCRIPT - Скрипт
 
-03.ОПИСАНИЕ
-    ***
+procedure SET_POETRY ()
+    APP=poetry
+    OPTION= -v --ansi
+    ARGS=
+    APPRUN=
+
+procedure SET_KIX ()
+    LIB_KIX - Каталог библиотеки KIX [каталог]
+    APP_KIX_DIR - каталог APP_KIX
+    APP_KIX - Скрипт APP_KIX имя
+
+procedure __SET_VAR_SCRIPT (AFULLFILENAME)
+    AFULLFILENAME -
+    SCRIPT_FULLFILENAME - Файл скрипта [каталог+имя+расширение]
+    SCRIPT_BASEFILENAME - Файл скрипта [имя+расширение]
+    SCRIPT_FILENAME - Файл скрипта [имя]
+    SCRIPT_FILEDIR - Файл скрипта: каталог
+    SCRIPT_FILEEXT - Файл скрипта: расширение
+
+procedure __SET_VAR_DEFAULT ()
+    APP=
+    COMMAND=
+    OPTION=
+    ARGS=
+    APPRUN=
+    touchRUN=touch -f
+    touchRUN=D:\TOOLS\EXE\touch.exe
+    SetINIAPP=D:\TOOLS\EXE\setini.exe
+    GetINIAPP=D:\TOOLS\EXE\getini.exe
+    DATETIME_STAMP - формат имени файла журнала [YYYYMMDDHHMMSS]
+    SLEEP - Number
+    REPO_INI - Файл с параметрами репозитария
+    REPO_NAME - Имя репозитария
+    PROJECT_INI - Файл с параметрами проекта
+    PROJECT_NAME - Имя проекта
+    POETRY_INI - Файл с параметрами проекта
+    POETRY_NAME - Имя проекта
+
+procedure __SET_VAR_PROJECTS ()
+    PROJECTS_LYR_DIR -
+    PROJECT - проект
+    PROJECT_DIR -
+    CURRENT_SYSTEM -
+    UNAME - COMPUTERNAME
+    USERNAME - USERNAME
+    CURRENT_DIR - Текущий каталог
+    TEMP_DIR - Временный каталог
+
+procedure __SET_LOG ()
+    LOG_FILESCRIPT - Файл первого скрипта [имя]
+    LOG_STR
+    LOG_DT_FORMAT_DEFAULT -
+    LOG_FILE_ADD - 1 добавлять к файлу, 0 - с начала файла
+    LOG_FILE_DT - 1 добавлять к имени файла префикс DATETIME_STAMP
+    LOG_DT_FORMAT -
+    LOG_FILENAME_FORMAT - Формат имени файла журнала [FILENAME,DATETIME,...]
+    LOG_DIR - Каталог журнала [каталог]
+    LOG_FILENAME - Файл журнала [имя]
+    LOG_FULLFILENAME - Файл журнала [каталог+имя+расширение]
