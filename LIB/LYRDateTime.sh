@@ -16,6 +16,8 @@ function LYRDateTime () {
         echo DEBUG: procedure $FUNCNAME ... >$(tty)
     fi
 
+    echo ERROR: function $FUNCNAME not implemented! ...
+
     return 0
 }
 #endfunction
@@ -50,5 +52,3 @@ function DateTime () {
     return 0
 }
 #endfunction
-
-#:Exit

@@ -1,8 +1,57 @@
-﻿01.НАЗВАНИЕ
-    ***
+﻿procedure LYRLog ()
 
-02.СИНТАКСИС
-    *** [параметры] ***
+procedure __SETVarLog ()
+    S01=------------------------------------------------------
+    loStandard=0
+    loTextFile=1
+    loAll=2
+    NOTSET=0
+    DEBUGT=1
+    INFO=2
+    WARNING=3
+    ERROR=4
+    CRITICAL=5
+    DEBUGTEXT=11
+    BEGIN=21
+    END=22
+    PROCESS=23
+    TEXT=24
+    ctlsNOTSET=" "
+    ctlsDEBUGT=D
+    ctlsINFO=I
+    ctlsWARNING=W
+    ctlsERROR=E
+    ctlsCRITICAL=C
+    ctlsBEGIN="<"
+    ctlsEND=">"
+    ctlsPROCESS=P
+    ctlsDEBUGTEXT=T
+    ctlsTEXT=T
 
-03.ОПИСАНИЕ
-    ***
+function __SHORTLevelName (Alevel) -> __SHORTLevelName
+    Alevel
+
+function __LOG_STR (Alevel, Amessage) -> __LOG_STR
+    Alevel
+    Amessage
+    YYYY
+    MM
+    DD
+    HH
+    MIN
+    SS
+    FORMAT
+    asctime
+
+procedure AddLog (Aout, Alevel, ...)
+    Aout
+    Alevel
+
+procedure AddLogFile (Aout, AFileName)
+    Aout
+    AFileName
+
+procedure StartLogFile ()
+    LOG_FILESCRIPT
+
+procedure StopLogFile ()

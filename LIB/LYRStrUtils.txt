@@ -1,8 +1,22 @@
-﻿01.НАЗВАНИЕ
-    ***
+﻿procedure LYRStrUtils ()
 
-02.СИНТАКСИС
-    *** [параметры] ***
+function TrimLeft (ASTR) -> TrimLeft
+    ASTR
 
-03.ОПИСАНИЕ
-    ***
+function TrimRight (ASTR) -> TrimRight
+    ASTR
+
+function Trim (ASTR) -> Trim
+    ASTR
+
+function Left (ASTR, Alen) -> Left
+    ASTR
+    Alen
+
+function  Mid (ASTR, Aposition, Alen) -> Mid
+    ASTR
+    Aposition
+    Alen
+
+function TrimQuotes (ASTR) -> TrimQuotes
+    ASTR

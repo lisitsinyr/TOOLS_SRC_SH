@@ -1,8 +1,46 @@
-﻿01.НАЗВАНИЕ
-    ***
+﻿procedure LYRFileUtils ()
 
-02.СИНТАКСИС
-    *** [параметры] ***
+function ExtractFileDir (AFullFilename) -> ExtractFileDir
+    AFullFilename
 
-03.ОПИСАНИЕ
-    ***
+function FullFileName (AFilename) -> FullFileName
+    AFilename
+
+function ExtractFileName (AFilename) -> ExtractFileName
+    AFilename
+
+function ExtractFileNameWithoutExt (AFileName) -> ExtractFileNameWithoutExt
+    AFilename
+
+function ExtractFileExt (AFileName) -> ExtractFileExt
+    AFilename
+
+function FileAttr (AFileName) -> FileAttr
+    AFilename
+    FOLDER
+
+function FileSize (AFileName) -> FileSize
+    AFilename
+
+function CreateDir (ADIRECTORY) -> CreateDir
+    ADIRECTORY
+
+function CreateFile (AFILENAME) -> CreateFile
+    AFILENAME
+
+function CheckFile (FILENAME) -> CheckFile
+    AFILENAME
+
+function CurrentDir () -> CurrentDir
+
+procedure COPY_FILES (DIR_FROM, DIR_TO, MASK, ARG)
+    ADIR_FROM
+    ADIR_TO
+    AMASK
+    AARG
+
+procedure XCOPY_FILES (DIR_FROM, DIR_TO, MASK, ARG)
+    ADIR_FROM
+    ADIR_TO
+    AMASK
+    AARG

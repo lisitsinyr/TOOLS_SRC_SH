@@ -16,6 +16,8 @@ function LYRConst () {
         echo DEBUG: procedure $FUNCNAME ... >$(tty)
     fi
 
+    echo ERROR: function $FUNCNAME not implemented! ...
+
     return 0
 }
 #endfunction
@@ -43,7 +45,7 @@ funtion SET_LIB
 # procedure __SET_VAR_SCRIPT (AFULLFILENAME)
 # --------------------------------------------------------------------------------
 function __SET_VAR_SCRIPT () {
-# beginfunction
+#beginfunction
     if [[ "$DEBUG" -eq 1 ]] ; then
         echo DEBUG: procedure $FUNCNAME ... >$(tty)
     fi
@@ -82,13 +84,13 @@ function __SET_VAR_SCRIPT () {
 
     return 0
 }
-# endfunction
+#endfunction
 
 # --------------------------------------------------------------------------------
 # procedure __SET_VAR_DEFAULT (DEBUG)
 # --------------------------------------------------------------------------------
 function __SET_VAR_DEFAULT () {
-# beginfunction
+#beginfunction
     if [[ "$DEBUG" -eq 1 ]] ; then
         echo DEBUG: procedure $FUNCNAME ... >$(tty)
     fi
@@ -153,13 +155,13 @@ function __SET_VAR_DEFAULT () {
 
     return 0
 }
-# endfunction
+#endfunction
 
 # --------------------------------------------------------------------------------
 # procedure __SET_VAR_PROJECTS ()
 # --------------------------------------------------------------------------------
 function __SET_VAR_PROJECTS () {
-# beginfunction
+#beginfunction
     if [[ "$DEBUG" -eq 1 ]] ; then
         echo DEBUG: procedure $FUNCNAME ... >$(tty)
     fi
@@ -214,13 +216,13 @@ function __SET_VAR_PROJECTS () {
 
     return 0
 }
-# endfunction
+#endfunction
 
 # --------------------------------------------------------------------------------
 # procedure __SET_LOG ()
 # --------------------------------------------------------------------------------
 function __SET_LOG () {
-# beginfunction
+#beginfunction
     if [[ "$DEBUG" -eq 1 ]] ; then
         echo DEBUG: procedure $FUNCNAME ... >$(tty)
     fi
@@ -334,6 +336,4 @@ function __SET_LOG () {
 
     return 0
 }
-# endfunction
-
-# ===================================================================
+#endfunction

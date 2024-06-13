@@ -3,25 +3,6 @@
 # LYRFileUtils.sh
 # -----------------------------------------------
 
-# -------------------------------------------------------------------
-# ФУНКЦИИ
-# -------------------------------------------------------------------
-# ФУНКЦИИ
-#     LYRFileUtils
-#     ExtractFileDir
-#     ExtractFileName
-#     ExtractFileNameWithoutExt
-#     ExtractFileExt
-#     FileAttr
-#     CurrentDir
-#     FileSize (AFileName)
-#     CreateDir (ADIRECTORY)
-#     CreateFile (AFILENAME)
-#     CheckFile (AFILENAME)
-#     COPY_FILES (DIR_FROM, DIR_TO, MASK, ARG)
-#     XCOPY_FILES (DIR_FROM, DIR_TO, MASK, ARG)
-# -------------------------------------------------------------------
-
 # =================================================
 # ФУНКЦИИ
 # =================================================
@@ -35,12 +16,14 @@ function LYRFileUtils () {
         echo DEBUG: procedure $FUNCNAME ... >$(tty)
     fi
 
+    echo ERROR: function $FUNCNAME not implemented! ...
+
     return 0
 }
 #endfunction
 
 #--------------------------------------------------------------------------------
-# function ExtractFileDir (APath)
+# function ExtractFileDir (AFullFilename) -> ExtractFileDir
 #--------------------------------------------------------------------------------
 function ExtractFileDir () {
 #beginfunction
@@ -48,13 +31,14 @@ function ExtractFileDir () {
         echo DEBUG: function $FUNCNAME ... >$(tty)
     fi
 
-    local LResult=
-    LError=0
-    LPath="$1"
+    AFullFilename="$1"
     # fspec=/path/to/some/file.txt
     # echo ${fspec%/*}
     # fspec=/path/to/some/
-    LResult=${LPath%/*}
+
+    local LResult=
+    LError=0
+    LResult=${AFullFilename%/*}
     if [ -z "$LResult" ] ; then
         LError=1
     else
@@ -69,8 +53,23 @@ function ExtractFileDir () {
 }
 #endfunction
 
+# --------------------------------------------------------------------------------
+# function FullFileName (AFilename) -> FullFileName
+# --------------------------------------------------------------------------------
+function FullFileName () {
+#beginfunction
+    if [[ "$DEBUG" -eq 1 ]] ; then
+        echo DEBUG: function $FUNCNAME ... >$(tty)
+    fi
+
+    echo ERROR: function $FUNCNAME not implemented! ...
+
+    return 0
+}
+#endfunction
+
 #--------------------------------------------------------------------------------
-# function ExtractFileName (APath)
+# function ExtractFileName (AFilename) -> ExtractFileName
 #--------------------------------------------------------------------------------
 function ExtractFileName () {
 #beginfunction
@@ -78,13 +77,14 @@ function ExtractFileName () {
         echo DEBUG: function $FUNCNAME ... >$(tty)
     fi
 
-    local LResult=
-    LError=0
-    LPath="$1"
+    AFilename="$1"
     # fspec=/path/to/some/file.txt
     # echo ${fspec##*/}
     # file.txt
-    LResult=${LPath##*/}
+
+    local LResult=
+    LError=0
+    LResult=${AFilename##*/}
     if [ -z "$LResult" ] ; then
         LError=1
     else
@@ -96,7 +96,7 @@ function ExtractFileName () {
 #endfunction
 
 #-------------------------------------------------------------------------------
-# function ExtractFileNameWithoutExt (AFileName)
+# function ExtractFileNameWithoutExt (AFileName) -> ExtractFileNameWithoutExt
 #-------------------------------------------------------------------------------
 function ExtractFileNameWithoutExt () {
 #beginfunction
@@ -104,10 +104,11 @@ function ExtractFileNameWithoutExt () {
         echo DEBUG: function $FUNCNAME ... >$(tty)
     fi
 
+    AFileName="$1"
+
     local LResult=
     LError=0
-    LFileName="$1"
-    LResult=${LFileName%.*}
+    LResult=${AFileName%.*}
     if [ -z "$LResult" ] ; then
         LError=1
     else
@@ -118,7 +119,7 @@ function ExtractFileNameWithoutExt () {
 #endfunction
 
 #--------------------------------------------------------------------------------
-# function ExtractFileExt (AFileName)
+# function ExtractFileExt (AFileName) -> ExtractFileExt
 #--------------------------------------------------------------------------------
 function ExtractFileExt () {
 #beginfunction
@@ -126,10 +127,11 @@ function ExtractFileExt () {
         echo DEBUG: function $FUNCNAME ... >$(tty)
     fi
 
+    AFileName="$1"
+
     local LResult=
     LError=0
-    LFileName="$1"
-    LResult=${LFileName#*.}
+    LResult=${AFileName#*.}
     if [ -z "$LResult" ] ; then
         LError=1
     else
@@ -141,7 +143,7 @@ function ExtractFileExt () {
 #endfunction
 
 #--------------------------------------------------------------------------------
-# function FileAttr (AFileName)
+# function FileAttr (AFileName) -> FileAttr
 #--------------------------------------------------------------------------------
 function FileAttr () {
 #beginfunction
@@ -149,23 +151,14 @@ function FileAttr () {
         echo DEBUG: function $FUNCNAME ... >$(tty)
     fi
 
+    echo ERROR: function $FUNCNAME not implemented! ...
+
+    return 0
 }
 #endfunction
 
 #--------------------------------------------------------------------------------
-# function CurrentDir ()
-#--------------------------------------------------------------------------------
-function CurrentDir () {
-#beginfunction
-    if [[ "$DEBUG" -eq 1 ]] ; then
-        echo DEBUG: function $FUNCNAME ... >$(tty)
-    fi
-
-}
-#endfunction
-
-#--------------------------------------------------------------------------------
-# function FileSize (AFileName)
+# function FileSize (AFileName) -> FileSize
 #--------------------------------------------------------------------------------
 function FileSize () {
 #beginfunction
@@ -173,11 +166,14 @@ function FileSize () {
         echo DEBUG: function $FUNCNAME ... >$(tty)
     fi
 
+    echo ERROR: function $FUNCNAME not implemented! ...
+
+    return 0
 }
 #endfunction
 
 #--------------------------------------------------------------------------------
-# function CreateDir (ADIRECTORY)
+# function CreateDir (ADIRECTORY) -> CreateDir
 #--------------------------------------------------------------------------------
 function CreateDir () {
 #beginfunction
@@ -185,11 +181,14 @@ function CreateDir () {
         echo DEBUG: function $FUNCNAME ... >$(tty)
     fi
 
+    echo ERROR: function $FUNCNAME not implemented! ...
+
+    return 0
 }
 #endfunction
 
 #--------------------------------------------------------------------------------
-# function CreateFile (AFILENAME)
+# function CreateFile (AFILENAME) -> CreateFile
 #--------------------------------------------------------------------------------
 function CreateFile () {
 #beginfunction
@@ -197,11 +196,14 @@ function CreateFile () {
         echo DEBUG: function $FUNCNAME ... >$(tty)
     fi
 
+    echo ERROR: function $FUNCNAME not implemented! ...
+
+    return 0
 }
 #endfunction
 
 #--------------------------------------------------------------------------------
-# function CheckFile (AFILENAME)
+# function CheckFile (AFILENAME) -> CheckFile
 #--------------------------------------------------------------------------------
 function CheckFile () {
 #beginfunction
@@ -209,6 +211,24 @@ function CheckFile () {
         echo DEBUG: function $FUNCNAME ... >$(tty)
     fi
 
+    echo ERROR: function $FUNCNAME not implemented! ...
+
+    return 0
+}
+#endfunction
+
+#--------------------------------------------------------------------------------
+# function CurrentDir () -> CurrentDir
+#--------------------------------------------------------------------------------
+function CurrentDir () {
+#beginfunction
+    if [[ "$DEBUG" -eq 1 ]] ; then
+        echo DEBUG: function $FUNCNAME ... >$(tty)
+    fi
+
+    echo ERROR: function $FUNCNAME not implemented! ...
+
+    return 0
 }
 #endfunction
 
@@ -221,6 +241,9 @@ function COPY_FILES () {
         echo DEBUG: function $FUNCNAME ... >$(tty)
     fi
 
+    echo ERROR: function $FUNCNAME not implemented! ...
+
+    return 0
 }
 #endfunction
 
@@ -233,7 +256,8 @@ function XCOPY_FILES () {
         echo DEBUG: function $FUNCNAME ... >$(tty)
     fi
 
+    echo ERROR: function $FUNCNAME not implemented! ...
+
+    return 0
 }
 #endfunction
-
-#:Exit

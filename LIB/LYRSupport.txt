@@ -1,8 +1,62 @@
-﻿01.НАЗВАНИЕ
-    ***
+﻿procedure LYRSupport ()
 
-02.СИНТАКСИС
-    *** [параметры] ***
+procedure PressAnyKey ()
 
-03.ОПИСАНИЕ
-    ***
+procedure Pause (APause)
+    APause
+
+procedure Check_P (P_Name, P_Value)
+
+procedure Read_P (P_Name, P_Value)
+
+procedure Read_F (P_Name, P_List, Atimeout)
+
+function Read_N () -> Read_N
+
+procedure SetINI (AFileName, ASection, AParameter, AValue)
+    AFileName
+    ASection
+    AParameter
+    AValue
+
+procedure GetINI (AFileName, ASection, AParameter)
+    AFileName
+    ASection
+    AParameter
+
+procedure GetINIParametr (AFileName, ASection, AParameter)
+    AFileName
+    ASection
+    AParameter
+    Section
+
+procedure GetFileParser (AFileName Adelims Atokens Aeol)
+    AFileName
+    Adelims
+    Atokens
+    Aeol
+
+procedure GetDir (ASET, Aview, Aarg)
+    ASET
+    Aview
+    Aarg
+
+procedure GetFile (ASET, Aview, Aarg)
+    ASET
+    Aview
+    Aarg
+
+procedure FORCicle (Astart, Astep, Aend)
+    Astart
+    Astep
+    Aend
+
+procedure GetSET (ASET Adelims Atokens)
+    ASET
+    Adelims
+    Atokens
+
+procedure GetCMD (ASET Adelims Atokens)
+    ASET
+    Adelims
+    Atokens

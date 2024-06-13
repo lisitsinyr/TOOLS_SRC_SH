@@ -3,77 +3,9 @@
 # LYRLog.sh
 # -----------------------------------------------
 
-#:begin
-# echo '01.НАЗВАНИЕ'
-# echo '    *** - ***'
-
-# echo '02.СИНТАКСИС'
-# echo '    LOG_DIR='
-# echo '    LOG_FILE='
-# echo '    LOG_OPT='
-# echo '    LOG_FILE_DT_FORMAT'
-
-# echo '03.ОПИСАНИЕ'
-# echo '    ***'
-
-# -------------------------------------------------------------------
-# Redirect stdout and stderr to the log file
-# -------------------------------------------------------------------
-#0, STDIN - стандартный поток ввода
-#1, STDOUT - стандартный поток вывода
-#2, STDERR - стандартный поток ошибок
-#3, 3 - поток вывода
-#4, 4 - поток вывода
-#5, 5 - поток вывода
-#6, 6 - поток вывода
-#7, 7 - поток вывода
-#8, 8 - поток вывода
-#9, 9 - поток вывода
-
-# -------------------------------------------------------------------
-#   echo "This is normal output" >&1
-#   echo "This is an error"      >&2
-# -------------------------------------------------------------------
-
-# -------------------------------------------------------------------
-#   echo 1> data.txt  # STDOUT
-#   echo 2> error.txt # STDERR
-
-#   ls data 1> data.txt 2> error.txt # STDOUT STDERR
-
-#Если надо, STDERR и STDOUT можно перенаправить в один и тот же файл, воспользовавшись &>:
-#   ls data &> data-error.txt
-#Устаревшая форма записи:
-#   ls data > data-error.txt 2>&1
-# -------------------------------------------------------------------
-
-# -------------------------------------------------------------------
-#   exec $> "$LOG_FILE"  # STDOUT и STDERR
-#   exec 1> "$LOG_FILE"  # STDOUT
-# -------------------------------------------------------------------
-
-#-------------------------------------------------
-# AddLog $loAll $NOTSET 'NOTSET'
-# AddLog $loAll $DEBUG 'DEBUG'
-# AddLog $loAll $INFO 'INFO'
-# AddLog $loAll $WARNING 'WARNING'
-# AddLog $loAll $ERROR 'ERROR'
-# AddLog $loAll $CRITICAL 'CRITICAL'
-# AddLog $loAll $DEBUGTEXT 'DEBUGTEXT'
-# AddLog $loAll $BEGIN 'BEGIN'
-# AddLog $loAll $END 'END'
-# AddLog $loAll $PROCESS 'PROCESS'
-# AddLog $loAll $TEXT 'TEXT'
-
-#-------------------------------------------------
-# AddLog $loAll $TEXT '--------------------------------------'
-# str=''
-# str=""
-# result=$('')
-# AddLog $loAll $TEXT 'str:'"$str"
-# AddLog $loAll $TEXT 'result:'"$result"
-# AddLog $loAll $TEXT '--------------------------------------'
-#-------------------------------------------------
+# =================================================
+# ФУНКЦИИ
+# =================================================
 
 #--------------------------------------------------------------------------------
 # procedure LYRLog ()
@@ -84,25 +16,29 @@ function LYRLog () {
         echo DEBUG: procedure $FUNCNAME ... >$(tty)
     fi
 
+    echo ERROR: function $FUNCNAME not implemented! ...
+
     return 0
 }
 #endfunction
 
 #--------------------------------------------------------------------------------
-# procedure SETVarLog ()
+# procedure __SETVarLog ()
 #--------------------------------------------------------------------------------
-function SETVarLog () {
+function __SETVarLog () {
 #beginfunction
     if [[ "$DEBUG" -eq 1 ]] ; then
         echo DEBUG: procedure $FUNCNAME ... >$(tty)
     fi
+
     # --------------------------------
-    FORMAT='%Y-%m-%d %H:%M:%S %N'
     S01=------------------------------------------------------
+
     # --------------------------------
     loStandard=0
     loTextFile=1
     loAll=2
+    
     # --------------------------------
     NOTSET=0
     DEBUGT=1
@@ -115,6 +51,7 @@ function SETVarLog () {
     END=22
     PROCESS=23
     TEXT=24
+    
     # --------------------------------
     ctlsNOTSET=' '
     ctlsDEBUG='D'
@@ -126,52 +63,54 @@ function SETVarLog () {
     ctlsEND='>'
     ctlsPROCESS='P'
     ctlsDEBUGTEXT='T'
-    ctlsTEXT=''
+    ctlsTEXT='T'
 
     return 0
 }
 #endfunction
 
 # --------------------------------------------------------------------------------
-# procedure SHORTLevel (Alevel $2 $3 $4 $5 $6 $7 $8 $9)
+# function __SHORTLevelName (Alevel) -> __SHORTLevelName
 # --------------------------------------------------------------------------------
-function SHORTLevel () {
+function __SHORTLevelName () {
 # beginfunction
     if [[ "$DEBUG" -eq 1 ]] ; then
         echo DEBUG: procedure $FUNCNAME ... >$(tty)
     fi
 
-    Llevel=$1
-    # echo Llevel: %Llevel%
+    Alevel=$1
+    # echo 'Alevel:'Alevel
+
     SHORTLevelName=
-    if [ "$Llevel" = "$INFO" ] ; then
+
+    if [ "$Alevel" = "$INFO" ] ; then
         SHORTLevelName=$ctlsINFO
     fi
-    if [ "$Llevel" = "$WARNING" ] ; then
+    if [ "$Alevel" = "$WARNING" ] ; then
         SHORTLevelName=$ctlsWARNING
     fi
-    if [ "$Llevel" = "$ERROR" ] ; then
+    if [ "$Alevel" = "$ERROR" ] ; then
         SHORTLevelName=$ctlsERROR
     fi
-    if [ "$Llevel" = "CRITICAL" ] ; then
+    if [ "$Alevel" = "CRITICAL" ] ; then
         SHORTLevelName=$ctlsCRITICAL
     fi
-    if [ "$Llevel" = "$DEBUG" ] ; then
+    if [ "$Alevel" = "$DEBUG" ] ; then
         SHORTLevelName=$ctlsDEBUG
     fi
-    if [ "$Llevel" = "$TEXT" ] ; then
+    if [ "$Alevel" = "$TEXT" ] ; then
         SHORTLevelName=$ctlsTEXT
     fi
-    if [ "$Llevel" = "$DEBUGTEXT" ] ; then
+    if [ "$Alevel" = "$DEBUGTEXT" ] ; then
         SHORTLevelName=$ctlsDEBUGTEXT
     fi
-    if [ "$Llevel" = "$BEGIN" ] ; then
+    if [ "$Alevel" = "$BEGIN" ] ; then
         SHORTLevelName=$ctlsBEGIN
     fi
-    if [ "$Llevel" = "$END" ] ; then
+    if [ "$Alevel" = "$END" ] ; then
         SHORTLevelName=$ctlsEND
     fi
-    if [ "$Llevel" = "$PROCESS" ] ; then
+    if [ "$Alevel" = "$PROCESS" ] ; then
         SHORTLevelName=$ctlsPROCESS
     fi
 
@@ -180,65 +119,81 @@ function SHORTLevel () {
 # endfunction
 
 #--------------------------------------------------------------------------------
-# procedure FormatStr (Alevel $2 $3 $4 $5 $6 $7 $8 $9)
+# function __LOG_STR (Alevel, Amessage) -> __LOG_STR
 #--------------------------------------------------------------------------------
-function FormatStr () {
+function __LOG_STR () {
 #beginfunction
     if [[ "$DEBUG" -eq 1 ]] ; then
         echo DEBUG: procedure $FUNCNAME ... >$(tty)
     fi
 
-    #------------------------------------------------------
-    #
-    #------------------------------------------------------
-    Llevel=$1
-    Lmessage="$2 $3 $4 $5 $6 $7 $8 $9"
+    Alevel=$1
+    # echo 'Alevel:'Alevel
+
+    Amessage="$2 $3 $4 $5 $6 $7 $8 $9"
+    # echo
+
+
+    
+
+    
+    
+    
+    
+    FORMAT='%Y-%m-%d %H:%M:%S %N'
+    # echo
+
+    SHORTLevelName $Alevel
+    # echo
+    
+
+
     printf -v asctime '%(%Y/%m/%d %H:%M:%S)T' -1
-    SHORTLevel $Llevel
-    case "$Llevel" in
+
+    case "$Alevel" in
     $NOTSET)
         Linfo='NOTSET'
-        printf -v LOG_STR "%-s %-s %-s" "$asctime" "$SHORTLevelName" "$Lmessage"
+        printf -v LOG_STR "%-s %-s %-s" "$asctime" "$SHORTLevelName" "$Amessage"
         ;;
     $DEBUG)
         Linfo='DEBUG'
-        printf -v LOG_STR "%-s %-s %-s" "$asctime" "$SHORTLevelName" "$Lmessage"
+        printf -v LOG_STR "%-s %-s %-s" "$asctime" "$SHORTLevelName" "$Amessage"
         ;;
     $INFO)
         Linfo='INFO'
-        printf -v LOG_STR "%-s %-s %-s" "$asctime" "$SHORTLevelName" "$Lmessage"
+        printf -v LOG_STR "%-s %-s %-s" "$asctime" "$SHORTLevelName" "$Amessage"
         ;;
     $WARNING)
         Linfo='WARNING'
-        printf -v LOG_STR "%-s %-s %-s" "$asctime" "$SHORTLevelName" "$Lmessage"
+        printf -v LOG_STR "%-s %-s %-s" "$asctime" "$SHORTLevelName" "$Amessage"
         ;;
     $ERROR)
         Linfo='ERROR'
-        printf -v LOG_STR "%-s %-s %-s" "$asctime" "$SHORTLevelName" "$Lmessage"
+        printf -v LOG_STR "%-s %-s %-s" "$asctime" "$SHORTLevelName" "$Amessage"
         ;;
     $CRITICAL)
         Linfo='CRITICAL'
-        printf -v LOG_STR "%-s %-s %-s" "$asctime" "$SHORTLevelName" "$Lmessage"
+        printf -v LOG_STR "%-s %-s %-s" "$asctime" "$SHORTLevelName" "$Amessage"
         ;;
     $DEBUGTEXT)
         Linfo='DEBUGTEXT'
-        printf -v LOG_STR "%-s %-s" "$SHORTLevelName" "$Lmessage"
+        printf -v LOG_STR "%-s %-s" "$SHORTLevelName" "$Amessage"
         ;;
     $BEGIN)
         Linfo='BEGIN'
-        printf -v LOG_STR "%-s %-s %-s" "$asctime" "$SHORTLevelName" "$Lmessage"
+        printf -v LOG_STR "%-s %-s %-s" "$asctime" "$SHORTLevelName" "$Amessage"
         ;;
     $END)
         Linfo='END'
-        printf -v LOG_STR "%-s %-s %-s" "$asctime" "$SHORTLevelName" "$Lmessage"
+        printf -v LOG_STR "%-s %-s %-s" "$asctime" "$SHORTLevelName" "$Amessage"
         ;;
     $PROCESS)
         Linfo='PROCESS'
-        printf -v LOG_STR "%-s %-s %-s" "$asctime" "$SHORTLevelName" "$Lmessage"
+        printf -v LOG_STR "%-s %-s %-s" "$asctime" "$SHORTLevelName" "$Amessage"
         ;;
     $TEXT)
         Linfo='TEXT'
-        printf -v LOG_STR "%-s" "$Lmessage"
+        printf -v LOG_STR "%-s" "$Amessage"
         ;;
     *)
         Linfo=''
@@ -250,7 +205,7 @@ function FormatStr () {
 #endfunction
 
 #--------------------------------------------------
-# procedure AddLog (Aout Alevel $3 $4 $5 $6 $7 $8 $9)
+# procedure AddLog (Aout, Alevel, ...)
 #--------------------------------------------------
 function AddLog () { 
 #beginfunction
@@ -325,7 +280,7 @@ function StartLogFile () {
         echo DEBUG: procedure $FUNCNAME ... >$(tty)
     fi
 
-    SETVarLog
+    __SETVarLog
 
     LOG_FILESCRIPT="$SCRIPT_FILENAME"
 
@@ -376,5 +331,3 @@ function StopLogFile () {
     return 0
 }
 #endfunction
-
-#:Exit
