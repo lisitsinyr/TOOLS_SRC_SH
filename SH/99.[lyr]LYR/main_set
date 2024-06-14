@@ -1,0 +1,24 @@
+﻿    __SET_VAR_DEFAULT $DEBUG
+    __SET_VAR_SCRIPT "$SCRIPT_FULLFILENAME"
+    __SET_VAR_PROJECTS
+    __SET_CHECK_REPO
+    # -------------------------------------------------------------------
+    # LOG_DT_FORMAT -
+    # LOG_DT_FORMAT=
+    # -------------------------------------------------------------------
+    # LOG_FILENAME_FORMAT - Формат имени файла журнала [FILENAME,DATETIME,...]
+    # LOG_FILENAME_FORMAT=
+    # -------------------------------------------------------------------
+    # LOG_FILE_ADD - Параметры журнала [0]
+    if [ -z "$LOG_FILE_ADD" ] ; then LOG_FILE_ADD=0 ; fi
+    # -------------------------------------------------------------------
+    # LOG_FILE_DT - Параметры журнала [0]
+    if [ -z "$LOG_FILE_DT" ] ; then LOG_FILE_ADD=0 ; fi
+    # -------------------------------------------------------------------
+    # LOG_DIR - Каталог журнала [каталог]
+    # LOG_DIR=
+    # -------------------------------------------------------------------
+    # LOG_FILENAME - Файл журнала [имя]
+    # LOG_FILENAME=
+    #if [ -z "$LOG_FILENAME" ] ; then LOG_FILENAME=TEST ; fi
+    __SET_LOG

@@ -22,25 +22,6 @@ function LYRConst () {
 }
 #endfunction
 
-# -----------------------------------------------
-# procedure SET_LIB (ASCRIPT)
-# -----------------------------------------------
-funtion SET_LIB
-#beginfunction
-    if [[ "$DEBUG" -eq 1 ]] ; then
-        echo DEBUG: procedure $FUNCNAME ... >$(tty)
-    fi
- 
-    ASCRIPT=$1
-
-    __SET_VAR_SCRIPT $ASCRIPT
-    __SET_VAR_DEFAULT
-    __SET_VAR_PROJECTS
-    __SET_LOG
-
-    return 0
-#endfunction
-
 # --------------------------------------------------------------------------------
 # procedure __SET_VAR_SCRIPT (AFULLFILENAME)
 # --------------------------------------------------------------------------------
@@ -101,7 +82,7 @@ function __SET_VAR_DEFAULT () {
     ARGS=
     APPRUN=
 
-    touchRUN=touch -f
+    touchRUN=
     touchRUN=
     SetINIAPP=
     GetINIAPP=
@@ -169,8 +150,8 @@ function __SET_VAR_PROJECTS () {
     # -------------------------------------------------------------------
     # PROJECTS_LYR_DIR -
     #------------------------------------------------------
-    PROJECTS_LYR_DIR=
-    #echo PROJECTS_LYR_DIR: $PROJECTS_LYR_DIR
+    #PROJECTS_LYR_DIR='/d/PROJECTS_LYR'
+    #echo PROJECTS_LYR_DIR:$PROJECTS_LYR_DIR
 
     # -------------------------------------------------------------------
     # PROJECT - проект
@@ -289,7 +270,7 @@ function __SET_LOG () {
     #echo LOG_DIR: $LOG_DIR
     if [[ ! -d "$LOG_DIR" ]] ; then
         echo INFO: Dir "$LOG_DIR" not exist...
-        echo INFO: Каталог "$LOG_DIR" не существует...
+        #echo INFO: Каталог "$LOG_DIR" не существует...
         echo INFO: Create "$LOG_DIR" ...
         result=$(mkdir "$LOG_DIR")
         # echo ERRORLEVEL: !ERRORLEVEL!
@@ -333,6 +314,26 @@ function __SET_LOG () {
     fi
     #echo LOG_FULLFILENAME: "$LOG_FULLFILENAME"
 
+
+    return 0
+}
+#endfunction
+
+# -----------------------------------------------
+# procedure SET_LIB (ASCRIPT)
+# -----------------------------------------------
+function SET_LIB () {
+#beginfunction
+    if [[ "$DEBUG" -eq 1 ]] ; then
+        echo DEBUG: procedure $FUNCNAME ... >$(tty)
+    fi
+ 
+    ASCRIPT=$1
+
+    __SET_VAR_SCRIPT $ASCRIPT
+    __SET_VAR_DEFAULT
+    __SET_VAR_PROJECTS
+    __SET_LOG
 
     return 0
 }

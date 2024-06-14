@@ -3,92 +3,43 @@
 # [lyrxxx_]PATTERN.sh
 # -----------------------------------------------
 
-#--------------------------------------------------------------------------------
-#
-#--------------------------------------------------------------------------------
-#begin
-    MAIN_INIT "$0" 0
-
-    MAIN_SET
-
-    StartLogFile
-
-    #DIR_SAVE=$CURRENT_DIR
-    #MAIN_CHECK_PARAMETR
-    #MAIN_SYNTAX
-
-    MAIN
-    StopLogFile
-
-    #cd $DIR_SAVE
-    #PressAnyKey
-
-#end
-#--------------------------------------------------------------------------------
-
 # -----------------------------------------------
-# procedure MAIN_INIT (FULLFILENAME, DEBUG)
+# procedure MAIN_INIT ()
 # -----------------------------------------------
 function MAIN_INIT () {
 #beginfunction
-    # -------------------------------------------------------------------
-    # DEBUG 1-включить DEBUG 0-выключить DEBUG
-    DEBUG=$2
     #echo DEBUG: $DEBUG
     if [[ "$DEBUG" -eq 1 ]] ; then
         echo DEBUG: procedure $FUNCNAME ... >$(tty)
     fi
 
     # -------------------------------------------------------------------
-    # PROJECTS - проект
-    # -------------------------------------------------------------------
-    PROJECTS='PROJECTS_UNIX'
-
-    # -------------------------------------------------------------------
-    # PROJECTS_LYR_DIR - каталог проектов
-    # -------------------------------------------------------------------
     # SCRIPTS_DIR - каталог скриптов
     # -------------------------------------------------------------------
-    # SCRIPT_FULLFILENAME - Файл скрипта [каталог+имя+расширение]
-    # -------------------------------------------------------------------
     UNAME=$(uname -n)
-    #echo UNAME: $UNAME
     case "$UNAME" in
         'ASUS-W10P')
             PROJECTS_LYR_DIR='/d/PROJECTS_LYR'
-            SCRIPTS_DIR='/d/PROJECTS_LYR/CHECK_LIST/01_OS/03_UNIX/PROJECTS_UNIX/TOOLS_SH'
-            if [[ -z "$SCRIPT_FULLFILENAME" ]] ; then
-                SCRIPT_FULLFILENAME=$(cygpath "$1")
-            fi
+            SCRIPTS_DIR='/d/PROJECTS_LYR/CHECK_LIST/01_OS/03_UNIX/PROJECTS_UNIX/TOOLS_SRC_SH'
             ;;
         'ASUS-U2204-VB' | 'ASUS-U2204-VM' | 'ASUS-U2310-VB' | 'ASUS-U2310-VB' | 'ASUS-U2310')
             PROJECTS_LYR_DIR='/home/lyr/PROJECTS_LYR'
-            SCRIPTS_DIR='/home/lyr/PROJECTS_LYR/CHECK_LIST/01_OS/03_UNIX/PROJECTS_UNIX/TOOLS_SH'
-            if [[ -z "$SCRIPT_FULLFILENAME" ]] ; then
-                SCRIPT_FULLFILENAME=$1
-            fi
+            SCRIPTS_DIR='/home/lyr/PROJECTS_LYR/CHECK_LIST/01_OS/03_UNIX/PROJECTS_UNIX/TOOLS_SRC_SH'
         ;;
         *)
             echo "ERROR: Компьютер не определен...!"
             exit 1
             ;;
     esac
-    #echo PROJECTS_LYR_DIR: $PROJECTS_LYR_DIR
-    #echo SCRIPTS_DIR: $SCRIPTS_DIR
-    #echo SCRIPT_FULLFILENAME: $SCRIPT_FULLFILENAME
+    echo PROJECTS_LYR_DIR:$PROJECTS_LYR_DIR
+    echo SCRIPTS_DIR:$SCRIPTS_DIR
 
-    # -------------------------------------------------------------------
-    # PROJECTS_DIR - каталог проекта
-    # -------------------------------------------------------------------
-    PROJECTS_DIR="$PROJECTS_LYR_DIR/CHECK_LIST/01_OS/03_UNIX/$PROJECTS"
-    #echo PROJECTS_DIR: $PROJECTS_DIR
-    
     # -------------------------------------------------------------------
     # LIB_SH - каталог библиотеки скриптов
     # -------------------------------------------------------------------
     if [[ -z "$LIB_SH" ]] ; then
         LIB_SH="$SCRIPTS_DIR/LIB"
-        #echo LIB_SH: $LIB_SH
+        echo LIB_SH: $LIB_SH
     fi
     if [[ ! -d "$LIB_SH" ]] ; then
         echo ERROR: Каталог библиотеки LYR $LIB_SH не существует...
@@ -98,8 +49,8 @@ function MAIN_INIT () {
     # -------------------------------------------------------------------
     # запуск скриптов БИБЛИОТЕКИ LYR
     # -------------------------------------------------------------------
-    source "$LIB_SH/LYRConst.sh"
     source "$LIB_SH/LYRFileUtils.sh"
+    source "$LIB_SH/LYRConst.sh"
     source "$LIB_SH/LYRLog.sh"
     source "$LIB_SH/LYRConst.sh"
     source "$LIB_SH/LYRDateTime.sh"
@@ -118,31 +69,6 @@ function MAIN_SET () {
         echo DEBUG: procedure $FUNCNAME ... >$(tty)
     fi
 
-    __SET_VAR_DEFAULT $DEBUG
-    __SET_VAR_SCRIPT "$SCRIPT_FULLFILENAME"
-    __SET_VAR_PROJECTS
-    __SET_CHECK_REPO
-    # -------------------------------------------------------------------
-    # LOG_DT_FORMAT -
-    # LOG_DT_FORMAT=
-    # -------------------------------------------------------------------
-    # LOG_FILENAME_FORMAT - Формат имени файла журнала [FILENAME,DATETIME,...]
-    # LOG_FILENAME_FORMAT=
-    # -------------------------------------------------------------------
-    # LOG_FILE_ADD - Параметры журнала [0]
-    if [ -z "$LOG_FILE_ADD" ] ; then LOG_FILE_ADD=0 ; fi
-    # -------------------------------------------------------------------
-    # LOG_FILE_DT - Параметры журнала [0]
-    if [ -z "$LOG_FILE_DT" ] ; then LOG_FILE_ADD=0 ; fi
-    # -------------------------------------------------------------------
-    # LOG_DIR - Каталог журнала [каталог]
-    # LOG_DIR=
-    # -------------------------------------------------------------------
-    # LOG_FILENAME - Файл журнала [имя]
-    # LOG_FILENAME=
-    #if [ -z "$LOG_FILENAME" ] ; then LOG_FILENAME=TEST ; fi
-    __SET_LOG
-
     return 0
 }
 #endfunction
@@ -156,24 +82,36 @@ function MAIN_CHECK_PARAMETR () {
         echo DEBUG: procedure $FUNCNAME ... >$(tty)
     fi
 
-    P1=P1_default
-    #Check_P P1 $1
+    # -------------------------------------
+    # OPTION
+    # -------------------------------------
+    O1=O1_default
+    PN_CAPTION=O1
+    Read_P O1 O1
+    echo O1:$O1
+    #AddLog $loAll $TEXT O1:$O1
+    #AddLog $loAll $INFO O1:$O1
+    if [[ ! -z "$O1" ]] ; then
+        OPTION="$OPTION --O1 $O1"
+    else
+        echo INFO: O1 not defined ...
+    fi
 
-    Check_P P1 TEST
-    AddLog $loAll $TEXT P1: $P1
-    AddLog $loAll $INFO P1: $P1
-
-    return 0
-}
-#endfunction
-
-#--------------------------------------------------------------------------------
-# procedure MAIN_SYNTAX ()
-#--------------------------------------------------------------------------------
-function MAIN_SYNTAX () {
-#beginfunction
-    if [[ "$DEBUG" -eq 1 ]] ; then
-        echo DEBUG: procedure $FUNCNAME ... >$(tty)
+    # -------------------------------------
+    # ARGS
+    # -------------------------------------
+    # Проверка на обязательные аргументы
+    A1=
+    PN_CAPTION=A1
+    Read_P A1 A1
+    echo A1:$A1
+    #AddLog $loAll $TEXT A1:$A1
+    #AddLog $loAll $INFO A1:$A1
+    if [[ ! -z "$A1" ]] ; then
+        ARGS="$ARGS $A1"
+    else
+        echo ERROR: A1 not defined ...
+        OK=
     fi
 
     return 0
@@ -207,12 +145,52 @@ function MAIN () {
         echo DEBUG: procedure $FUNCNAME ... >$(tty)
     fi
 
-    MAIN_FUNC
+    BATNAME=$0
+    echo Start $BATNAME ...
 
-    #Pause "$SLEEP"
-    #PressAnyKey
+    DEBUG=0
+
+    # -------------------------------------------------------------------
+    # SCRIPTS_DIR - Каталог скриптов
+    # LIB_BAT - каталог библиотеки скриптов
+    # SCRIPTS_DIR_KIX - Каталог скриптов KIX
+    # -------------------------------------------------------------------
+    MAIN_INIT
+
+    # Количество аргументов
+    Read_N
+    #echo Read_N:$Read_N
+
+    SET_LIB "$0"
+    #echo CURRENT_DIR:$CURRENT_DIR
+    echo SCRIPT_FULLFILENAME:$SCRIPT_FULLFILENAME
+
+    StartLogFile
+
+    OK=yes
+    MAIN_SET
+
+    if [[ ! -z "$OK" ]] ; then #if defined OK if not defined Read_N (
+        MAIN_CHECK_PARAMETR
+    fi
+
+    OK=yes
+    if [[ ! -z "$OK" ]] ; then
+        MAIN_FUNC
+        #Pause "$SLEEP"
+        #PressAnyKey
+    fi
+
+    StopLogFile
 
     return 0
 }
 #endfunction
 
+#--------------------------------------------------------------------------------
+#
+#--------------------------------------------------------------------------------
+#begin
+    MAIN
+#end
+#--------------------------------------------------------------------------------

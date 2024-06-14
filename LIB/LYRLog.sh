@@ -143,7 +143,7 @@ function __LOG_STR () {
     FORMAT='%Y-%m-%d %H:%M:%S %N'
     # echo
 
-    SHORTLevelName $Alevel
+    __SHORTLevelName $Alevel
     # echo
     
 
@@ -218,7 +218,7 @@ function AddLog () {
     #------------------------------------------------------
     Lout=$1
     Llevel=$2
-    FormatStr "$Llevel" "$3" "$4" "$5" "$6" "$7" "$8" "$9"
+    __LOG_STR "$Llevel" "$3" "$4" "$5" "$6" "$7" "$8" "$9"
     if [ $Lout -eq 0 ] ; then
         echo "$LOG_STR" >$(tty)
     elif [ $Lout -eq 1 ] ; then

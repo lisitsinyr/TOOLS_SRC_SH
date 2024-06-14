@@ -178,7 +178,7 @@ function Read_P () {
 
     if [ -z $Atimeout ] ; then
         Atimeout=10
-    )
+    fi
     # echo Atimeout:$Atimeout
 
     echo ERROR: function $FUNCNAME not implemented! ...
