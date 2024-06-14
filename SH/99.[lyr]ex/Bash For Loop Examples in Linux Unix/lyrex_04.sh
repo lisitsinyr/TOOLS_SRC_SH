@@ -16,6 +16,6 @@ you      is      world
 there CYBERITHUB example
 # -------------------------------------------------------------------
 
-#:begin
+#begin
 
-#:Exit
+#end

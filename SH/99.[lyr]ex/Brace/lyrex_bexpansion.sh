@@ -4,10 +4,10 @@
 # Brace Expansion of a List to Make Directories in Bash
 # -------------------------------------------------------------------
 
-#:begin
+#begin
 mkdir {Ubuntu,Redhat,Fedora}
 
 mkdir /usr/local/bin{documents,code,backup,temp}
 echo “Folders created successfully”
 
-#:Exit
+#end

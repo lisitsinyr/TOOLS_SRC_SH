@@ -3,7 +3,7 @@
 # lyrfd_create_DATA.sh
 # -------------------------------------------------------------------
 
-#:begin
+#begin
 echo '---------------------------------------------'
 echo ' create /DATA '
 echo '---------------------------------------------'
@@ -85,4 +85,4 @@ sudo usermod -a -G DATA_lyr_w lyr2
 #sudo usermod -a -G DATA_lyr_r lyr2
 sudo echo 'DATA_lyr' > /DATA/lyr/DATA_lyr.txt
 
-#:Exit
+#end

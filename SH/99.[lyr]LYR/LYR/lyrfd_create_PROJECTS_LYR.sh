@@ -3,7 +3,7 @@
 # lyrfd_create_PROJECTS_LYR.sh
 # -------------------------------------------------------------------
 
-#:begin
+#begin
 echo '---------------------------------------------'
 echo ' create /home/lyr/PROJECTS_LYR '
 echo '---------------------------------------------'
@@ -17,4 +17,4 @@ sudo chmod -R 770 /home/lyr/PROJECTS_LYR
 # Задаем владельца на созданный каталог
 sudo chown -R lyr:lyr /home/lyr/PROJECTS_LYR
 
-#:Exit
+#end

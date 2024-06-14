@@ -3,7 +3,7 @@
 # lyrspm_install_app_Jetbrains_Toolbox.sh
 # -------------------------------------------------------------------
 
-#:begin
+#begin
     # --------------------------------------------
     # Installing Jetbrains Toolbox
     # --------------------------------------------
@@ -19,4 +19,4 @@
     # to start installing the applications you want. On the terminal, run:
     /opt/jetbrains-toolbox-1.27.3.14493/jetbrains-toolbox
 
-#:Exit
+#end

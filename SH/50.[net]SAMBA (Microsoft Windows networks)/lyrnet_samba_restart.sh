@@ -3,10 +3,10 @@
 # lyrnet_samba_restart.sh
 # -------------------------------------------------------------------
 
-#:begin
+#begin
     # --------------------------------------------
     # sudo systemctl restart smbd
     # --------------------------------------------
     sudo systemctl restart smbd
 
-#:Exit
+#end

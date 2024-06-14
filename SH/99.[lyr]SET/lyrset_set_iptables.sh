@@ -3,7 +3,7 @@
 # lyrset_set_iptables.sh
 # -------------------------------------------------------------------
 
-#:begin
+#begin
     # --------------------------------------------
     # set_iptables
     # --------------------------------------------
@@ -18,5 +18,5 @@
     sudo apt-get install iptables-persistent
     sudo netfilter-persistent save
 
-#:Exit
+#end
 
