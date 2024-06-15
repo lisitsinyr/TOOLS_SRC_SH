@@ -87,7 +87,7 @@ function MAIN_CHECK_PARAMETR () {
     # -------------------------------------
     O1=O1_default
     PN_CAPTION=O1
-    Read_P O1 O1
+    Read_P O1
     echo O1:$O1
     #AddLog $loAll $TEXT O1:$O1
     #AddLog $loAll $INFO O1:$O1
@@ -159,7 +159,7 @@ function MAIN () {
 
     # Количество аргументов
     Read_N
-    #echo Read_N:$Read_N
+    echo Read_N:$Read_N
 
     SET_LIB "$0"
     #echo CURRENT_DIR:$CURRENT_DIR
