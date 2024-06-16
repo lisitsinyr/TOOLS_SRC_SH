@@ -12,14 +12,13 @@ function MAIN_CreateDirectory () {
         echo DEBUG: procedure $FUNCNAME ... >$(tty)
     fi
 
-    #echo GDirectory:$GDirectory
-    #echo GRepo:$GRepo
-
     cd $PROJECTS_LYR
 
+    echo GDirectory:$GDirectory
+
     if [[ ! -d "$GDirectory" ]] ; then
-        echo INFO: Dir "$GDirectory" not exist ...
-        echo INFO: Create "$GDirectory" ...
+        #echo INFO: Dir "$GDirectory" not exist ...
+        #echo INFO: Create "$GDirectory" ...
         result=$(mkdir -p "$GDirectory")
         if [[ ! $result==0 ]] ; then
             echo ERROR: Dir "$GDirectory" not created...
@@ -27,11 +26,20 @@ function MAIN_CreateDirectory () {
         fi
     fi
 
-    if [[ ! -z "$GRepo" ]] ; then
-        cd $GDirectory
-        # git clone $GRepo
-    fi
+    cd $GDirectory
 
+    if [[ ! -z "$GRepo" ]] ; then
+        #echo GRepo:$GRepo
+        if [[ ! -d ".git" ]] ; then
+            cd ../
+            echo git clone: $GRepo
+            git clone $GRepo
+        else
+            echo git pull: $GRepo
+            git pull
+        fi
+    fi
+    
     return 0
 }
 #endfunction
@@ -210,8 +218,8 @@ function MAIN_SetROOT () {
     UNAME=$(uname -n)
     case "$UNAME" in
         'ASUS-W10P')
-            PROJECTS_LYR_ROOT='/d/WORK/LYR'
             PROJECTS_LYR_ROOT='/d'
+            PROJECTS_LYR_ROOT='/d/WORK'
             ;;
         'ASUS-U2204-VB' | 'ASUS-U2204-VM' | 'ASUS-U2310-VB' | 'ASUS-U2310-VB' | 'ASUS-U2310')
             PROJECTS_LYR_ROOT='/home/lyr'
@@ -221,17 +229,28 @@ function MAIN_SetROOT () {
             exit 1
             ;;
     esac
+    echo PROJECTS_LYR_ROOT:$PROJECTS_LYR_ROOT
 
     PROJECTS_LYR=$PROJECTS_LYR_ROOT/PROJECTS_LYR
+    echo PROJECTS_LYR:$PROJECTS_LYR
 
     if [[ ! -d "$PROJECTS_LYR" ]] ; then
-        echo INFO: Dir "$PROJECTS_LYR" not exist...
-        echo INFO: Create "$PROJECTS_LYR" ...
+        #echo INFO: Dir "$PROJECTS_LYR" not exist...
+        #echo INFO: Create "$PROJECTS_LYR" ...
+
+        # Создаем каталог /home/lyr/PROJECTS_LYR
         result=$(mkdir -p "$PROJECTS_LYR")
+        echo result:$result
         if [[ ! $result==0 ]] ; then
             echo ERROR: Dir "$PROJECTS_LYR" not created...
             exit 1
         fi
+
+        # Задаем права на созданный каталог
+        chmod -R 770 "$PROJECTS_LYR"
+
+        # Задаем владельца на созданный каталог
+        chown -R lyr:lyr "$PROJECTS_LYR"
     fi
 
     return 0
@@ -254,7 +273,7 @@ function MAIN () {
 
     MAIN_03_UNIX
 
-    MAIN_02_Python
+    #MAIN_02_Python
 
     return 0
 }
