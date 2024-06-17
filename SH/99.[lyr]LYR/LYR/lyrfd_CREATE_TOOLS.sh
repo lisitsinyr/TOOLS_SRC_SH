@@ -115,8 +115,10 @@ function MAIN_SetROOT () {
             sudo chmod -R 770 "$TOOLS"
 
             # u+x - разрешить выполнение для владельца
-            sudo chmod -R u+x "$TOOLS"/SH/
-            sudo chmod -R u+x "$TOOLS"/SH_GIT/
+            find "$TOOLS" -type f -exec chmod u+x {} \;
+            #sudo chmod -R u+x "$TOOLS"/SH/
+            #sudo chmod -R u+x "$TOOLS"/SH_GIT/
+            
 
             # Задаем владельца на созданный каталог
             sudo chown -R lyr:lyr "$TOOLS"
