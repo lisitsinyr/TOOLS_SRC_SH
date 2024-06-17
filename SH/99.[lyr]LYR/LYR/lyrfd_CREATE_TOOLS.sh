@@ -60,6 +60,26 @@ function MAIN_TOOLS () {
     GRepo="git@github.com:lisitsinyr/TOOLS_SH.git"
     MAIN_CreateDirectory
 
+    UNAME=$(uname -n)
+    case "$UNAME" in
+        'ASUS-W10P')
+            ;;
+        'ASUS-U2204-VB' | 'ASUS-U2204-VM' | 'ASUS-U2404-VB' | 'ASUS-U2404-VM')
+            # Задаем права на созданный каталог
+            sudo chmod -R 770 "$TOOLS"
+
+            # u+x - разрешить выполнение для владельца
+            find $TOOLS\ -type f -iname *.sh -exec chmod u+x {} \;
+
+            # Задаем владельца на созданный каталог
+            sudo chown -R lyr:lyr "$TOOLS"
+        ;;
+        *)
+            echo "ERROR: Компьютер не определен...!"
+            exit 1
+            ;;
+    esac
+
     return 0
 }
 #endfunction
@@ -105,26 +125,6 @@ function MAIN_SetROOT () {
         fi
 
     fi
-
-    UNAME=$(uname -n)
-    case "$UNAME" in
-        'ASUS-W10P')
-            ;;
-        'ASUS-U2204-VB' | 'ASUS-U2204-VM' | 'ASUS-U2404-VB' | 'ASUS-U2404-VM')
-            # Задаем права на созданный каталог
-            sudo chmod -R 770 "$TOOLS"
-
-            # u+x - разрешить выполнение для владельца
-            find $TOOLS -type f -iname *.sh -exec chmod u+x {} \;
-
-            # Задаем владельца на созданный каталог
-            sudo chown -R lyr:lyr "$TOOLS"
-        ;;
-        *)
-            echo "ERROR: Компьютер не определен...!"
-            exit 1
-            ;;
-    esac
 
     return 0
 }
