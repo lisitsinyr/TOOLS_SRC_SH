@@ -221,7 +221,7 @@ function MAIN_SetROOT () {
             PROJECTS_LYR_ROOT='/d'
             PROJECTS_LYR_ROOT='/d/WORK'
             ;;
-        'ASUS-U2204-VB' | 'ASUS-U2204-VM' | 'ASUS-U2310-VB' | 'ASUS-U2310-VB' | 'ASUS-U2310')
+        'ASUS-U2204-VB' | 'ASUS-U2204-VM' | 'ASUS-U2404-VB' | 'ASUS-U2404-VM')
             PROJECTS_LYR_ROOT='/home/lyr'
         ;;
         *)
@@ -246,12 +246,23 @@ function MAIN_SetROOT () {
             exit 1
         fi
 
-        # Задаем права на созданный каталог
-        chmod -R 770 "$PROJECTS_LYR"
-
-        # Задаем владельца на созданный каталог
-        chown -R lyr:lyr "$PROJECTS_LYR"
     fi
+
+    UNAME=$(uname -n)
+    case "$UNAME" in
+        'ASUS-W10P')
+            ;;
+        'ASUS-U2204-VB' | 'ASUS-U2204-VM' | 'ASUS-U2404-VB' | 'ASUS-U2404-VM')
+            # Задаем права на созданный каталог
+            sudo chmod -R 770 "$PROJECTS_LYR"
+            # Задаем владельца на созданный каталог
+            sudo chown -R lyr:lyr "$PROJECTS_LYR"
+        ;;
+        *)
+            echo "ERROR: Компьютер не определен...!"
+            exit 1
+            ;;
+    esac
 
     return 0
 }
