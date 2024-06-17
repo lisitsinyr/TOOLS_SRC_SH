@@ -115,7 +115,7 @@ function MAIN_SetROOT () {
             sudo chmod -R 770 "$TOOLS"
 
             # u+x - разрешить выполнение для владельца
-            find "$TOOLS" -type f -iname *.sh -exec chmod u+x {} \;
+            find $TOOLS -type f -iname *.sh -exec chmod u+x {} \;
 
             # Задаем владельца на созданный каталог
             sudo chown -R lyr:lyr "$TOOLS"
