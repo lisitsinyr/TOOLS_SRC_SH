@@ -74,6 +74,9 @@ function MAIN_DATA () {
             ;;
         'ASUS-U2204-VB' | 'ASUS-U2204-VM' | 'ASUS-U2404-VB' | 'ASUS-U2404-VM')
             # Задаем права на созданный каталог
+            chmod -R 777 "$DATA"
+
+            # Задаем права на созданный каталог
             sudo chmod -R 777 $DIR_DATA/public
             # Создать группу пользователей
             sudo groupadd DATA_public_w
@@ -92,6 +95,7 @@ function MAIN_DATA () {
             #sudo usermod -a -G DATA_lyrs_w lyr
             # Добавить ранее созданного пользователя в эту группу:
             #sudo usermod -a -G DATA_lyrs_r lyr
+
             # Добавить ранее созданного пользователя в эту группу:
             #sudo usermod -a -G DATA_lyrs_w lyr2
             # Добавить ранее созданного пользователя в эту группу:
@@ -105,8 +109,6 @@ function MAIN_DATA () {
             sudo groupadd DATA_lyr_r
             # Задаем владельца на созданный каталог
             sudo chown -R lyr:DATA_lyr_w $DIR_DATA/lyr
-            # Добавить ранее созданного пользователя в эту группу:
-            #sudo usermod -a -G DATA_lyr_w lyr
             # Добавить ранее созданного пользователя в эту группу:
             #sudo usermod -a -G DATA_lyr_r lyr
             # Добавить ранее созданного пользователя в эту группу:
@@ -150,11 +152,9 @@ function MAIN_SetROOT () {
 
     DATA=$DATA_ROOT/DATA
     echo DATA:$DATA
-
     if [[ ! -d "$DATA" ]] ; then
         #echo INFO: Dir "$DATA" not exist...
         #echo INFO: Create "$DATA" ...
-
         # Создаем каталог DATA
         result=$(mkdir -p "$DATA")
         echo result:$result
@@ -162,10 +162,6 @@ function MAIN_SetROOT () {
             echo ERROR: Dir "$DATA" not created...
             exit 1
         fi
-
-        # Задаем права на созданный каталог
-        chmod -R 777 "$DATA"
-
     fi
 
     return 0

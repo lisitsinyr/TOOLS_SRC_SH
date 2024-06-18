@@ -67,12 +67,10 @@ function MAIN_TOOLS () {
         'ASUS-U2204-VB' | 'ASUS-U2204-VM' | 'ASUS-U2404-VB' | 'ASUS-U2404-VM')
             # Задаем права на созданный каталог
             sudo chmod -R 770 "$TOOLS"
-
-            # u+x - разрешить выполнение для владельца
-            find $TOOLS\ -type f -iname *.sh -exec chmod u+x {} \;
-
             # Задаем владельца на созданный каталог
             sudo chown -R lyr:lyr "$TOOLS"
+            # u+x - разрешить выполнение для владельца
+            find "$TOOLS"/ -type f -iname *.sh -exec chmod u+x {} \;
         ;;
         *)
             echo "ERROR: Компьютер не определен...!"
@@ -111,7 +109,6 @@ function MAIN_SetROOT () {
 
     TOOLS=$TOOLS_ROOT/TOOLS
     echo TOOLS:$TOOLS
-
     if [[ ! -d "$TOOLS" ]] ; then
         #echo INFO: Dir "$TOOLS" not exist...
         #echo INFO: Create "$TOOLS_LYR" ...
