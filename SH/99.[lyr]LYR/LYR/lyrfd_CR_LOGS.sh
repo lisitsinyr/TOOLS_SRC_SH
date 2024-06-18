@@ -1,21 +1,21 @@
 ﻿#!/bin/bash
 # -------------------------------------------------------------------
-# lyrfd_CR_TOOLS.sh
+# lyrfd_CR_LOGS.sh
 # -------------------------------------------------------------------
 
 #begin
     echo ---------------------------------------------
-    echo create /home/lyr/TOOLS
+    echo create /home/lyr/LOGS
     echo ---------------------------------------------
 
     # ------------------------------------------------------------------
-    # Создаем каталог /home/lyr/PROJECTS_LYR
+    # Создаем каталог /home/lyr/LOGS
     # ------------------------------------------------------------------
-    sudo mkdir -p /home/lyr/TOOLS
-    cd /home/lyr/TOOLS
+    sudo mkdir -p /home/lyr/LOGS
+    cd /home/lyr/LOGS
     # Задаем права на созданный каталог
-    sudo chmod -R 770 /home/lyr/TOOLS
+    sudo chmod -R 770 /home/lyr/LOGS
     # Задаем владельца на созданный каталог
-    sudo chown -R lyr:lyr /home/lyr/TOOLS
+    sudo chown -R lyr:lyr /home/lyr/LOGS
 
 #end
