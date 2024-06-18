@@ -4,38 +4,40 @@
 # -------------------------------------------------------------------
 
 #begin
-    echo ---------------------------------------------
-    echo create /DATA
-    echo ---------------------------------------------
-    sudo rm -R /DATA
     # ------------------------------------------------------------------
     # Создаем каталог /DATA
     # ------------------------------------------------------------------
-    sudo mkdir -p /DATA
+    directory=/DATA
+    echo ---------------------------------------------
+    echo create $directory
+    echo ---------------------------------------------
+    sudo rm -R $directory
+    sudo mkdir -p $directory
     # Задаем права на созданный каталог
-    sudo chmod 777 /DATA
+    sudo chmod 777 $directory
 
     # ------------------------------------------------------------------
     # Создаем каталог /DATA/public
     # ------------------------------------------------------------------
+    directory=/DATA/public
     echo ---------------------------------------------
-    echo create /DATA/public
+    echo create $directory
     echo ---------------------------------------------
-    sudo mkdir -p /DATA/public
+    sudo mkdir -p $directory
     #cd /DATA/public
     # Задаем права на созданный каталог
-    sudo chmod -R 777 /DATA/public
+    sudo chmod -R 777 $directory
     # Создать группу пользователей
     sudo groupadd DATA_public_w
     # Создать группу пользователей
     sudo groupadd DATA_public_r
     # Задаем владельца на созданный каталог
-    sudo chown -R root:root /DATA/public
+    sudo chown -R root:root $directory
     # Добавить ранее созданного пользователя в эту группу:
     #sudo usermod -a -G DATA-public-w lyr
     # Добавить ранее созданного пользователя в эту группу:
     #sudo usermod -a -G DATA-public-r lyr
-    sudo echo 'DATA_public' > /DATA/public/DATA_public.txt
+    sudo echo 'DATA_public' > $directory/READ.me
 
     # ------------------------------------------------------------------
     # Создаем каталог /DATA/lyrs
