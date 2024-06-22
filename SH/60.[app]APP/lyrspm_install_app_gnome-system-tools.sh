@@ -7,6 +7,7 @@
     # --------------------------------------------
     # sudo apt-get install gnome-system-tools
     # --------------------------------------------
-    sudo apt-get install gnome-system-tools
+    #sudo apt-get update && sudo apt-get install gnome-system-tools
+    sudo apt update && sudo apt install gnome-system-tools
 
 #end

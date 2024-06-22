@@ -20,7 +20,9 @@
     # --------------------------------------------
     # Применяем настройки
     # --------------------------------------------
-    sudo apt update && sudo apt-get install iptables-persistent
+    #sudo apt-get update && sudo apt-get install iptables-persistent
+    sudo apt update && sudo apt install iptables-persistent
+
     sudo netfilter-persistent save
 
 #end

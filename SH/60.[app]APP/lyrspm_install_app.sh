@@ -7,6 +7,10 @@
     # --------------------------------------------
     # install_app
     # --------------------------------------------
+
     #sudo apt update && sudo apt install ...
+
+    #sudo apt-get update && sudo apt-get install ...
+
 
 #end

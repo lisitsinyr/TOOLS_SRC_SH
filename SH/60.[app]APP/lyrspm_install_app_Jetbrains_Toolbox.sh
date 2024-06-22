@@ -14,7 +14,8 @@
     sudo tar -xzf jetbrains-toolbox-1.27.3.14493.tar.gz -C /opt
 
     #if missing FUSE2. If this happens, proceed to manually install it using the:
-    sudo apt-get install -y libfuse2
+    #sudo apt-get update && sudo apt-get install -y libfuse2
+    sudo apt update && sudo apt install -y libfuse2
 
     # to start installing the applications you want. On the terminal, run:
     /opt/jetbrains-toolbox-1.27.3.14493/jetbrains-toolbox

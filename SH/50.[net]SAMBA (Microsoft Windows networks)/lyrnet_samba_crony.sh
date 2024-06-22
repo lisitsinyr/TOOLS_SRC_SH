@@ -9,7 +9,8 @@
     # --------------------------------------------
     # Установка демона chrony
     # --------------------------------------------
-    sudo apt update && sudo apt-get install chrony
+    #sudo apt-get update && sudo apt-get install chrony
+    sudo apt update && sudo apt install chrony
 
     # --------------------------------------------
     # Разрешение автозапуска сервиса chrony

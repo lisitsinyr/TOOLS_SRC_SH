@@ -7,6 +7,6 @@
     # --------------------------------------------
     # Установка mc
     # --------------------------------------------
-    sudo apt -y install mc
+    sudo apt update && sudo apt -y install mc
 
 #end
