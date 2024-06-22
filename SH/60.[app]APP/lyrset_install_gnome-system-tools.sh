@@ -1,13 +1,14 @@
 ﻿#!/bin/bash
 # -------------------------------------------------------------------
-# lyrset_set_gnome-tweaks.sh
+# lyrset_install_gnome-system-tools.sh
 # -------------------------------------------------------------------
 
 #begin
     # --------------------------------------------
-    # 
+    # set_keyboard <Ctrl>Shift_R
     # --------------------------------------------
-    sudo apt update && sudo apt install gnome-tweaks
+    #sudo apt-get update && sudo apt-get install gnome-system-tools
+    sudo apt update && sudo apt install gnome-system-tools
 
 #end
 
