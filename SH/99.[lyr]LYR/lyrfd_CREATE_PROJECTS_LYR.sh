@@ -284,7 +284,7 @@ function MAIN () {
 
     MAIN_03_UNIX
 
-    #MAIN_02_Python
+    MAIN_02_Python
 
     return 0
 }

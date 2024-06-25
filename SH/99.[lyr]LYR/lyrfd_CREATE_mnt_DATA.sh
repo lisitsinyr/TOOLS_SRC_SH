@@ -16,7 +16,7 @@
         # Задаем владельца на созданный каталог
         sudo chown -R lyr:lyr $directory
         # Задаем права на созданный каталог
-        sudo chmod -R 777 $directory
+        sudo chmod -R 770 $directory
     fi
 
 #end
