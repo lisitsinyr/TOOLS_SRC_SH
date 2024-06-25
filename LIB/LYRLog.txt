@@ -1,4 +1,4 @@
-﻿procedure LYRLog ()
+procedure LYRLog ()
 
 procedure __SETVarLog ()
     S01=------------------------------------------------------

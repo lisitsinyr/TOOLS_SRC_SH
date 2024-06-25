@@ -1,4 +1,4 @@
-﻿procedure LYRSupport ()
+procedure LYRSupport ()
 
 procedure PressAnyKey ()
 

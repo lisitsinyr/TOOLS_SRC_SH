@@ -1,4 +1,4 @@
-﻿procedure LYRStrUtils ()
+procedure LYRStrUtils ()
 
 function TrimLeft (ASTR) -> TrimLeft
     ASTR

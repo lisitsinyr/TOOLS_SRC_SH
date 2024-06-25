@@ -1,4 +1,4 @@
-﻿procedure LYRConst ()
+procedure LYRConst ()
 
 procedure SET_LIB (ASCRIPT)
     ASCRIPT - Скрипт

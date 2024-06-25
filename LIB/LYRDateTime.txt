@@ -1,4 +1,4 @@
-﻿procedure LYRDateTime ()
+procedure LYRDateTime ()
 
 function YYYYMMDDHHMMSS () -> YYYYMMDDHHMMSS
 

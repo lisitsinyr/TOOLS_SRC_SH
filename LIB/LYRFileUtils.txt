@@ -1,4 +1,4 @@
-﻿procedure LYRFileUtils ()
+procedure LYRFileUtils ()
 
 function ExtractFileDir (AFullFilename) -> ExtractFileDir
     AFullFilename
