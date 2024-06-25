@@ -1,15 +1,14 @@
 ﻿#!/bin/bash
 # -------------------------------------------------------------------
-# lyrset_install_gnome-tweaks.sh
+# lyrsi_hostnamectl_ASUS-U2404-VM.sh
 # -------------------------------------------------------------------
 
 #begin
     # --------------------------------------------
-    # 
+    # set-hostname ASUS-U2404-VM
     # --------------------------------------------
-    sudo apt update && sudo apt install gnome-tweaks
-
-    #gnome-tweaks
+    hostnamectl set-hostname ASUS-U2404-VM --static
+    hostnamectl set-hostname 'ASUS-U2404-VM' --pretty
 
 #end
 
