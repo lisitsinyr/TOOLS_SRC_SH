@@ -5,9 +5,21 @@
 
 #begin
     # ------------------------------------------------------------------
-    cd /home/lyr/TOOLS
-    
-    git clone git@github.com:lisitsinyr/TOOLS_SH.git
+
+    # ------------------------------------------------------------------
+    # Создаем каталог /mnt/DATA
+    # ------------------------------------------------------------------
+    directory=/home/lyr/TOOLS/TOOLS_SH
+    if [[ ! -d $directory ]] ; then
+        cd /home/lyr/TOOLS
+        echo ---------------------------------------------
+        echo git clone git@github.com:lisitsinyr/TOOLS_SH.git
+        echo ---------------------------------------------
+        git clone git@github.com:lisitsinyr/TOOLS_SH.git
+    else
+        cd $directory
+        git pull
+    fi
 
     # ------------------------------------------------------------------
     # u+x - разрешить выполнение для владельца
