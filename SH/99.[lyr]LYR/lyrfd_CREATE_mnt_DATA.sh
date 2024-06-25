@@ -7,12 +7,17 @@
     # ------------------------------------------------------------------
     # Создаем каталог /mnt/DATA
     # ------------------------------------------------------------------
-    if [[ ! -d "/mnt/DATA" ]] ; then
-        sudo mkdir -p /mnt/DATA
+    directory=/mnt/DATA
+    if [[ ! -d $directory ]] ; then
+        echo ---------------------------------------------
+        echo create $directory
+        echo ---------------------------------------------
+        sudo rm -R $directory
+        sudo mkdir -p $directory
         # Задаем владельца на созданный каталог
         sudo chown -R lyr:lyr /mnt/DATA
         # Задаем права на созданный каталог
-        sudo chmod -R 770 /mnt/DATA
+        sudo chmod -R 777 $directory
     fi
 
 #end
