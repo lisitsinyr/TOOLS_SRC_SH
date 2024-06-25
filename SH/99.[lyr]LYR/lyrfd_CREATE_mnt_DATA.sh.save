@@ -1,4 +1,4 @@
-#!/bin/bash
+﻿#!/bin/bash
 # -------------------------------------------------------------------
 # lyrfd_CREATE_mnt_DATA.sh
 # -------------------------------------------------------------------
@@ -15,7 +15,7 @@
         sudo rm -R $directory
         sudo mkdir -p $directory
         # Задаем владельца на созданный каталог
-        sudo chown -R lyr:lyr $directory
+        sudo chown -R lyr:lyr /mnt/DATA
         # Задаем права на созданный каталог
         sudo chmod -R 777 $directory
     fi
