@@ -12,7 +12,6 @@
         echo ---------------------------------------------
         echo create $directory
         echo ---------------------------------------------
-        sudo rm -R $directory
         sudo mkdir -p $directory
         # Задаем владельца на созданный каталог
         sudo chown -R lyr:lyr $directory
