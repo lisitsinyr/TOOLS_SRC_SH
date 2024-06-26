@@ -42,19 +42,20 @@
     # ------------------------------------------------------------------
     # Создаем каталог /DATA/lyrs
     # ------------------------------------------------------------------
+    directory=/DATA/lyrs
     echo ---------------------------------------------
-    echo create /DATA/lyrs
+    echo create $directory
     echo ---------------------------------------------
-    sudo mkdir -p /DATA/lyrs
+    sudo mkdir -p $directory
     #cd /DATA/lyrs
     # Задаем права на созданный каталог
-    sudo chmod 775 /DATA/lyrs
+    sudo chmod 775 $directory
     # Создать группу пользователей
     sudo groupadd DATA_lyrs_w
     # Создать группу пользователей
     sudo groupadd DATA_lyrs_r
     # Задаем владельца на созданный каталог
-    sudo chown -R lyr:DATA_lyrs_w /DATA/lyrs
+    sudo chown -R lyr:DATA_lyrs_w $directory
     # Добавить ранее созданного пользователя в эту группу:
     #sudo usermod -a -G DATA_lyrs_w lyr
     # Добавить ранее созданного пользователя в эту группу:
@@ -63,24 +64,25 @@
     #sudo usermod -a -G DATA_lyrs_w lyr2
     # Добавить ранее созданного пользователя в эту группу:
     sudo usermod -a -G DATA_lyrs_r lyr2
-    sudo echo 'DATA_lyrs' > /DATA/lyrs/DATA_lyrs.txt
+    sudo echo 'DATA_lyrs' > $directory/DATA_lyrs.txt
 
     # ------------------------------------------------------------------
     # Создаем каталог /DATA/lyr
     # ------------------------------------------------------------------
+    directory=$directory
     echo ---------------------------------------------
-    echo create /DATA/lyr
+    echo create $directory
     echo ---------------------------------------------
-    sudo mkdir -p /DATA/lyr
+    sudo mkdir -p $directory
     #cd /DATA/lyr
     # Задаем права на созданный каталог
-    sudo chmod -R 775 /DATA/lyr
+    sudo chmod -R 775 $directory
     # Создать группу пользователей
     sudo groupadd DATA_lyr_w
     # Создать группу пользователей
     sudo groupadd DATA_lyr_r
     # Задаем владельца на созданный каталог
-    sudo chown -R lyr:DATA_lyr_w /DATA/lyr
+    sudo chown -R lyr:DATA_lyr_w $directory
     # Добавить ранее созданного пользователя в эту группу:
     #sudo usermod -a -G DATA_lyr_w lyr
     # Добавить ранее созданного пользователя в эту группу:
@@ -89,6 +91,6 @@
     sudo usermod -a -G DATA_lyr_w lyr2
     # Добавить ранее созданного пользователя в эту группу:
     #sudo usermod -a -G DATA_lyr_r lyr2
-    sudo echo 'DATA_lyr' > /DATA/lyr/DATA_lyr.txt
+    sudo echo 'DATA_lyr' > $directory/DATA_lyr.txt
 
 #end

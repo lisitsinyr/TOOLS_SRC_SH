@@ -8,7 +8,7 @@
     #  Установка autofs
     # --------------------------------------------
     #sudo apt-get update && sudo apt-get install autofs
-    sudo apt update && sudo apt install autofs
+    #sudo apt update && sudo apt install autofs
 
     # --------------------------------------------
     # Установим набор утилит для монтирования SMB
@@ -19,6 +19,6 @@
 
     # После установки, демон autofs запустится автоматически,
     # но на время конфигурирования его нужно отключить:
-    sudo /etc/init.d/autofs stop
+    #sudo /etc/init.d/autofs stop
 
 #end
