@@ -27,9 +27,9 @@ function CreateDirectory () {
         sudo mkdir -p $ADirectory
     fi
     # Задаем владельца на созданный каталог
-    sudo chown -R AOwner $ADirectory
+    sudo chown -R $AOwner $ADirectory
     # Задаем права на созданный каталог
-    sudo chmod -R AAccess $ADirectory
+    sudo chmod -R $AAccess $ADirectory
 
     return 0
 }
