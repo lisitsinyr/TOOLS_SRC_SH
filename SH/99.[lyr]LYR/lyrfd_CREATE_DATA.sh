@@ -60,13 +60,13 @@ function CreateDirectory () {
     # ------------------------------------------------------------------
     # Создаем каталог /DATA/lyrs
     # ------------------------------------------------------------------
-    directory=/DATA/lyrs
-    CreateDirectory $directory lyr:DATA_lyrs_w 775
-
     # Создать группу пользователей
     sudo groupadd DATA_lyrs_w
     # Создать группу пользователей
     sudo groupadd DATA_lyrs_r
+    directory=/DATA/lyrs
+    CreateDirectory $directory lyr:DATA_lyrs_w 775
+
     # Добавить ранее созданного пользователя в эту группу:
     #sudo usermod -a -G DATA_lyrs_w lyr
     # Добавить ранее созданного пользователя в эту группу:
@@ -80,13 +80,14 @@ function CreateDirectory () {
     # ------------------------------------------------------------------
     # Создаем каталог /DATA/lyr
     # ------------------------------------------------------------------
-    directory=$directory
-    CreateDirectory $directory lyr:DATA_lyr_w 775
-
     # Создать группу пользователей
     sudo groupadd DATA_lyr_w
     # Создать группу пользователей
     sudo groupadd DATA_lyr_r
+
+    directory=$directory
+    CreateDirectory $directory lyr:DATA_lyr_w 775
+
     # Добавить ранее созданного пользователя в эту группу:
     #sudo usermod -a -G DATA_lyr_w lyr
     # Добавить ранее созданного пользователя в эту группу:
