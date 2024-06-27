@@ -1,14 +1,17 @@
 #!/bin/bash
 # -------------------------------------------------------------------
-# lyrset_install_gnome-system-tools.sh
+# lyrspm_apt_list.sh
 # -------------------------------------------------------------------
 
 #begin
     # --------------------------------------------
-    # set_keyboard <Ctrl>Shift_R
+    # ѕросмотр списка установленных пакетов в Ubuntu
     # --------------------------------------------
-    #sudo apt-get update && sudo apt-get install gnome-system-tools
-    sudo apt update && sudo apt install gnome-system-tools
+
+    dpkg -l
+    
+    #dpkg -l | grep java
+
+    #apt list --installed
 
 #end
-
