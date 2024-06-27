@@ -25,11 +25,11 @@ function CreateDirectory () {
         echo create $ADirectory
         echo ---------------------------------------------
         sudo mkdir -p $ADirectory
+        # Задаем владельца на созданный каталог
+        sudo chown -R $AOwner $ADirectory
+        # Задаем права на созданный каталог
+        sudo chmod -R $AAccess $ADirectory
     fi
-    # Задаем владельца на созданный каталог
-    sudo chown -R $AOwner $ADirectory
-    # Задаем права на созданный каталог
-    sudo chmod -R $AAccess $ADirectory
 
     return 0
 }
