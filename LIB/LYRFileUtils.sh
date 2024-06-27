@@ -293,3 +293,22 @@ function CreateDirectory () {
     return 0
 }
 #endfunction
+
+#--------------------------------------------------------------------------------
+# procedure CreateLink (Directory)
+#--------------------------------------------------------------------------------
+function CreateLink () {
+#beginfunction
+    if [[ "$DEBUG" -eq 1 ]] ; then
+        echo DEBUG: function $FUNCNAME ... >$(tty)
+    fi
+
+    ADirectory=$1
+    if [[ -d $ADirectory ]] ; then
+        cd ~/Desktop/
+        ln -s $ADirectory
+    fi
+
+    return 0
+}
+#endfunction
