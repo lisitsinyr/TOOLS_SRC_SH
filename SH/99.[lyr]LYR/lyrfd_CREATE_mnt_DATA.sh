@@ -36,7 +36,7 @@ function CreateDirectory () {
 #endfunction
 
 #--------------------------------------------------------------------------------
-# procedure CreateLink (Directory)
+# procedure CreateLink (Directory, Link)
 #--------------------------------------------------------------------------------
 function CreateLink () {
 #beginfunction
@@ -45,9 +45,11 @@ function CreateLink () {
     fi
 
     ADirectory=$1
+    ALink=$2
     if [[ -d $ADirectory ]] ; then
         cd ~/Desktop/
-        ln -s $ADirectory
+        rm $ALink
+        ln -s $ADirectory $ALink
     fi
 
     return 0
@@ -66,20 +68,20 @@ function CreateLink () {
     # ------------------------------------------------------------------
     directory=/mnt/DATA/ASUS-W10P/WORK
     CreateDirectory $directory lyr:lyr 770
-    CreateLink $directory
+    CreateLink $directory WORK
 
     # ------------------------------------------------------------------
     # Создаем каталог /mnt/DATA/ASUS-W10P/SOFT-install
     # ------------------------------------------------------------------
     directory=/mnt/DATA/ASUS-W10P/SOFT-install
     CreateDirectory $directory lyr:lyr 770
-    CreateLink $directory
+    CreateLink $directory SOFT-install
 
     # ------------------------------------------------------------------
     # Создаем каталог /mnt/DATA/ASUS-W10P/PROJECTS_LYR
     # ------------------------------------------------------------------
     directory=/mnt/DATA/ASUS-W10P/PROJECTS_LYR
     CreateDirectory $directory lyr:lyr 770
-    CreateLink $directory
+    CreateLink $directory PROJECTS_LYR
 
 #end

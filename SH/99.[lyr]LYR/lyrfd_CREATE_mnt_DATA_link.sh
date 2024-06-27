@@ -35,12 +35,12 @@ function CreateLink () {
     # Создаем каталог /mnt/DATA/ASUS-W10P/SOFT-install
     # ------------------------------------------------------------------
     directory=/mnt/DATA/ASUS-W10P/SOFT-install
-    #CreateLink $directory SOFT-install
+    CreateLink $directory SOFT-install
 
     # ------------------------------------------------------------------
     # Создаем каталог /mnt/DATA/ASUS-W10P/PROJECTS_LYR
     # ------------------------------------------------------------------
     directory=/mnt/DATA/ASUS-W10P/PROJECTS_LYR
-    #CreateLink $directory PROJECTS_LYR
+    CreateLink $directory PROJECTS_LYR
 
 #end
