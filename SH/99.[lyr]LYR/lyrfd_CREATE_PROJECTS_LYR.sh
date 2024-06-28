@@ -166,7 +166,7 @@ function MAIN_02_Python () {
     GRepo="git@github.com:lisitsinyr/TOOLS_PY.git"
     MAIN_CreateDirectory
 
-    GDirectory=$DIR_02_Python/VENV/P312
+    GDirectory=$DIR_02_Python/VENV
     GRepo=
     MAIN_CreateDirectory
 
