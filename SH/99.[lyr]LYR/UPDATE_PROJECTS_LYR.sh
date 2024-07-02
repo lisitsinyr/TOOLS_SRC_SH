@@ -4,225 +4,29 @@
 # -------------------------------------------------------------------
 
 # -----------------------------------------------
-# procedure MAIN_CreateDirectory ()
+# procedure MAIN_INIT ()
 # -----------------------------------------------
-function MAIN_CreateDirectory () {
+function MAIN_INIT () {
 #beginfunction
+    #echo DEBUG: $DEBUG
     if [[ "$DEBUG" -eq 1 ]] ; then
         echo DEBUG: procedure $FUNCNAME ... >$(tty)
     fi
 
-    cd $PROJECTS_LYR
-
-    echo GDirectory:$GDirectory
-
-    if [[ ! -d "$GDirectory" ]] ; then
-        #echo INFO: Dir "$GDirectory" not exist ...
-        #echo INFO: Create "$GDirectory" ...
-        result=$(mkdir -p "$GDirectory")
-        if [[ ! $result==0 ]] ; then
-            echo ERROR: Dir "$GDirectory" not created...
-            exit 1
-        fi
-    fi
-
-    cd $GDirectory
-
-    if [[ ! -z "$GRepo" ]] ; then
-        #echo GRepo:$GRepo
-        if [[ ! -d ".git" ]] ; then
-            cd ../
-            echo git clone: $GRepo
-            git clone $GRepo
-        else
-            echo git pull: $GRepo
-            git pull
-        fi
-    fi
-    
-    return 0
-}
-#endfunction
-
-# -----------------------------------------------
-# procedure MAIN_03_UNIX ()
-# -----------------------------------------------
-function MAIN_03_UNIX () {
-#beginfunction
-    if [[ "$DEBUG" -eq 1 ]] ; then
-        echo DEBUG: procedure $FUNCNAME ... >$(tty)
-    fi
-
-    DIR_03_UNIX=CHECK_LIST/01_OS/03_UNIX
-
-    GDirectory=$DIR_03_UNIX/!!SOFTWARE
-    GRepo=
-    MAIN_CreateDirectory
-
-    GDirectory=$DIR_03_UNIX/!!ДОКУМЕНТАЦИЯ
-    GRepo=
-    MAIN_CreateDirectory
-
-    GDirectory=$DIR_03_UNIX/!!ДОКУМЕНТЫ
-    GRepo=
-    MAIN_CreateDirectory
-
-    GDirectory=$DIR_03_UNIX/!!КНИГИ
-    GRepo=
-    MAIN_CreateDirectory
-
-    GDirectory=$DIR_03_UNIX/!!КУРСЫ
-    GRepo=
-    MAIN_CreateDirectory
-
-    GDirectory=$DIR_03_UNIX/!!СТАТЬИ
-    GRepo=
-    MAIN_CreateDirectory
-
-    GDirectory=$DIR_03_UNIX/FRAMEWORK
-    GRepo=
-    MAIN_CreateDirectory
-
-    GDirectory=$DIR_03_UNIX/LIBRARY
-    GRepo=
-    MAIN_CreateDirectory
-
-    GDirectory=$DIR_03_UNIX/WORK
-    GRepo=
-    MAIN_CreateDirectory
-
-    GDirectory=$DIR_03_UNIX/TOOLS_SH
-    GRepo="git@github.com:lisitsinyr/TOOLS_SH.git"
-    MAIN_CreateDirectory
-
-    GDirectory=$DIR_03_UNIX/PROJECTS/UBUNTU
-    GRepo=
-    MAIN_CreateDirectory
-
-    GDirectory=$DIR_03_UNIX/PROJECTS_UNIX/COMMANDS
-    GRepo=
-    MAIN_CreateDirectory
-
-    GDirectory=$DIR_03_UNIX/PROJECTS_UNIX/TESTS_SH
-    GRepo=
-    MAIN_CreateDirectory
-
-    GDirectory=$DIR_03_UNIX/PROJECTS_UNIX/TOOLS_SRC_SH
-    GRepo="git@github.com:lisitsinyr/TOOLS_SRC_SH.git"
-    MAIN_CreateDirectory
-
-    return 0
-}
-#endfunction
-
-# -----------------------------------------------
-# procedure MAIN_02_Python ()
-# -----------------------------------------------
-function MAIN_02_Python () {
-#beginfunction
-    if [[ "$DEBUG" -eq 1 ]] ; then
-        echo DEBUG: procedure $FUNCNAME ... >$(tty)
-    fi
-
-    DIR_02_Python=CHECK_LIST/05_DESKTOP/02_Python
-
-    GDirectory=$DIR_02_Python/!!SOFTWARE
-    GRepo=
-    MAIN_CreateDirectory
-
-    GDirectory=$DIR_02_Python/!!ДОКУМЕНТАЦИЯ
-    GRepo=
-    MAIN_CreateDirectory
-
-    GDirectory=$DIR_02_Python/!!ДОКУМЕНТЫ
-    GRepo=
-    MAIN_CreateDirectory
-
-    GDirectory=$DIR_02_Python/!!КНИГИ
-    GRepo=
-    MAIN_CreateDirectory
-
-    GDirectory=$DIR_02_Python/!!КУРСЫ
-    GRepo=
-    MAIN_CreateDirectory
-
-    GDirectory=$DIR_02_Python/!!СТАТЬИ
-    GRepo=
-    MAIN_CreateDirectory
-
-    GDirectory=$DIR_02_Python/FRAMEWORK
-    GRepo=
-    MAIN_CreateDirectory
-
-    GDirectory=$DIR_02_Python/LIBRARY
-    GRepo=
-    MAIN_CreateDirectory
-
-    GDirectory=$DIR_02_Python/PROJECTS
-    GRepo=
-    MAIN_CreateDirectory
-
-    GDirectory=$DIR_02_Python/TOOLS_PY
-    GRepo="git@github.com:lisitsinyr/TOOLS_PY.git"
-    MAIN_CreateDirectory
-
-    GDirectory=$DIR_02_Python/VENV
-    GRepo=
-    MAIN_CreateDirectory
-
-    GDirectory=$DIR_02_Python/WORK
-    GRepo=
-    MAIN_CreateDirectory
-
-    GDirectory=$DIR_02_Python/PROJECTS_PY/EXAMPLES_PY
-    GRepo="git@github.com:lisitsinyr/EXAMPLES_PY.git"
-    MAIN_CreateDirectory
-
-    GDirectory=$DIR_02_Python/PROJECTS_PY/MobileAPP_PY
-    GRepo="git@github.com:lisitsinyr/MobileAPP.git"
-    MAIN_CreateDirectory
-
-    GDirectory=$DIR_02_Python/PROJECTS_PY/PATTERN_PY
-    GRepo="git@github.com:lisitsinyr/PATTERN_PY.git"
-    MAIN_CreateDirectory
-
-    GDirectory=$DIR_02_Python/PROJECTS_PY/TEST_PY
-    GRepo=git@github.com:lisitsinyr/TEST_PY.git
-    MAIN_CreateDirectory
-
-    GDirectory=$DIR_02_Python/PROJECTS_PY/TESTS_PY
-    GRepo="git@github.com:lisitsinyr/TESTS_PY.git"
-    MAIN_CreateDirectory
-
-    GDirectory=$DIR_02_Python/PROJECTS_PY/TOOLS_SRC_PY
-    GRepo="git@github.com:lisitsinyr/TOOLS_SRC_PY.git"
-    MAIN_CreateDirectory
-
-    GDirectory=$DIR_02_Python/PROJECTS_PY/YOUTUBE_PY
-    GRepo="git@github.com:lisitsinyr/YOUTUBE.git"
-    MAIN_CreateDirectory
-
-    return 0
-}
-#endfunction
-
-# =================================================
-# procedure MAIN_SetROOT ()
-# =================================================
-function MAIN_SetROOT () {
-#beginfunction
-    if [[ "$DEBUG" -eq 1 ]] ; then
-        echo DEBUG: procedure $FUNCNAME ... >$(tty)
-    fi
-
+    # -------------------------------------------------------------------
+    # SCRIPTS_DIR - каталог скриптов
+    # -------------------------------------------------------------------
     UNAME=$(uname -n)
     case "$UNAME" in
         'ASUS-W10P')
             PROJECTS_LYR_ROOT='/d'
-            PROJECTS_LYR_ROOT='/d/WORK'
+            PROJECTS_LYR_DIR='/d/PROJECTS_LYR'
+            SCRIPTS_DIR='/d/PROJECTS_LYR/CHECK_LIST/01_OS/03_UNIX/PROJECTS_UNIX/TOOLS_SRC_SH'
             ;;
-        'ASUS-U2204-VB' | 'ASUS-U2204-VM' | 'ASUS-U2404-VB' | 'ASUS-U2404-VM')
+        'ASUS-U2204-VB' | 'ASUS-U2204-VM' | 'ASUS-U2310-VB' | 'ASUS-U2310-VB' | 'ASUS-U2310')
             PROJECTS_LYR_ROOT='/home/lyr'
+            PROJECTS_LYR_DIR='/home/lyr/PROJECTS_LYR'
+            SCRIPTS_DIR='/home/lyr/PROJECTS_LYR/CHECK_LIST/01_OS/03_UNIX/PROJECTS_UNIX/TOOLS_SRC_SH'
         ;;
         *)
             echo "ERROR: Компьютер не определен...!"
@@ -230,47 +34,326 @@ function MAIN_SetROOT () {
             ;;
     esac
     echo PROJECTS_LYR_ROOT:$PROJECTS_LYR_ROOT
+    echo PROJECTS_LYR_DIR:$PROJECTS_LYR_DIR
 
-    PROJECTS_LYR=$PROJECTS_LYR_ROOT/PROJECTS_LYR
-    echo PROJECTS_LYR:$PROJECTS_LYR
+    echo SCRIPTS_DIR:$SCRIPTS_DIR
 
-    if [[ ! -d "$PROJECTS_LYR" ]] ; then
-        #echo INFO: Dir "$PROJECTS_LYR" not exist...
-        #echo INFO: Create "$PROJECTS_LYR" ...
-
-        # Создаем каталог /home/lyr/PROJECTS_LYR
-        result=$(mkdir -p "$PROJECTS_LYR")
-        echo result:$result
-        if [[ ! $result==0 ]] ; then
-            echo ERROR: Dir "$PROJECTS_LYR" not created...
-            exit 1
-        fi
-
+    # -------------------------------------------------------------------
+    # LIB_SH - каталог библиотеки скриптов
+    # -------------------------------------------------------------------
+    if [[ -z "$LIB_SH" ]] ; then
+        LIB_SH="$SCRIPTS_DIR/LIB"
+        echo LIB_SH: $LIB_SH
+    fi
+    if [[ ! -d "$LIB_SH" ]] ; then
+        echo ERROR: Каталог библиотеки LYR $LIB_SH не существует...
+        exit 1
     fi
 
-    UNAME=$(uname -n)
-    case "$UNAME" in
-        'ASUS-W10P')
-            ;;
-        'ASUS-U2204-VB' | 'ASUS-U2204-VM' | 'ASUS-U2404-VB' | 'ASUS-U2404-VM')
-            # Задаем права на созданный каталог
-            sudo chmod -R 770 "$PROJECTS_LYR"
-            # Задаем владельца на созданный каталог
-            sudo chown -R lyr:lyr "$PROJECTS_LYR"
-        ;;
-        *)
-            echo "ERROR: Компьютер не определен...!"
-            exit 1
-            ;;
-    esac
+    # -------------------------------------------------------------------
+    # запуск скриптов БИБЛИОТЕКИ LYR
+    # -------------------------------------------------------------------
+    source "$LIB_SH/LYRFileUtils.sh"
+    source "$LIB_SH/LYRConst.sh"
+    source "$LIB_SH/LYRLog.sh"
+    source "$LIB_SH/LYRConst.sh"
+    source "$LIB_SH/LYRDateTime.sh"
+    source "$LIB_SH/LYRSupport.sh"
+
+    return 0
+}
+#endfunction
+
+# -----------------------------------------------
+# procedure MAIN_SET ()
+# -----------------------------------------------
+function MAIN_SET () {
+#beginfunction
+    if [[ "$DEBUG" -eq 1 ]] ; then
+        echo DEBUG: procedure $FUNCNAME ... >$(tty)
+    fi
+
+    LOG_FILE_ADD=1
+
+    return 0
+}
+#endfunction
+
+#--------------------------------------------------------------------------------
+# procedure MAIN_CHECK_PARAMETR ()
+#--------------------------------------------------------------------------------
+function MAIN_CHECK_PARAMETR () {
+#beginfunction
+    if [[ "$DEBUG" -eq 1 ]] ; then
+        echo DEBUG: procedure $FUNCNAME ... >$(tty)
+    fi
+
+    # -------------------------------------
+    # OPTION
+    # -------------------------------------
+    O1=O1_default
+    PN_CAPTION=O1
+    Read_P O1
+    echo O1:$O1
+    #AddLog $loAll $TEXT O1:$O1
+    #AddLog $loAll $INFO O1:$O1
+    if [[ ! -z "$O1" ]] ; then
+        OPTION="$OPTION --O1 $O1"
+    else
+        echo INFO: O1 not defined ...
+    fi
+
+    # -------------------------------------
+    # ARGS
+    # -------------------------------------
+    # Проверка на обязательные аргументы
+    A1=
+    PN_CAPTION=A1
+    Read_P A1 A1
+    echo A1:$A1
+    #AddLog $loAll $TEXT A1:$A1
+    #AddLog $loAll $INFO A1:$A1
+    if [[ ! -z "$A1" ]] ; then
+        ARGS="$ARGS $A1"
+    else
+        echo ERROR: A1 not defined ...
+        OK=
+    fi
+
+    return 0
+}
+#endfunction
+
+# --------------------------------------------------------------------------------
+# procedure UPDATE_TOOLS_SH ()
+# --------------------------------------------------------------------------------
+function UPDATE_TOOLS_SH () {
+#beginfunction
+    if [[ "$DEBUG" -eq 1 ]] ; then
+        echo DEBUG: procedure $FUNCNAME ... >$(tty)
+    fi
+
+    LDIR_TO=$DIR_TOOLS_SH/SH
+    if [[ -d $LDIR_TO ]] ; then
+        sudo rm -R $LDIR_TO
+    else
+        sudo mkdir -p $LDIR_TO
+    fi
+    LDIR_FROM=$DIR_TOOLS_SRC_SH/SH
+    LMASK=*.sh
+    COPY_FILES $LDIR_FROM $LDIR_TO $LMASK
+
+    LDIR_TO=$DIR_TOOLS_SH/LIB
+    if [[ -d $LDIR_TO ]] ; then
+        sudo rm -R $LDIR_TO
+    else
+        sudo mkdir -p $LDIR_TO
+    fi
+    LDIR_FROM=$DIR_TOOLS_SRC_SH/LIB
+    LMASK=*.sh
+    COPY_FILES $LDIR_FROM $LDIR_TO $LMASK
+
+    LDIR_TO=$DIR_TOOLS_SH/SH_GIT
+    if [[ -d $LDIR_TO ]] ; then
+        sudo rm -R $LDIR_TO
+    else
+        sudo mkdir -p $LDIR_TO
+    fi
+    LDIR_FROM=$DIR_TOOLS_SRC_GIT/SH
+    LMASK=*.sh
+    COPY_FILES $LDIR_FROM $LDIR_TO $LMASK
+
+    return 0
+}
+#endfunction
+
+# --------------------------------------------------------------------------------
+# procedure UPDATE_TOOLS_PY ()
+# --------------------------------------------------------------------------------
+function UPDATE_TOOLS_PY () {
+#beginfunction
+    if [[ "$DEBUG" -eq 1 ]] ; then
+        echo DEBUG: procedure $FUNCNAME ... >$(tty)
+    fi
+
+    LDIR_TO=$DIR_TOOLS_PY/SH
+    LMASK=*.sh
+    if [[ -d $LDIR_TO ]] ; then
+        sudo rm -R $LDIR_TO
+    else
+        sudo mkdir -p $LDIR_TO
+    fi
+
+    LDIR_FROM=$DIR_TOOLS_SRC_PY/SRC/SH
+    COPY_FILES $LDIR_FROM $LDIR_TO $LMASK
+
+    LDIR_TO=$DIR_TOOLS_PY/SCRIPTS
+    LMASK=*.*
+
+    LDIR_FROM=$DIR_TOOLS_SRC_PY/SRC/SCRIPTS
+    COPY_FILES $LDIR_FROM $LDIR_TO $LMASK
 
     return 0
 }
 #endfunction
 
 # =================================================
-# procedure MAIN (%*)
+# procedure git_pull (ADirectory)
 # =================================================
+function git_pull () {
+#beginfunction
+    if [[ "$DEBUG" -eq 1 ]] ; then
+        echo DEBUG: procedure $FUNCNAME ... >$(tty)
+    fi
+
+    LOG_FILE_ADD=1
+
+    ADirectory=$1
+    echo ADirectory:$ADirectory
+    cd $ADirectory/
+    
+    # call lyrgit_pull_main.bat
+    #git pull
+    
+    return 0
+}
+#endfunction
+
+# --------------------------------------------------------------------------------
+# procedure REPO_WORK (ADirectory, APYTHON)
+# --------------------------------------------------------------------------------
+function REPO_WORK () {
+#beginfunction
+    if [[ "$DEBUG" -eq 1 ]] ; then
+        echo DEBUG: procedure $FUNCNAME ... >$(tty)
+    fi
+
+    ADirectory=$1
+    echo ADirectory:$ADirectory
+    cd $ADirectory/
+
+    APYTHON=$2
+    # echo APYTHON:!APYTHON!
+
+    GetINIParametr REPO.ini general $REPO_NAME
+    # echo REPO_NAME:!REPO_NAME!
+
+    #del *.sh
+
+    LFileName=$DIR_TOOLS_SRC_GIT/BAT/A.WORK/lyrgit_push_main.bat
+    echo LFileName:$LFileName
+    #if [[ -d $LFileName ]] ; then
+    #    copy $LFileName
+    #fi
+
+    if [ $APYTHON -eq 1 ] ; then
+        set LFileName=$DIR_TOOLS_SRC_PY/SRC/BAT/PROJECT_PYupdate.bat
+        echo LFileName:$LFileName
+        #if [[ -d $LFileName ]] ; then
+        #    copy $LFileName
+        #fi
+        set LFileName=$DIR_PYTHON/PATTERN_PY/pyproject.toml
+        echo LFileName:$LFileName
+        #if [[ -d $LFileName ]] ; then
+        #    copy $LFileName
+        #fi
+    fi
+   
+    #lyrgit_push_main
+
+    return 0
+}
+#endfunction
+
+# --------------------------------------------------------------------------------
+# procedure MAIN_05_DESKTOP_02_Python ()
+# --------------------------------------------------------------------------------
+function MAIN_05_DESKTOP_02_Python () {
+#beginfunction
+    if [[ "$DEBUG" -eq 1 ]] ; then
+        echo DEBUG: procedure $FUNCNAME ... >$(tty)
+    fi
+
+    DIR_PYTHON=$PROJECTS_LYR_DIR/CHECK_LIST/05_DESKTOP/02_Python/PROJECTS_PY
+
+    DIR_EXAMPLES_PY=$DIR_PYTHON/EXAMPLES_PY
+    DIR_MobileAPP_PY=$DIR_PYTHON/MobileAPP_PY
+    DIR_PATTERN_PY=$DIR_PYTHON/PATTERN_PY
+    DIR_TEST_PY=$DIR_PYTHON/TEST_PY
+    DIR_YOUTUBE_PY=$DIR_PYTHON/YOUTUBE_PY
+    DIR_TESTS_PY=$DIR_PYTHON/TESTS_PY
+    DIR_TOOLS_SRC_PY=$DIR_PYTHON/TOOLS_SRC_PY
+
+    DIR_TOOLS_PY=$PROJECTS_LYR_DIR/CHECK_LIST/05_DESKTOP/02_Python/TOOLS_PY
+    DIR_TOOLS_PY_=~/TOOLS/TOOLS_PY
+
+    REPO_WORK $DIR_EXAMPLES_PY 1
+    REPO_WORK $DIR_MobileAPP_PY 1
+    REPO_WORK $DIR_PATTERN_PY 1
+    REPO_WORK $DIR_TEST_PY 1
+    REPO_WORK $DIR_YOUTUBE_PY 1
+    REPO_WORK $DIR_TESTS_PY 1
+
+    REPO_WORK $DIR_TOOLS_SRC_PY
+    UPDATE_TOOLS_PY
+    REPO_WORK $DIR_TOOLS_PY 0
+
+    git_pull $DIR_TOOLS_PY_
+
+    return 0
+}
+#endfunction
+
+# --------------------------------------------------------------------------------
+# procedure MAIN_01_OS_03_UNIX ()
+# --------------------------------------------------------------------------------
+function MAIN_01_OS_03_UNIX () {
+#beginfunction
+    if [[ "$DEBUG" -eq 1 ]] ; then
+        echo DEBUG: procedure $FUNCNAME ... >$(tty)
+    fi
+
+    DIR_TOOLS_SRC_SH=$PROJECTS_LYR_DIR/CHECK_LIST/01_OS/03_UNIX/PROJECTS_UNIX/TOOLS_SRC_SH
+    DIR_TOOLS_SH=$PROJECTS_LYR_DIR/CHECK_LIST/01_OS/03_UNIX/TOOLS_SH
+
+    REPO_WORK $DIR_TOOLS_SRC_SH 0
+    UPDATE_TOOLS_SH
+    REPO_WORK $DIR_TOOLS_SH 0
+
+    return 0
+}
+#endfunction
+
+#--------------------------------------------------------------------------------
+# procedure MAIN_FUNC ()
+#--------------------------------------------------------------------------------
+function MAIN_FUNC {
+#beginfunction
+    if [[ "$DEBUG" -eq 1 ]] ; then
+        echo DEBUG: procedure $FUNCNAME ... >$(tty)
+    fi
+
+    AddLog $loAll $TEXT '--------------------------------------'
+    AddLog $loAll $TEXT 'MAIN_FUNC ...'
+    AddLog $loAll $TEXT '--------------------------------------'
+    # -------------------------------------------------------------------
+    # запуск скриптов
+    # -------------------------------------------------------------------
+    #source "$PROJECTS_DIR"/"TOOLS_SH/LIB/[lyrxxx_]PATTERN_FUNCTION.sh"
+    #FUNC_01
+
+    MAIN_05_DESKTOP_02_Python
+    MAIN_01_OS_03_UNIX
+
+    # PressAnyKey
+
+    return 0
+}
+#endfunction
+
+#--------------------------------------------------------------------------------
+# procedure MAIN ()
+#--------------------------------------------------------------------------------
 function MAIN () {
 #beginfunction
     if [[ "$DEBUG" -eq 1 ]] ; then
@@ -280,11 +363,41 @@ function MAIN () {
     BATNAME=$0
     echo Start $BATNAME ...
 
-    MAIN_SetROOT
+    DEBUG=0
+    LOG_FILE_ADD=0
 
-    MAIN_03_UNIX
+    # -------------------------------------------------------------------
+    # SCRIPTS_DIR - Каталог скриптов
+    # LIB_BAT - каталог библиотеки скриптов
+    # SCRIPTS_DIR_KIX - Каталог скриптов KIX
+    # -------------------------------------------------------------------
+    MAIN_INIT
 
-    MAIN_02_Python
+    # Количество аргументов
+    Read_N
+    echo Read_N:$Read_N
+
+    SET_LIB "$0"
+    #echo CURRENT_DIR:$CURRENT_DIR
+    echo SCRIPT_FULLFILENAME:$SCRIPT_FULLFILENAME
+
+    StartLogFile
+
+    OK=yes
+    MAIN_SET
+
+    if [[ ! -z "$OK" ]] ; then #if defined OK if not defined Read_N (
+        MAIN_CHECK_PARAMETR
+    fi
+
+    OK=yes
+    if [[ ! -z "$OK" ]] ; then
+        MAIN_FUNC
+        #Pause "$SLEEP"
+        #PressAnyKey
+    fi
+
+    StopLogFile
 
     return 0
 }
