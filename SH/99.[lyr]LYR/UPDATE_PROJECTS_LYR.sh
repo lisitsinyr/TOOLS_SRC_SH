@@ -35,7 +35,6 @@ function MAIN_INIT () {
     esac
     echo PROJECTS_LYR_ROOT:$PROJECTS_LYR_ROOT
     echo PROJECTS_LYR_DIR:$PROJECTS_LYR_DIR
-
     echo SCRIPTS_DIR:$SCRIPTS_DIR
 
     # -------------------------------------------------------------------
@@ -59,6 +58,7 @@ function MAIN_INIT () {
     source "$LIB_SH/LYRConst.sh"
     source "$LIB_SH/LYRDateTime.sh"
     source "$LIB_SH/LYRSupport.sh"
+    source "$LIB_SH/LYRParserINI.sh"
 
     return 0
 }
@@ -93,7 +93,7 @@ function MAIN_CHECK_PARAMETR () {
     # -------------------------------------
     O1=O1_default
     PN_CAPTION=O1
-    Read_P O1
+    Read_P O1 O1
     echo O1:$O1
     #AddLog $loAll $TEXT O1:$O1
     #AddLog $loAll $INFO O1:$O1
@@ -135,9 +135,11 @@ function UPDATE_TOOLS_SH () {
 
     LDIR_TO=$DIR_TOOLS_SH/SH
     if [[ -d $LDIR_TO ]] ; then
-        sudo rm -R $LDIR_TO
+        #sudo rm -R $LDIR_TO
+        echo 'sudo rm -R $LDIR_TO'
     else
-        sudo mkdir -p $LDIR_TO
+        #sudo mkdir -p $LDIR_TO
+        echo 'sudo mkdir -p $LDIR_TO'
     fi
     LDIR_FROM=$DIR_TOOLS_SRC_SH/SH
     LMASK=*.sh
@@ -145,9 +147,11 @@ function UPDATE_TOOLS_SH () {
 
     LDIR_TO=$DIR_TOOLS_SH/LIB
     if [[ -d $LDIR_TO ]] ; then
-        sudo rm -R $LDIR_TO
+        #sudo rm -R $LDIR_TO
+        echo 'sudo rm -R $LDIR_TO'
     else
-        sudo mkdir -p $LDIR_TO
+        #sudo mkdir -p $LDIR_TO
+        echo 'sudo mkdir -p $LDIR_TO'
     fi
     LDIR_FROM=$DIR_TOOLS_SRC_SH/LIB
     LMASK=*.sh
@@ -155,9 +159,11 @@ function UPDATE_TOOLS_SH () {
 
     LDIR_TO=$DIR_TOOLS_SH/SH_GIT
     if [[ -d $LDIR_TO ]] ; then
-        sudo rm -R $LDIR_TO
+        #sudo rm -R $LDIR_TO
+        echo 'sudo rm -R $LDIR_TO'
     else
-        sudo mkdir -p $LDIR_TO
+        #sudo mkdir -p $LDIR_TO
+        echo 'sudo mkdir -p $LDIR_TO'
     fi
     LDIR_FROM=$DIR_TOOLS_SRC_GIT/SH
     LMASK=*.sh
@@ -179,9 +185,11 @@ function UPDATE_TOOLS_PY () {
     LDIR_TO=$DIR_TOOLS_PY/SH
     LMASK=*.sh
     if [[ -d $LDIR_TO ]] ; then
-        sudo rm -R $LDIR_TO
+        #sudo rm -R $LDIR_TO
+        echo 'sudo rm -R $LDIR_TO'
     else
-        sudo mkdir -p $LDIR_TO
+        #sudo mkdir -p $LDIR_TO
+        echo 'sudo mkdir -p $LDIR_TO'
     fi
 
     LDIR_FROM=$DIR_TOOLS_SRC_PY/SRC/SH
@@ -211,10 +219,10 @@ function git_pull () {
     ADirectory=$1
     echo ADirectory:$ADirectory
     cd $ADirectory/
-    
+
     # call lyrgit_pull_main.bat
     #git pull
-    
+
     return 0
 }
 #endfunction
@@ -230,13 +238,15 @@ function REPO_WORK () {
 
     ADirectory=$1
     echo ADirectory:$ADirectory
-    cd $ADirectory/
+    cd $ADirectory
 
     APYTHON=$2
-    # echo APYTHON:!APYTHON!
+    echo APYTHON:$APYTHON
 
-    GetINIParametr REPO.ini general $REPO_NAME
-    # echo REPO_NAME:!REPO_NAME!
+    GetINIParametr REPO.ini general REPO_NAME
+    #echo REPO_NAME:$REPO_NAME
+
+    #PressAnyKey
 
     #del *.sh
 
@@ -258,7 +268,7 @@ function REPO_WORK () {
         #    copy $LFileName
         #fi
     fi
-   
+
     #lyrgit_push_main
 
     return 0

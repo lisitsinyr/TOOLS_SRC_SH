@@ -1,14 +1,16 @@
 #!/bin/bash
 # -----------------------------------------------
-# LYRSupport.sh
+# LYRParserINI.sh
 # -----------------------------------------------
 
-declare -A inidb
+# =================================================
+# ФУНКЦИИ
+# =================================================
 
 #--------------------------------------------------------------------------------
-# procedure LYRSupport ()
+# procedure LYRParserINI ()
 #--------------------------------------------------------------------------------
-function LYRSupport () {
+function LYRParserINI () {
 #beginfunction
     if [[ "$DEBUG" -eq 1 ]] ; then
         echo DEBUG: procedure $FUNCNAME ... >$(tty)
@@ -21,52 +23,64 @@ function LYRSupport () {
 #endfunction
 
 #--------------------------------------------------------------------------------
-# procedure PressAnyKey ()
+# procedure SetINI (AFileName, ASection, AParameter, AValue)
 #--------------------------------------------------------------------------------
-function PressAnyKey () {
+function SetINI () {
 #beginfunction
     if [[ "$DEBUG" -eq 1 ]] ; then
         echo DEBUG: procedure $FUNCNAME ... >$(tty)
     fi
-    # How can I make "Press any key to continue" [duplicate]
-    # You can use the read command. If you are using bash:
-    #read -p "Press enter to continue"
 
-    # In other shells, you can do:
-    #printf "%s " "Press enter to continue"
-    #read ans
+    AFileName=$1
+    #echo AFileName:$AFileName
+    ASection=$2
+    # echo ASection:$ASection
+    AParameter=$3
+    # echo AParameter:$AParameter
+    AValue=$4
+    # echo AValue:$AValue
 
-    # As mentioned in the comments above, this command does
-    # actually require the user to press enter; a solution
-    # that works with any key in bash would be:
-    #
-    # Explanation by Rayne and wchargin
-    # -n defines the required character count to stop reading
-    # -s hides the user's input
-    # -r causes the string to be interpreted "raw" (without considering backslash escapes)
-
-    read -n 1 -s -r -p $'Press any key to continue ...\n'
+    echo ERROR: function $FUNCNAME not implemented! ...
 
     return 0
 }
 #endfunction
 
 #--------------------------------------------------------------------------------
-# procedure Pause (APause)
+# procedure GetINI (AFileName, ASection, AParameter)
 #--------------------------------------------------------------------------------
-function Pause () {
+function GetINI () {
 #beginfunction
     if [[ "$DEBUG" -eq 1 ]] ; then
         echo DEBUG: procedure $FUNCNAME ... >$(tty)
     fi
 
-    APause=$1
-    #echo Pause:$1
+    AFileName=$1
+    #echo AFileName:$AFileName
+    ASection=$2
+    # echo ASection:$ASection
+    AParameter=$3
+    # echo AParameter:$AParameter
 
-    if [ -z $1 ] ; then
-        sleep 0s
-    else
-        sleep "$1"
+    echo ERROR: function $FUNCNAME not implemented! ...
+
+    return 0
+}
+#endfunction
+
+#--------------------------------------------------------------------------------
+# procedure __ini_get_section (AFileName)
+#--------------------------------------------------------------------------------
+function __ini_get_section () {
+#beginfunction
+    if [[ "$DEBUG" -eq 1 ]] ; then
+        echo DEBUG: procedure $FUNCNAME ... >$(tty)
+    fi
+
+    if [[ "$1" =~ ^(\[)(.*)(\])$ ]]; then 
+        echo ${BASH_REMATCH[2]} ; 
+    else 
+        echo ""; 
     fi
 
     return 0
@@ -74,169 +88,142 @@ function Pause () {
 #endfunction
 
 #--------------------------------------------------------------------------------
-# procedure Read_P (P_Name P_Value)
+# procedure __ini_get_key_value (AFileName)
 #--------------------------------------------------------------------------------
-function Read_P () {
+function __ini_get_key_value () {
 #beginfunction
     if [[ "$DEBUG" -eq 1 ]] ; then
         echo DEBUG: procedure $FUNCNAME ... >$(tty)
     fi
 
-    P_Name=$1
-    #echo P_Name: $P_Name
+    if [[ "$1" =~ ^([^=]+)=([^=]+)$ ]]; 
+    then 
+        echo "${BASH_REMATCH[1]}=${BASH_REMATCH[2]}"; 
+    else 
+        echo ""
+    fi
 
-    P_Value=$2
-    #echo P_Value: $P_Value
+    return 0
+}
+#endfunction
 
-    Input=
-    if [ -z $P_Value ] ; then
-        if [ ! -z $PN_CAPTION ] ; then
-            echo $PN_CAPTION[${P_Name}][${!P_Name}]:
+#--------------------------------------------------------------------------------
+# procedure __ini_loadfile (AFileName)
+#--------------------------------------------------------------------------------
+function __ini_loadfile () {
+#beginfunction
+    if [[ "$DEBUG" -eq 1 ]] ; then
+        echo DEBUG: procedure $FUNCNAME ... >$(tty)
+    fi
+
+    local cur_section=""
+    local cur_key=""
+    local cur_val=""
+    IFS=
+    while read -r line; do
+        new_section=$(__ini_get_section $line)
+        # got a new section
+        if [[ -n "$new_section" ]]; then
+            cur_section=$new_section
+        # not a section, try a key value
         else
-            echo [${P_Name}][${!P_Name}]:
+            val=$(__ini_get_key_value $line)
+            # trim the leading and trailing spaces as well
+            cur_key=$(echo $val | cut -f1 -d'=' | sed -e 's/^[[:space:]]*//' | sed -e 's/[[:space:]]*$//') 
+            cur_val=$(echo $val | cut -f2 -d'=' | sed -e 's/^[[:space:]]*//' | sed -e 's/[[:space:]]*$//')
+        if [[ -n "$cur_key" ]]; then
+            # section + key is the associative in bash array, the field seperator is space
+            inidb[${cur_section} ${cur_key}]=$cur_val
         fi
-        read Input
-    else
-        eval ${P_Name}=$P_Value
-        return 0
     fi
-    #echo Input: $Input
-
-    if [ -z $Input ] ; then
-        eval ${P_Name}=${!P_Name}
-    else
-        eval ${P_Name}=$Input
-    fi
+    done <$1
 
     return 0
 }
 #endfunction
 
 #--------------------------------------------------------------------------------
-# procedure Read_F (P_Name, P_List, Atimeout)
+# procedure __ini_printdb (AFileName)
 #--------------------------------------------------------------------------------
-function Read_F () {
+function __ini_printdb () {
 #beginfunction
     if [[ "$DEBUG" -eq 1 ]] ; then
         echo DEBUG: procedure $FUNCNAME ... >$(tty)
     fi
 
-    P_Name=$1
-    #echo P_Name:$P_Name
-    # список создаваемых вариантов
-    P_List=$2
-    # echo P_List:$P_List
-    # Atimeout
-    Atimeout=$3
-    #echo Atimeout:$Atimeout
-
-    if [ -z $Atimeout ] ; then
-        Atimeout=10
-    fi
-    # echo Atimeout:$Atimeout
-
-    echo ERROR: function $FUNCNAME not implemented! ...
+    for i in "${!inidb[@]}"
+    do
+    # split the associative key in to section and key
+       echo -n "section  : $(echo $i | cut -f1 -d ' ');"
+       echo -n "key  : $(echo $i | cut -f2 -d ' ');"
+       echo  "value: ${inidb[$i]}"
+    done
 
     return 0
 }
 #endfunction
 
 #--------------------------------------------------------------------------------
-# function Read_N () -> Read_N
+# procedure __ini_get_value (ASection, AParameter)
 #--------------------------------------------------------------------------------
-function Read_N () {
+function __ini_get_value () {
 #beginfunction
     if [[ "$DEBUG" -eq 1 ]] ; then
         echo DEBUG: procedure $FUNCNAME ... >$(tty)
     fi
 
-    Read_N=$#
-
-    return $#
-}
-#endfunction
-
-#--------------------------------------------------------------------------------
-# procedure GetDir (ASET, Aview, Aarg)
-#--------------------------------------------------------------------------------
-function GetDir () {
-#beginfunction
-    if [[ "$DEBUG" -eq 1 ]] ; then
-        echo DEBUG: procedure $FUNCNAME ... >$(tty)
-    fi
-
-    ASET=$1
-    #echo ASET:$ASET
-    Aview=$2
-    # echo Aview:$Aview
-    Aarg=$3
-    # echo Aarg:$Aarg
-
-    echo ERROR: function $FUNCNAME not implemented! ...
+    section=$1
+    key=$2
+    echo "${inidb[$section $key]}"
+    #eval ${key}=TEST
 
     return 0
 }
 #endfunction
 
 #--------------------------------------------------------------------------------
-# procedure GetFile (ASET, Aview, Aarg)
+# procedure GetINIParametr (AFileName, ASection, AParameter)
 #--------------------------------------------------------------------------------
-function GetFile () {
+function GetINIParametr () {
 #beginfunction
     if [[ "$DEBUG" -eq 1 ]] ; then
         echo DEBUG: procedure $FUNCNAME ... >$(tty)
     fi
 
-    ASET=$1
-    #echo ASET:$ASET
-    Aview=$2
-    # echo Aview:$Aview
-    Aarg=$3
-    # echo Aarg:$Aarg
+    AFileName=$1
+    echo AFileName:$AFileName
+    ASection=$2
+    echo ASection:$ASection
+    AParameter=$3
+    echo AParameter:$AParameter
 
-    echo ERROR: function $FUNCNAME not implemented! ...
+    __ini_loadfile $AFileName
+    __ini_printdb $ASection $AParameter
+    #__ini_get_value $ASection $AParameter
+    
+    #echo ERROR: function $FUNCNAME not implemented! ...
 
     return 0
 }
 #endfunction
 
 #--------------------------------------------------------------------------------
-# procedure FORCicle (Astart, Astep, Aend)
+# procedure GetFileParser (AFileName Adelims Atokens Aeol)
 #--------------------------------------------------------------------------------
-function GetFile () {
+function GetFileParser () {
 #beginfunction
     if [[ "$DEBUG" -eq 1 ]] ; then
         echo DEBUG: procedure $FUNCNAME ... >$(tty)
     fi
 
-    Astart=$1
-    #echo Astart:$Astart
-    Astep=$2
-    # echo Astep:$Astep
-    Aend=$3
-    # echo Aend:$Aend
-
-    echo ERROR: function $FUNCNAME not implemented! ...
-
-    return 0
-}
-#endfunction
-
-#--------------------------------------------------------------------------------
-# procedure GetSET (ASET Adelims Atokens)
-#--------------------------------------------------------------------------------
-function GetSET () {
-#beginfunction
-    if [[ "$DEBUG" -eq 1 ]] ; then
-        echo DEBUG: procedure $FUNCNAME ... >$(tty)
-    fi
-
-    ASET=$1
-    #echo ASET:$ASET
+    AFileName=$1
+    #echo AFileName:$AFileName
     Adelims=$2
     # echo Adelims:$Adelims
     Atokens=$3
     # echo Atokens:$Atokens
+    Aeol=$4
+    # echo Aeol:$Aeol
 
     echo ERROR: function $FUNCNAME not implemented! ...
 
@@ -244,25 +231,3 @@ function GetSET () {
 }
 #endfunction
 
-#--------------------------------------------------------------------------------
-# procedure GetCMD (ASET Adelims Atokens)
-#--------------------------------------------------------------------------------
-function GetCMD () {
-#beginfunction
-    if [[ "$DEBUG" -eq 1 ]] ; then
-        echo DEBUG: procedure $FUNCNAME ... >$(tty)
-    fi
-
-    ASET=$1
-    #echo ASET:$ASET
-    Adelims=$2
-    # echo Adelims:$Adelims
-    Atokens=$3
-    # echo Atokens:$Atokens
-
-    echo ERROR: function $FUNCNAME not implemented! ...
-
-    return 0
-}
-#endfunction
-                            

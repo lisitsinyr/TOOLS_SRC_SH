@@ -55,6 +55,7 @@ function MAIN_INIT () {
     source "$LIB_SH/LYRConst.sh"
     source "$LIB_SH/LYRDateTime.sh"
     source "$LIB_SH/LYRSupport.sh"
+    source "$LIB_SH/LYRParserINI.sh"
 
     return 0
 }
