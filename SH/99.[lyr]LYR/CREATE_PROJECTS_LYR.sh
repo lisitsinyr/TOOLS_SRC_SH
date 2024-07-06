@@ -12,7 +12,7 @@ function MAIN_CreateDirectory () {
         echo DEBUG: procedure $FUNCNAME ... >$(tty)
     fi
 
-    cd $PROJECTS_LYR
+    cd $PROJECTS_LYR_DIR
 
     echo GDirectory:$GDirectory
 
@@ -275,9 +275,13 @@ function MAIN_SetROOT () {
         'ASUS-W10P')
             PROJECTS_LYR_ROOT='/d'
             PROJECTS_LYR_ROOT='/d/WORK/UBU'
+            PROJECTS_LYR_DIR=$PROJECTS_LYR_ROOT/PROJECTS_LYR
+            SCRIPTS_DIR=$PROJECTS_LYR_DIR/CHECK_LIST/01_OS/03_UNIX/PROJECTS_UNIX/TOOLS_SRC_SH
             ;;
         'ASUS-U2204-VB' | 'ASUS-U2204-VM' | 'ASUS-U2404-VB' | 'ASUS-U2404-VM')
             PROJECTS_LYR_ROOT='/home/lyr'
+            PROJECTS_LYR_DIR=$PROJECTS_LYR_ROOT/PROJECTS_LYR
+            SCRIPTS_DIR=$PROJECTS_LYR_DIR/CHECK_LIST/01_OS/03_UNIX/PROJECTS_UNIX/TOOLS_SRC_SH
         ;;
         *)
             echo "ERROR: Компьютер не определен...!"
@@ -285,19 +289,17 @@ function MAIN_SetROOT () {
             ;;
     esac
     echo PROJECTS_LYR_ROOT:$PROJECTS_LYR_ROOT
+    echo PROJECTS_LYR_DIR:$PROJECTS_LYR_DIR
+    echo SCRIPTS_DIR:$SCRIPTS_DIR
 
-    PROJECTS_LYR=$PROJECTS_LYR_ROOT/PROJECTS_LYR
-    echo PROJECTS_LYR:$PROJECTS_LYR
+    if [[ ! -d "$PROJECTS_LYR_DIR" ]] ; then
+        #echo INFO: Dir "$PROJECTS_LYR_DIR" not exist...
+        #echo INFO: Create "$PROJECTS_LYR_DIR" ...
 
-    if [[ ! -d "$PROJECTS_LYR" ]] ; then
-        #echo INFO: Dir "$PROJECTS_LYR" not exist...
-        #echo INFO: Create "$PROJECTS_LYR" ...
-
-        # Создаем каталог /home/lyr/PROJECTS_LYR
-        result=$(mkdir -p "$PROJECTS_LYR")
+        result=$(mkdir -p "$PROJECTS_LYR_DIR")
         echo result:$result
         if [[ ! $result==0 ]] ; then
-            echo ERROR: Dir "$PROJECTS_LYR" not created...
+            echo ERROR: Dir "$PROJECTS_LYR_DIR" not created...
             exit 1
         fi
 
@@ -309,9 +311,9 @@ function MAIN_SetROOT () {
             ;;
         'ASUS-U2204-VB' | 'ASUS-U2204-VM' | 'ASUS-U2404-VB' | 'ASUS-U2404-VM')
             # Задаем права на созданный каталог
-            sudo chmod -R 770 "$PROJECTS_LYR"
+            sudo chmod -R 770 "$PROJECTS_LYR_DIR"
             # Задаем владельца на созданный каталог
-            sudo chown -R lyr:lyr "$PROJECTS_LYR"
+            sudo chown -R lyr:lyr "$PROJECTS_LYR_DIR"
         ;;
         *)
             echo "ERROR: Компьютер не определен...!"
