@@ -71,21 +71,13 @@ function GetINI () {
 #--------------------------------------------------------------------------------
 # procedure __ini_get_section (AFileName)
 #--------------------------------------------------------------------------------
-function __ini_get_section () {
-#beginfunction
-    if [[ "$DEBUG" -eq 1 ]] ; then
-        echo DEBUG: procedure $FUNCNAME ... >$(tty)
+function __ini_get_section {
+    if [[ "$1" =~ ^(\[)(.*)(\]) ]] ; then
+        echo ${BASH_REMATCH[2]} ;
+    else
+        echo "" ;
     fi
-
-    if [[ "$1" =~ ^(\[)(.*)(\])$ ]]; then 
-        echo ${BASH_REMATCH[2]} ; 
-    else 
-        echo ""; 
-    fi
-
-    return 0
 }
-#endfunction
 
 #--------------------------------------------------------------------------------
 # procedure __ini_get_key_value (AFileName)
@@ -96,10 +88,9 @@ function __ini_get_key_value () {
         echo DEBUG: procedure $FUNCNAME ... >$(tty)
     fi
 
-    if [[ "$1" =~ ^([^=]+)=([^=]+)$ ]]; 
-    then 
-        echo "${BASH_REMATCH[1]}=${BASH_REMATCH[2]}"; 
-    else 
+    if [[ "$1" =~ ^([^=]+)=([^=]+)$ ]] ; then
+        echo "${BASH_REMATCH[1]}=${BASH_REMATCH[2]}";
+    else
         echo ""
     fi
 
@@ -125,20 +116,26 @@ function __ini_loadfile () {
         # got a new section
         if [[ -n "$new_section" ]]; then
             cur_section=$new_section
+            # echo cur_section:$cur_section
         # not a section, try a key value
         else
             val=$(__ini_get_key_value $line)
+            # echo val:$val
             # trim the leading and trailing spaces as well
-            cur_key=$(echo $val | cut -f1 -d'=' | sed -e 's/^[[:space:]]*//' | sed -e 's/[[:space:]]*$//') 
+            cur_key=$(echo $val | cut -f1 -d'=' | sed -e 's/^[[:space:]]*//' | sed -e 's/[[:space:]]*$//')
             cur_val=$(echo $val | cut -f2 -d'=' | sed -e 's/^[[:space:]]*//' | sed -e 's/[[:space:]]*$//')
-        if [[ -n "$cur_key" ]]; then
-            # section + key is the associative in bash array, the field seperator is space
-            inidb[${cur_section} ${cur_key}]=$cur_val
+            # echo cur_key:$cur_key
+            # echo cur_val:$cur_val
+            if [[ -n "$cur_key" ]]; then
+                # section + key is the associative in bash array, the field seperator is space
+                # echo $cur_section $cur_key=$cur_val
+                inidb[${cur_section} ${cur_key}]=$cur_val
+            fi
         fi
-    fi
     done <$1
 
-    return 0
+    # echo inidb:${!inidb[*]}
+
 }
 #endfunction
 
@@ -154,9 +151,9 @@ function __ini_printdb () {
     for i in "${!inidb[@]}"
     do
     # split the associative key in to section and key
-       echo -n "section  : $(echo $i | cut -f1 -d ' ');"
-       echo -n "key  : $(echo $i | cut -f2 -d ' ');"
-       echo  "value: ${inidb[$i]}"
+       echo -n "section:$(echo $i | cut -f1 -d ' ');"
+       echo -n "key:$(echo $i | cut -f2 -d ' ');"
+       echo  "value:${inidb[$i]}"
     done
 
     return 0
@@ -173,35 +170,76 @@ function __ini_get_value () {
     fi
 
     section=$1
+    # echo section:$section
     key=$2
+    # echo key:$key
     echo "${inidb[$section $key]}"
-    #eval ${key}=TEST
 
     return 0
 }
 #endfunction
 
 #--------------------------------------------------------------------------------
-# procedure GetINIParametr (AFileName, ASection, AParameter)
+# procedure GetINIParametr_PY (AFileName, ASection, AParameter)
 #--------------------------------------------------------------------------------
-function GetINIParametr () {
+function GetINIParametr_PY () {
 #beginfunction
     if [[ "$DEBUG" -eq 1 ]] ; then
         echo DEBUG: procedure $FUNCNAME ... >$(tty)
     fi
 
     AFileName=$1
-    echo AFileName:$AFileName
+    # echo AFileName:$AFileName
     ASection=$2
-    echo ASection:$ASection
+    # echo ASection:$ASection
     AParameter=$3
-    echo AParameter:$AParameter
+    # echo AParameter:$AParameter
 
+    LResult=$($LIB_SH/GetINI.py $AFileName $ASection $AParameter)
+    # COMMAND=$LResult
+    # echo COMMAND:"$COMMAND"
+    # echo LResult:"${LResult}"
+    eval "$LResult"
+    # declare -A general
+    # general[repo_name]=TOOLS_SRC_SH
+    # general[repo_name2]=TOOLS_SRC_SH2
+    # echo general:${!general[*]}
+    # echo general_repo_name:${general[repo_name]}
+    # echo general_repo_name2:${general[repo_name2]}
+
+    # Printf '%s\n' "$var" is necessary because printf '%s' "$var" on a
+    # variable that doesn't end with a newline then the while loop will
+    # completely miss the last line of the variable.
+    # while IFS= read -r line
+    # do
+    #     echo "$line"
+    #     # eval "$line"
+    # done < <(printf '%s' "${LResult}")
+
+    return 0
+}
+#endfunction
+
+#--------------------------------------------------------------------------------
+# procedure GetINIParametr_SH (AFileName, ASection, AParameter)
+#--------------------------------------------------------------------------------
+function GetINIParametr_SH () {
+#beginfunction
+    if [[ "$DEBUG" -eq 1 ]] ; then
+        echo DEBUG: procedure $FUNCNAME ... >$(tty)
+    fi
+
+    AFileName=$1
+    ASection=$2
+    AParameter=$3
+
+    declare -A inidb
     __ini_loadfile $AFileName
-    __ini_printdb $ASection $AParameter
-    #__ini_get_value $ASection $AParameter
-    
-    #echo ERROR: function $FUNCNAME not implemented! ...
+    #__ini_printdb
+
+    value=$(__ini_get_value $ASection $AParameter)
+    # echo value:$value
+    echo ${value}
 
     return 0
 }
@@ -230,4 +268,3 @@ function GetFileParser () {
     return 0
 }
 #endfunction
-

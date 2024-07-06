@@ -45,9 +45,64 @@ function MAIN_CreateDirectory () {
 #endfunction
 
 # -----------------------------------------------
-# procedure MAIN_03_UNIX ()
+# procedure MAIN_07_GIT ()
 # -----------------------------------------------
-function MAIN_03_UNIX () {
+function MAIN_07_GIT () {
+#beginfunction
+    if [[ "$DEBUG" -eq 1 ]] ; then
+        echo DEBUG: procedure $FUNCNAME ... >$(tty)
+    fi
+
+    DIR_07_GIT=CHECK_LIST/07_GIT
+
+    GDirectory=$DIR_07_GIT/SOFTWARE
+    GRepo=
+    MAIN_CreateDirectory
+
+    GDirectory=$DIR_07_GIT/ДОКУМЕНТАЦИЯ
+    GRepo=
+    MAIN_CreateDirectory
+
+    GDirectory=$DIR_07_GIT/ДОКУМЕНТЫ
+    GRepo=
+    MAIN_CreateDirectory
+
+    GDirectory=$DIR_07_GIT/КНИГИ
+    GRepo=
+    MAIN_CreateDirectory
+
+    GDirectory=$DIR_07_GIT/КУРСЫ
+    GRepo=
+    MAIN_CreateDirectory
+
+    GDirectory=$DIR_07_GIT/СТАТЬИ
+    GRepo=
+    MAIN_CreateDirectory
+
+    GDirectory=$DIR_07_GIT/FRAMEWORK
+    GRepo=
+    MAIN_CreateDirectory
+
+    GDirectory=$DIR_07_GIT/LIBRARY
+    GRepo=
+    MAIN_CreateDirectory
+
+    GDirectory=$DIR_07_GIT/WORK
+    GRepo=
+    MAIN_CreateDirectory
+
+    GDirectory=$DIR_07_GIT/PROJECTS_GIT/TOOLS_SRC_GIT
+    GRepo="git@github.com:lisitsinyr/TOOLS_SRC_GIT.git"
+    MAIN_CreateDirectory
+
+    return 0
+}
+#endfunction
+
+# -----------------------------------------------
+# procedure MAIN_01_03_UNIX ()
+# -----------------------------------------------
+function MAIN_01_03_UNIX () {
 #beginfunction
     if [[ "$DEBUG" -eq 1 ]] ; then
         echo DEBUG: procedure $FUNCNAME ... >$(tty)
@@ -55,27 +110,27 @@ function MAIN_03_UNIX () {
 
     DIR_03_UNIX=CHECK_LIST/01_OS/03_UNIX
 
-    GDirectory=$DIR_03_UNIX/!!SOFTWARE
+    GDirectory=$DIR_03_UNIX/SOFTWARE
     GRepo=
     MAIN_CreateDirectory
 
-    GDirectory=$DIR_03_UNIX/!!ДОКУМЕНТАЦИЯ
+    GDirectory=$DIR_03_UNIX/ДОКУМЕНТАЦИЯ
     GRepo=
     MAIN_CreateDirectory
 
-    GDirectory=$DIR_03_UNIX/!!ДОКУМЕНТЫ
+    GDirectory=$DIR_03_UNIX/ДОКУМЕНТЫ
     GRepo=
     MAIN_CreateDirectory
 
-    GDirectory=$DIR_03_UNIX/!!КНИГИ
+    GDirectory=$DIR_03_UNIX/КНИГИ
     GRepo=
     MAIN_CreateDirectory
 
-    GDirectory=$DIR_03_UNIX/!!КУРСЫ
+    GDirectory=$DIR_03_UNIX/КУРСЫ
     GRepo=
     MAIN_CreateDirectory
 
-    GDirectory=$DIR_03_UNIX/!!СТАТЬИ
+    GDirectory=$DIR_03_UNIX/СТАТЬИ
     GRepo=
     MAIN_CreateDirectory
 
@@ -116,90 +171,90 @@ function MAIN_03_UNIX () {
 #endfunction
 
 # -----------------------------------------------
-# procedure MAIN_02_Python ()
+# procedure MAIN_05_02_Python ()
 # -----------------------------------------------
-function MAIN_02_Python () {
+function MAIN_05_02_Python () {
 #beginfunction
     if [[ "$DEBUG" -eq 1 ]] ; then
         echo DEBUG: procedure $FUNCNAME ... >$(tty)
     fi
 
-    DIR_02_Python=CHECK_LIST/05_DESKTOP/02_Python
+    DIR_05_02_Python=CHECK_LIST/05_DESKTOP/02_Python
 
-    GDirectory=$DIR_02_Python/!!SOFTWARE
+    GDirectory=$DIR_05_02_Python/SOFTWARE
     GRepo=
     MAIN_CreateDirectory
 
-    GDirectory=$DIR_02_Python/!!ДОКУМЕНТАЦИЯ
+    GDirectory=$DIR_05_02_Python/ДОКУМЕНТАЦИЯ
     GRepo=
     MAIN_CreateDirectory
 
-    GDirectory=$DIR_02_Python/!!ДОКУМЕНТЫ
+    GDirectory=$DIR_05_02_Python/ДОКУМЕНТЫ
     GRepo=
     MAIN_CreateDirectory
 
-    GDirectory=$DIR_02_Python/!!КНИГИ
+    GDirectory=$DIR_05_02_Python/КНИГИ
     GRepo=
     MAIN_CreateDirectory
 
-    GDirectory=$DIR_02_Python/!!КУРСЫ
+    GDirectory=$DIR_05_02_Python/КУРСЫ
     GRepo=
     MAIN_CreateDirectory
 
-    GDirectory=$DIR_02_Python/!!СТАТЬИ
+    GDirectory=$DIR_05_02_Python/СТАТЬИ
     GRepo=
     MAIN_CreateDirectory
 
-    GDirectory=$DIR_02_Python/FRAMEWORK
+    GDirectory=$DIR_05_02_Python/FRAMEWORK
     GRepo=
     MAIN_CreateDirectory
 
-    GDirectory=$DIR_02_Python/LIBRARY
+    GDirectory=$DIR_05_02_Python/LIBRARY
     GRepo=
     MAIN_CreateDirectory
 
-    GDirectory=$DIR_02_Python/PROJECTS
+    GDirectory=$DIR_05_02_Python/PROJECTS
     GRepo=
     MAIN_CreateDirectory
 
-    GDirectory=$DIR_02_Python/TOOLS_PY
+    GDirectory=$DIR_05_02_Python/TOOLS_PY
     GRepo="git@github.com:lisitsinyr/TOOLS_PY.git"
     MAIN_CreateDirectory
 
-    GDirectory=$DIR_02_Python/VENV
+    GDirectory=$DIR_05_02_Python/VENV
     GRepo=
     MAIN_CreateDirectory
 
-    GDirectory=$DIR_02_Python/WORK
+    GDirectory=$DIR_05_02_Python/WORK
     GRepo=
     MAIN_CreateDirectory
 
-    GDirectory=$DIR_02_Python/PROJECTS_PY/EXAMPLES_PY
+    GDirectory=$DIR_05_02_Python/PROJECTS_PY/EXAMPLES_PY
     GRepo="git@github.com:lisitsinyr/EXAMPLES_PY.git"
     MAIN_CreateDirectory
 
-    GDirectory=$DIR_02_Python/PROJECTS_PY/MobileAPP_PY
-    GRepo="git@github.com:lisitsinyr/MobileAPP.git"
+    GDirectory=$DIR_05_02_Python/PROJECTS_PY/MobileAPP_PY
+    GRepo="git@github.com:lisitsinyr/MobileAPP_PY.git"
     MAIN_CreateDirectory
 
-    GDirectory=$DIR_02_Python/PROJECTS_PY/PATTERN_PY
+    GDirectory=$DIR_05_02_Python/PROJECTS_PY/PATTERN_PY
     GRepo="git@github.com:lisitsinyr/PATTERN_PY.git"
     MAIN_CreateDirectory
 
-    GDirectory=$DIR_02_Python/PROJECTS_PY/TEST_PY
+    GDirectory=$DIR_05_02_Python/PROJECTS_PY/TEST_PY
     GRepo=git@github.com:lisitsinyr/TEST_PY.git
     MAIN_CreateDirectory
 
-    GDirectory=$DIR_02_Python/PROJECTS_PY/TESTS_PY
+    GDirectory=$DIR_05_02_Python/PROJECTS_PY/TESTS_PY
     GRepo="git@github.com:lisitsinyr/TESTS_PY.git"
     MAIN_CreateDirectory
 
-    GDirectory=$DIR_02_Python/PROJECTS_PY/TOOLS_SRC_PY
+    GDirectory=$DIR_05_02_Python/PROJECTS_PY/TOOLS_SRC_PY
     GRepo="git@github.com:lisitsinyr/TOOLS_SRC_PY.git"
     MAIN_CreateDirectory
 
-    GDirectory=$DIR_02_Python/PROJECTS_PY/YOUTUBE_PY
-    GRepo="git@github.com:lisitsinyr/YOUTUBE.git"
+    GDirectory=$DIR_05_02_Python/PROJECTS_PY/YOUTUBE_PY
+    GRepo="git@github.com:lisitsinyr/YOUTUBE_PY.git"
     MAIN_CreateDirectory
 
     return 0
@@ -219,7 +274,7 @@ function MAIN_SetROOT () {
     case "$UNAME" in
         'ASUS-W10P')
             PROJECTS_LYR_ROOT='/d'
-            PROJECTS_LYR_ROOT='/d/WORK'
+            PROJECTS_LYR_ROOT='/d/WORK/UBU'
             ;;
         'ASUS-U2204-VB' | 'ASUS-U2204-VM' | 'ASUS-U2404-VB' | 'ASUS-U2404-VM')
             PROJECTS_LYR_ROOT='/home/lyr'
@@ -282,9 +337,11 @@ function MAIN () {
 
     MAIN_SetROOT
 
-    MAIN_03_UNIX
+    MAIN_07_GIT
 
-    MAIN_02_Python
+    MAIN_01_03_UNIX
+
+    MAIN_05_02_Python
 
     return 0
 }

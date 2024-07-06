@@ -220,7 +220,7 @@ function git_pull () {
     echo ADirectory:$ADirectory
     cd $ADirectory/
 
-    # call lyrgit_pull_main.bat
+    # call lyrgit_pull_main.sh
     #git pull
 
     return 0
@@ -238,23 +238,32 @@ function REPO_WORK () {
 
     ADirectory=$1
     echo ADirectory:$ADirectory
-    cd $ADirectory
+    cd $ADirectory/
+    echo CURRENT_DIR:$CURRENT_DIR
 
     APYTHON=$2
     echo APYTHON:$APYTHON
 
-    GetINIParametr REPO.ini general REPO_NAME
-    #echo REPO_NAME:$REPO_NAME
+    # echo ...GetINIParametr_PY...
+    # GetINIParametr_PY REPO.ini general REPO_NAME2
+    # echo REPO_NAME2:$REPO_NAME2
 
-    #PressAnyKey
+    # echo ...GetINIParametr_PY...
+    # GetINIParametr_PY REPO.ini general
+    # echo general_repo_name:${general[repo_name]}
+    # echo general_repo_name2:${general[repo_name2]}
 
-    #del *.sh
+    echo ...GetINIParametr_SH...
+    REPO_NAME2=$(GetINIParametr_SH REPO.ini general REPO_NAME)
+    echo REPO_NAME2:$REPO_NAME2
 
-    LFileName=$DIR_TOOLS_SRC_GIT/BAT/A.WORK/lyrgit_push_main.bat
+    rm *.sh
+
+    LFileName=$DIR_TOOLS_SH/SH_GIT/lyrgit_push_main.sh
     echo LFileName:$LFileName
-    #if [[ -d $LFileName ]] ; then
-    #    copy $LFileName
-    #fi
+    if [[ ! -f $LFileName ]] ; then
+       cp $LFileName ./
+    fi
 
     if [ $APYTHON -eq 1 ] ; then
         set LFileName=$DIR_TOOLS_SRC_PY/SRC/BAT/PROJECT_PYupdate.bat
@@ -269,7 +278,7 @@ function REPO_WORK () {
         #fi
     fi
 
-    #lyrgit_push_main
+    #./lyrgit_push_main.sh
 
     return 0
 }
@@ -327,8 +336,8 @@ function MAIN_01_OS_03_UNIX () {
     DIR_TOOLS_SH=$PROJECTS_LYR_DIR/CHECK_LIST/01_OS/03_UNIX/TOOLS_SH
 
     REPO_WORK $DIR_TOOLS_SRC_SH 0
-    UPDATE_TOOLS_SH
-    REPO_WORK $DIR_TOOLS_SH 0
+    # UPDATE_TOOLS_SH
+    # REPO_WORK $DIR_TOOLS_SH 0
 
     return 0
 }
@@ -352,7 +361,7 @@ function MAIN_FUNC {
     #source "$PROJECTS_DIR"/"TOOLS_SH/LIB/[lyrxxx_]PATTERN_FUNCTION.sh"
     #FUNC_01
 
-    MAIN_05_DESKTOP_02_Python
+    # MAIN_05_DESKTOP_02_Python
     MAIN_01_OS_03_UNIX
 
     # PressAnyKey

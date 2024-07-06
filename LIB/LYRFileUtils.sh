@@ -114,6 +114,7 @@ function ExtractFileNameWithoutExt () {
     else
         echo $LResult               # работает всегда
     fi
+
     return $(( $LError ))
 }
 #endfunction
@@ -226,9 +227,19 @@ function CurrentDir () {
         echo DEBUG: function $FUNCNAME ... >$(tty)
     fi
 
-    echo ERROR: function $FUNCNAME not implemented! ...
+    local LResult=
+    LError=0
+    #LResult=${AFilename##*/}
+    #LResult=${PWD##*/}          # to assign to a variable
+    #LResult=${result:-/}        # to correct for the case where PWD=/
+    LResult=${PWD}              # to assign to a variable
+    if [ -z "$LResult" ] ; then
+        LError=1
+    else
+        echo $LResult               # работает всегда
+    fi
 
-    return 0
+    return $(( $LError ))
 }
 #endfunction
 
