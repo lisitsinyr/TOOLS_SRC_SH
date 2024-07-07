@@ -69,7 +69,7 @@ function GetINI () {
 #endfunction
 
 #--------------------------------------------------------------------------------
-# procedure __ini_get_section (AFileName)
+# function __ini_get_section (AFileName)
 #--------------------------------------------------------------------------------
 function __ini_get_section {
     if [[ "$1" =~ ^(\[)(.*)(\]) ]] ; then
@@ -80,21 +80,15 @@ function __ini_get_section {
 }
 
 #--------------------------------------------------------------------------------
-# procedure __ini_get_key_value (AFileName)
+# function __ini_get_key_value (AFileName)
 #--------------------------------------------------------------------------------
 function __ini_get_key_value () {
 #beginfunction
-    if [[ "$DEBUG" -eq 1 ]] ; then
-        echo DEBUG: procedure $FUNCNAME ... >$(tty)
-    fi
-
     if [[ "$1" =~ ^([^=]+)=([^=]+)$ ]] ; then
         echo "${BASH_REMATCH[1]}=${BASH_REMATCH[2]}";
     else
         echo ""
     fi
-
-    return 0
 }
 #endfunction
 
@@ -134,8 +128,7 @@ function __ini_loadfile () {
         fi
     done <$1
 
-    # echo inidb:${!inidb[*]}
-
+    return 0
 }
 #endfunction
 
@@ -161,21 +154,13 @@ function __ini_printdb () {
 #endfunction
 
 #--------------------------------------------------------------------------------
-# procedure __ini_get_value (ASection, AParameter)
+# function __ini_get_value (ASection, AParameter)
 #--------------------------------------------------------------------------------
 function __ini_get_value () {
 #beginfunction
-    if [[ "$DEBUG" -eq 1 ]] ; then
-        echo DEBUG: procedure $FUNCNAME ... >$(tty)
-    fi
-
     section=$1
-    # echo section:$section
     key=$2
-    # echo key:$key
     echo "${inidb[$section $key]}"
-
-    return 0
 }
 #endfunction
 
@@ -221,27 +206,20 @@ function GetINIParametr_PY () {
 #endfunction
 
 #--------------------------------------------------------------------------------
-# procedure GetINIParametr_SH (AFileName, ASection, AParameter)
+# function GetINIParametr_SH (AFileName, ASection, AParameter)
 #--------------------------------------------------------------------------------
 function GetINIParametr_SH () {
 #beginfunction
-    if [[ "$DEBUG" -eq 1 ]] ; then
-        echo DEBUG: procedure $FUNCNAME ... >$(tty)
-    fi
-
     AFileName=$1
     ASection=$2
     AParameter=$3
 
-    declare -A inidb
+    # declare -A inidb      Это делать не обязательно
     __ini_loadfile $AFileName
     #__ini_printdb
 
     value=$(__ini_get_value $ASection $AParameter)
-    # echo value:$value
     echo ${value}
-
-    return 0
 }
 #endfunction
 
