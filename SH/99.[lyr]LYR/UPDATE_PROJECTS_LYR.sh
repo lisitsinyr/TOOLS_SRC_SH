@@ -143,7 +143,7 @@ function UPDATE_TOOLS_SH () {
         echo 'sudo mkdir -p $LDIR_TO'
     fi
     LDIR_FROM=$DIR_TOOLS_SRC_SH/SH
-    LMASK=*.sh
+    LMASK=*.*
     COPY_FILES $LDIR_FROM $LDIR_TO $LMASK
 
     LDIR_TO=$DIR_TOOLS_SH/LIB
@@ -155,7 +155,7 @@ function UPDATE_TOOLS_SH () {
         echo 'sudo mkdir -p $LDIR_TO'
     fi
     LDIR_FROM=$DIR_TOOLS_SRC_SH/LIB
-    LMASK=*.sh
+    LMASK=*.*
     COPY_FILES $LDIR_FROM $LDIR_TO $LMASK
 
     LDIR_TO=$DIR_TOOLS_SH/SH_GIT
@@ -184,7 +184,7 @@ function UPDATE_TOOLS_PY () {
     fi
 
     LDIR_TO=$DIR_TOOLS_PY/SH
-    LMASK=*.sh
+    LMASK=*.*
     if [[ -d $LDIR_TO ]] ; then
         #sudo rm -R $LDIR_TO
         echo 'sudo rm -R $LDIR_TO'
