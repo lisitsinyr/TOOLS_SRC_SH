@@ -141,9 +141,11 @@ function UPDATE_TOOLS_SH () {
     echo LDIR_FROM:$LDIR_FROM
     LMASK=*.*
     echo LMASK:$LMASK
-    
     LDIR_TO=$DIR_TOOLS_SH/SH
     echo LDIR_TO:$LDIR_TO
+
+    PressAnyKey
+
     if [[ -d $LDIR_TO ]] ; then
         #sudo rm -R $LDIR_TO
         echo 'sudo rm -R' $LDIR_TO
@@ -152,8 +154,7 @@ function UPDATE_TOOLS_SH () {
     #sudo mkdir -p $LDIR_TO
     echo 'sudo mkdir -p' $LDIR_TO
     mkdir -p "$LDIR_TO"
-    COPY_FILES $LDIR_FROM $LDIR_TO $LMASK
-
+    COPY_FILES "$LDIR_FROM" "$LDIR_TO" "$LMASK"
 
     LDIR_FROM=$DIR_TOOLS_SRC_SH/LIB
     echo LDIR_FROM:$LDIR_FROM
@@ -161,6 +162,9 @@ function UPDATE_TOOLS_SH () {
     echo LMASK:$LMASK
     LDIR_TO=$DIR_TOOLS_SH/LIB
     echo LDIR_TO:$LDIR_TO
+
+    PressAnyKey
+
     if [[ -d $LDIR_TO ]] ; then
         #sudo rm -R $LDIR_TO
         echo 'sudo rm -R' $LDIR_TO
@@ -169,15 +173,19 @@ function UPDATE_TOOLS_SH () {
     #sudo mkdir -p $LDIR_TO
     echo 'sudo mkdir -p' $LDIR_TO
     mkdir -p "$LDIR_TO"
-    COPY_FILES $LDIR_FROM $LDIR_TO $LMASK
-
+    COPY_FILES "$LDIR_FROM" "$LDIR_TO" "$LMASK"
 
     LDIR_FROM=$DIR_TOOLS_SRC_GIT/SH
+    #D:\WORK\UBU\PROJECTS_LYR\CHECK_LIST\07_GIT\PROJECTS_GIT\TOOLS_SRC_GIT\SH
     echo LDIR_FROM:$LDIR_FROM
     LMASK=*.*
     echo LMASK:$LMASK
     LDIR_TO=$DIR_TOOLS_SH/SH_GIT
+    #D:\WORK\UBU\PROJECTS_LYR\CHECK_LIST\01_OS\03_UNIX\TOOLS_SH\SH_GIT
     echo LDIR_TO:$LDIR_TO
+
+    PressAnyKey
+
     if [[ -d $LDIR_TO ]] ; then
         #sudo rm -R $LDIR_TO
         echo 'sudo rm -R' $LDIR_TO
@@ -186,7 +194,7 @@ function UPDATE_TOOLS_SH () {
     #sudo mkdir -p $LDIR_TO
     echo 'sudo mkdir -p' $LDIR_TO
     mkdir -p "$LDIR_TO"
-    COPY_FILES $LDIR_FROM $LDIR_TO $LMASK
+    COPY_FILES "$LDIR_FROM" "$LDIR_TO" "$LMASK"
 
     return 0
 }
@@ -215,7 +223,7 @@ function UPDATE_TOOLS_PY () {
     #sudo mkdir -p $LDIR_TO
     echo 'sudo mkdir -p' $LDIR_TO
     mkdir -p "$LDIR_TO"
-    COPY_FILES $LDIR_FROM $LDIR_TO $LMASK
+    COPY_FILES "$LDIR_FROM" "$LDIR_TO" "$LMASK"
 
     LDIR_FROM=$DIR_TOOLS_SRC_PY/SRC/SCRIPTS
     echo LDIR_FROM:$LDIR_FROM
@@ -260,7 +268,8 @@ function UPDATE_TOOLS_GIT () {
     #sudo mkdir -p $LDIR_TO
     echo 'sudo mkdir -p' $LDIR_TO
     mkdir -p "$LDIR_TO"
-    COPY_FILES "$LDIR_FROM" "$LDIR_TO" "$LMASK"
+
+    #COPY_FILES "$LDIR_FROM" "$LDIR_TO" "$LMASK"
 
     return 0
 }
@@ -306,27 +315,26 @@ function REPO_WORK () {
     APYTHON=$2
     echo APYTHON:$APYTHON
 
-    # echo ...GetINIParametr_PY...
-    # GetINIParametr_PY REPO.ini general REPO_NAME2
-    # echo REPO_NAME2:$REPO_NAME2
+    echo ...GetINIParametr_PY...
+    GetINIParametr_PY REPO.ini general REPO_NAME
+    echo REPO_NAME:$REPO_NAME
 
-    # echo ...GetINIParametr_PY...
-    # GetINIParametr_PY REPO.ini general
-    # echo general_repo_name:${general[repo_name]}
-    # echo general_repo_name2:${general[repo_name2]}
+    echo ...GetINIParametr_PY...
+    GetINIParametr_PY REPO.ini general
+    echo general_repo_name:${general[repo_name]}
 
     echo ...GetINIParametr_SH...
-    #REPO_NAME=$(GetINIParametr_SH REPO.ini general REPO_NAME)
-    REPO_NAME=$(GetINIParametr_SH REPO.ini general repo_name)
+    REPO_NAME=$(GetINIParametr_SH REPO.ini general REPO_NAME)
     echo REPO_NAME:$REPO_NAME
 
     #rm *.sh
-    LFileName=$PROJECTS_LYR_DIR/CHECK_LIST/07_GIT/PROJECTS_GIT/TOOLS_SRC_GIT/SH/A.WORK/lyrgit_push_main.sh
+
+    LFileName=$DIR_TOOLS_SRC_GIT/SH/A.WORK/lyrgit_push_main.sh
     #echo LFileName:$LFileName
     if [[ -f "$LFileName" ]] ; then
         cp $LFileName $ADirectory/
     fi
-    LFileName=$PROJECTS_LYR_DIR/CHECK_LIST/07_GIT/PROJECTS_GIT/TOOLS_SRC_GIT/SH/A.WORK/lyrgit_pull.sh
+    LFileName=$DIR_TOOLS_SRC_GIT/SH/A.WORK/lyrgit_pull.sh
     #echo LFileName:$LFileName
     if [[ -f "$LFileName" ]] ; then
         cp $LFileName $ADirectory/
@@ -347,7 +355,11 @@ function REPO_WORK () {
         fi
     fi
 
-    find $ADirectory/ -type f -iname *.sh -exec chmod u+x {} \;
+    echo Права $ADirectory/*.sh
+    find "$ADirectory" -name "*.sh" -exec chmod u+x {} \;
+    #find "$ADIR_FROM" -name "*.sh" -exec cp {} "$ADIR_TO" \;
+
+    chmod u+x $ADirectory/*.sh
 
     #./lyrgit_push_main.sh
 
@@ -364,19 +376,6 @@ function MAIN_05_02_Python () {
         echo DEBUG: procedure $FUNCNAME ... >$(tty)
     fi
 
-    DIR_PYTHON=$PROJECTS_LYR_DIR/CHECK_LIST/05_DESKTOP/02_Python/PROJECTS_PY
-
-    DIR_EXAMPLES_PY=$DIR_PYTHON/EXAMPLES_PY
-    DIR_MobileAPP_PY=$DIR_PYTHON/MobileAPP_PY
-    DIR_PATTERN_PY=$DIR_PYTHON/PATTERN_PY
-    DIR_TEST_PY=$DIR_PYTHON/TEST_PY
-    DIR_YOUTUBE_PY=$DIR_PYTHON/YOUTUBE_PY
-    DIR_TESTS_PY=$DIR_PYTHON/TESTS_PY
-    DIR_TOOLS_SRC_PY=$DIR_PYTHON/TOOLS_SRC_PY
-
-    DIR_TOOLS_PY=$PROJECTS_LYR_DIR/CHECK_LIST/05_DESKTOP/02_Python/TOOLS_PY
-    DIR_TOOLS_PY_=~/TOOLS/TOOLS_PY
-
     REPO_WORK $DIR_EXAMPLES_PY 1
     REPO_WORK $DIR_MobileAPP_PY 1
     REPO_WORK $DIR_PATTERN_PY 1
@@ -388,7 +387,7 @@ function MAIN_05_02_Python () {
     UPDATE_TOOLS_PY
     REPO_WORK $DIR_TOOLS_PY 0
 
-    git_pull $DIR_TOOLS_PY_
+    #git_pull $DIR_TOOLS_PY_
 
     return 0
 }
@@ -402,9 +401,6 @@ function MAIN_01_03_UNIX () {
     if [[ "$DEBUG" -eq 1 ]] ; then
         echo DEBUG: procedure $FUNCNAME ... >$(tty)
     fi
-
-    DIR_TOOLS_SRC_SH=$PROJECTS_LYR_DIR/CHECK_LIST/01_OS/03_UNIX/PROJECTS_UNIX/TOOLS_SRC_SH
-    DIR_TOOLS_SH=$PROJECTS_LYR_DIR/CHECK_LIST/01_OS/03_UNIX/TOOLS_SH
 
     REPO_WORK $DIR_TOOLS_SRC_SH 0
     UPDATE_TOOLS_SH
@@ -422,9 +418,6 @@ function MAIN_07_GIT () {
     if [[ "$DEBUG" -eq 1 ]] ; then
         echo DEBUG: procedure $FUNCNAME ... >$(tty)
     fi
-
-    DIR_TOOLS_SRC_GIT=$PROJECTS_LYR_DIR/CHECK_LIST/07_GIT/PROJECTS_GIT/TOOLS_SRC_GIT
-    DIR_TOOLS_GIT=$PROJECTS_LYR_DIR/CHECK_LIST/07_GIT/TOOLS_GIT
 
     REPO_WORK $DIR_TOOLS_SRC_GIT 0
     UPDATE_TOOLS_GIT
@@ -454,9 +447,9 @@ function MAIN_FUNC {
     # запуск скриптов
     # -------------------------------------------------------------------
 
-    MAIN_07_GIT
-    # MAIN_05_02_Python
-    # MAIN_01_03_UNIX
+    #MAIN_07_GIT
+    MAIN_01_03_UNIX
+    #MAIN_05_02_Python
 
     # PressAnyKey
 
@@ -472,6 +465,23 @@ function MAIN_SET () {
     if [[ "$DEBUG" -eq 1 ]] ; then
         echo DEBUG: procedure $FUNCNAME ... >$(tty)
     fi
+
+    DIR_TOOLS_SRC_GIT=$PROJECTS_LYR_DIR/CHECK_LIST/07_GIT/PROJECTS_GIT/TOOLS_SRC_GIT
+    DIR_TOOLS_GIT=$PROJECTS_LYR_DIR/CHECK_LIST/07_GIT/TOOLS_GIT
+
+    DIR_TOOLS_SRC_SH=$PROJECTS_LYR_DIR/CHECK_LIST/01_OS/03_UNIX/PROJECTS_UNIX/TOOLS_SRC_SH
+    DIR_TOOLS_SH=$PROJECTS_LYR_DIR/CHECK_LIST/01_OS/03_UNIX/TOOLS_SH
+
+    DIR_PYTHON=$PROJECTS_LYR_DIR/CHECK_LIST/05_DESKTOP/02_Python/PROJECTS_PY
+    DIR_EXAMPLES_PY=$DIR_PYTHON/EXAMPLES_PY
+    DIR_MobileAPP_PY=$DIR_PYTHON/MobileAPP_PY
+    DIR_PATTERN_PY=$DIR_PYTHON/PATTERN_PY
+    DIR_TEST_PY=$DIR_PYTHON/TEST_PY
+    DIR_YOUTUBE_PY=$DIR_PYTHON/YOUTUBE_PY
+    DIR_TESTS_PY=$DIR_PYTHON/TESTS_PY
+    DIR_TOOLS_SRC_PY=$DIR_PYTHON/TOOLS_SRC_PY
+    DIR_TOOLS_PY=$PROJECTS_LYR_DIR/CHECK_LIST/05_DESKTOP/02_Python/TOOLS_PY
+    DIR_TOOLS_PY_=~/TOOLS/TOOLS_PY
 
     return 0
 }

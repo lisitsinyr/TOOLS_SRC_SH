@@ -110,16 +110,16 @@ function __ini_loadfile () {
         # got a new section
         if [[ -n "$new_section" ]]; then
             cur_section=$new_section
-            # echo cur_section:$cur_section
+            #echo cur_section:$cur_section
         # not a section, try a key value
         else
             val=$(__ini_get_key_value $line)
-            # echo val:$val
+            #echo val:$val
             # trim the leading and trailing spaces as well
             cur_key=$(echo $val | cut -f1 -d'=' | sed -e 's/^[[:space:]]*//' | sed -e 's/[[:space:]]*$//')
             cur_val=$(echo $val | cut -f2 -d'=' | sed -e 's/^[[:space:]]*//' | sed -e 's/[[:space:]]*$//')
-            # echo cur_key:$cur_key
-            # echo cur_val:$cur_val
+            #echo cur_key:$cur_key
+            #echo cur_val:$cur_val
             if [[ -n "$cur_key" ]]; then
                 # section + key is the associative in bash array, the field seperator is space
                 # echo $cur_section $cur_key=$cur_val
@@ -214,9 +214,9 @@ function GetINIParametr_SH () {
     ASection=$2
     AParameter=$3
 
-    # declare -A inidb      Это делать не обязательно
+    declare -A inidb
     __ini_loadfile $AFileName
-    __ini_printdb
+    #__ini_printdb
 
     value=$(__ini_get_value $ASection $AParameter)
     echo ${value}

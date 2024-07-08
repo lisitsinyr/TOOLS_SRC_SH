@@ -262,7 +262,11 @@ function COPY_FILES () {
     AARG=$4
     echo AARG:$AARG
 
-    #cp $ADIR_FROM/$AMASK $ADIR_TO/ -r -p
+    #find $ADIR_FROM\ -type f -iname *.sh
+    find "$ADIR_FROM" -name "*.sh" -exec cp {} "$ADIR_TO" \;
+    #find "$ADIR_FROM" -name "*.sh" -exec ls {} \;
+
+    #cp $ADIR_FROM/$AMASK $ADIR_TO/
     #echo ERROR: function $FUNCNAME not implemented! ...
 
     return 0
