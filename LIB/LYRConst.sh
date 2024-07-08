@@ -37,7 +37,7 @@ function __SET_VAR_SCRIPT () {
     # SCRIPT_FULLFILENAME - Файл скрипта [каталог+имя+расширение]
     #------------------------------------------------------
     SCRIPT_FULLFILENAME="$1"
-    #echo SCRIPT_FULLFILENAME: $SCRIPT_FULLFILENAME
+    echo SCRIPT_FULLFILENAME: $SCRIPT_FULLFILENAME
     
     # -------------------------------------------------------------------
     # SCRIPT_BASEFILENAME - Файл скрипта [имя+расширение]
@@ -267,7 +267,7 @@ function __SET_LOG () {
     if [ -z "$LOG_DIR" ] ; then
         LOG_DIR="$PROJECTS_LYR_DIR/LOGS"
     fi
-    #echo LOG_DIR: $LOG_DIR
+    echo LOG_DIR: $LOG_DIR
     if [[ ! -d "$LOG_DIR" ]] ; then
         echo INFO: Dir "$LOG_DIR" not exist...
         #echo INFO: Каталог "$LOG_DIR" не существует...
@@ -301,7 +301,7 @@ function __SET_LOG () {
             LOG_FILENAME="$DATETIME_STAMP"_"$LOG_FILENAME"
         fi
     fi
-    #echo LOG_FILENAME: $LOG_FILENAME
+    echo LOG_FILENAME: $LOG_FILENAME
 
     # -------------------------------------------------------------------
     # LOG_FULLFILENAME - Файл журнала [каталог+имя+расширение]
@@ -312,7 +312,7 @@ function __SET_LOG () {
         LOG_FULLFILENAME="$LOG_DIR"/"$REPO_NAME"_"$LOG_FILENAME.log"
         LOG_FULLFILENAME="$LOG_DIR"/"$LOG_FILENAME.log"
     fi
-    #echo LOG_FULLFILENAME: "$LOG_FULLFILENAME"
+    echo LOG_FULLFILENAME: "$LOG_FULLFILENAME"
 
 
     return 0

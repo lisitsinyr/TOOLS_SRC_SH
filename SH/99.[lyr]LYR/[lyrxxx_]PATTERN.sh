@@ -49,8 +49,8 @@ function MAIN_INIT () {
     # -------------------------------------------------------------------
     # запуск скриптов БИБЛИОТЕКИ LYR
     # -------------------------------------------------------------------
-    source "$LIB_SH/LYRFileUtils.sh"
     source "$LIB_SH/LYRConst.sh"
+    source "$LIB_SH/LYRFileUtils.sh"
     source "$LIB_SH/LYRLog.sh"
     source "$LIB_SH/LYRConst.sh"
     source "$LIB_SH/LYRDateTime.sh"
@@ -167,6 +167,8 @@ function MAIN () {
     echo SCRIPT_FULLFILENAME:$SCRIPT_FULLFILENAME
 
     StartLogFile
+
+    PressAnyKey
 
     OK=yes
     MAIN_SET

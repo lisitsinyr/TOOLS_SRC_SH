@@ -216,7 +216,7 @@ function GetINIParametr_SH () {
 
     # declare -A inidb      Это делать не обязательно
     __ini_loadfile $AFileName
-    #__ini_printdb
+    __ini_printdb
 
     value=$(__ini_get_value $ASection $AParameter)
     echo ${value}

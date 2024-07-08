@@ -252,7 +252,18 @@ function COPY_FILES () {
         echo DEBUG: function $FUNCNAME ... >$(tty)
     fi
 
-    echo ERROR: function $FUNCNAME not implemented! ...
+    ADIR_FROM=$1
+    echo ADIR_FROM:$ADIR_FROM
+    ADIR_TO=$2
+    echo ADIR_TO:$ADIR_TO
+
+    AMASK=$3
+    echo AMASK:$AMASK
+    AARG=$4
+    echo AARG:$AARG
+
+    #cp $ADIR_FROM/$AMASK $ADIR_TO/ -r -p
+    #echo ERROR: function $FUNCNAME not implemented! ...
 
     return 0
 }
