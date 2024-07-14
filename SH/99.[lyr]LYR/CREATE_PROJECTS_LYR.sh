@@ -92,8 +92,9 @@ function MAIN_07_GIT () {
     MAIN_CreateDirectory
 
     GDirectory=$DIR_07_GIT/TOOLS_GIT
-    GRepo="git@github.com:lisitsinyr/TOOLS_GIT.git"
-    #MAIN_CreateDirectory
+    #GRepo="git@github.com:lisitsinyr/TOOLS_GIT.git"
+    GRepo=
+    MAIN_CreateDirectory
 
     GDirectory=$DIR_07_GIT/PROJECTS_GIT/TOOLS_SRC_GIT
     GRepo="git@github.com:lisitsinyr/TOOLS_SRC_GIT.git"

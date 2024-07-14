@@ -4,7 +4,7 @@
 # -------------------------------------------------------------------
 
 # -----------------------------------------------
-# procedure MAIN_INIT ()
+# 01.MAIN_INIT ()
 # -----------------------------------------------
 function MAIN_INIT () {
 #beginfunction
@@ -69,22 +69,46 @@ function MAIN_INIT () {
 #endfunction
 
 # -----------------------------------------------
-# procedure MAIN_()
+# 02.MAIN_SET ()
 # -----------------------------------------------
-function MAIN_() {
+function MAIN_SET () {
 #beginfunction
     if [[ "$DEBUG" -eq 1 ]] ; then
         echo DEBUG: procedure $FUNCNAME ... >$(tty)
     fi
 
-    LOG_FILE_ADD=1
+    #------------------------------------------------
+    # 07_GIT
+    #------------------------------------------------
+    DIR_TOOLS_SRC_GIT=$PROJECTS_LYR_DIR/CHECK_LIST/07_GIT/PROJECTS_GIT/TOOLS_SRC_GIT
+    DIR_TOOLS_GIT=$PROJECTS_LYR_DIR/CHECK_LIST/07_GIT/TOOLS_GIT
+
+    #------------------------------------------------
+    # 01_03_UNIX
+    #------------------------------------------------
+    DIR_TOOLS_SRC_SH=$PROJECTS_LYR_DIR/CHECK_LIST/01_OS/03_UNIX/PROJECTS_UNIX/TOOLS_SRC_SH
+    DIR_TOOLS_SH=$PROJECTS_LYR_DIR/CHECK_LIST/01_OS/03_UNIX/TOOLS_SH
+
+    #------------------------------------------------
+    # 05_02_Python
+    #------------------------------------------------
+    DIR_PYTHON=$PROJECTS_LYR_DIR/CHECK_LIST/05_DESKTOP/02_Python/PROJECTS_PY
+    DIR_EXAMPLES_PY=$DIR_PYTHON/EXAMPLES_PY
+    DIR_MobileAPP_PY=$DIR_PYTHON/MobileAPP_PY
+    DIR_PATTERN_PY=$DIR_PYTHON/PATTERN_PY
+    DIR_TEST_PY=$DIR_PYTHON/TEST_PY
+    DIR_YOUTUBE_PY=$DIR_PYTHON/YOUTUBE_PY
+    DIR_TESTS_PY=$DIR_PYTHON/TESTS_PY
+    DIR_TOOLS_SRC_PY=$DIR_PYTHON/TOOLS_SRC_PY
+    DIR_TOOLS_PY=$PROJECTS_LYR_DIR/CHECK_LIST/05_DESKTOP/02_Python/TOOLS_PY
+    DIR_TOOLS_PY_=~/TOOLS/TOOLS_PY
 
     return 0
 }
 #endfunction
 
 #--------------------------------------------------------------------------------
-# procedure MAIN_CHECK_PARAMETR ()
+# 03.MAIN_CHECK_PARAMETR ()
 #--------------------------------------------------------------------------------
 function MAIN_CHECK_PARAMETR () {
 #beginfunction
@@ -431,7 +455,7 @@ function MAIN_07_GIT () {
 # endfunction
 
 #--------------------------------------------------------------------------------
-# procedure MAIN_FUNC ()
+# 04.MAIN_FUNC ()
 #--------------------------------------------------------------------------------
 function MAIN_FUNC {
 #beginfunction
@@ -448,40 +472,12 @@ function MAIN_FUNC {
     # -------------------------------------------------------------------
 
     #MAIN_07_GIT
+
     MAIN_01_03_UNIX
+
     #MAIN_05_02_Python
 
     # PressAnyKey
-
-    return 0
-}
-#endfunction
-
-# -----------------------------------------------
-# procedure MAIN_SET ()
-# -----------------------------------------------
-function MAIN_SET () {
-#beginfunction
-    if [[ "$DEBUG" -eq 1 ]] ; then
-        echo DEBUG: procedure $FUNCNAME ... >$(tty)
-    fi
-
-    DIR_TOOLS_SRC_GIT=$PROJECTS_LYR_DIR/CHECK_LIST/07_GIT/PROJECTS_GIT/TOOLS_SRC_GIT
-    DIR_TOOLS_GIT=$PROJECTS_LYR_DIR/CHECK_LIST/07_GIT/TOOLS_GIT
-
-    DIR_TOOLS_SRC_SH=$PROJECTS_LYR_DIR/CHECK_LIST/01_OS/03_UNIX/PROJECTS_UNIX/TOOLS_SRC_SH
-    DIR_TOOLS_SH=$PROJECTS_LYR_DIR/CHECK_LIST/01_OS/03_UNIX/TOOLS_SH
-
-    DIR_PYTHON=$PROJECTS_LYR_DIR/CHECK_LIST/05_DESKTOP/02_Python/PROJECTS_PY
-    DIR_EXAMPLES_PY=$DIR_PYTHON/EXAMPLES_PY
-    DIR_MobileAPP_PY=$DIR_PYTHON/MobileAPP_PY
-    DIR_PATTERN_PY=$DIR_PYTHON/PATTERN_PY
-    DIR_TEST_PY=$DIR_PYTHON/TEST_PY
-    DIR_YOUTUBE_PY=$DIR_PYTHON/YOUTUBE_PY
-    DIR_TESTS_PY=$DIR_PYTHON/TESTS_PY
-    DIR_TOOLS_SRC_PY=$DIR_PYTHON/TOOLS_SRC_PY
-    DIR_TOOLS_PY=$PROJECTS_LYR_DIR/CHECK_LIST/05_DESKTOP/02_Python/TOOLS_PY
-    DIR_TOOLS_PY_=~/TOOLS/TOOLS_PY
 
     return 0
 }
@@ -503,6 +499,7 @@ function MAIN () {
     LOG_FILE_ADD=0
 
     # -------------------------------------------------------------------
+    # 01.MAIN_INIT
     # SCRIPTS_DIR - Каталог скриптов
     # LIB_BAT - каталог библиотеки скриптов
     # SCRIPTS_DIR_KIX - Каталог скриптов KIX
@@ -520,13 +517,22 @@ function MAIN () {
     StartLogFile
 
     OK=yes
+    # -------------------------------------------------------------------
+    # 02.MAIN_SET
+    # -------------------------------------------------------------------
     MAIN_SET
 
+    # -------------------------------------------------------------------
+    # 03.MAIN_CHECK_PARAMETR
+    # -------------------------------------------------------------------
     if [[ ! -z "$OK" ]] ; then #if defined OK if not defined Read_N (
         MAIN_CHECK_PARAMETR
     fi
 
     OK=yes
+    # -------------------------------------------------------------------
+    # 04.MAIN_FUNC
+    # -------------------------------------------------------------------
     if [[ ! -z "$OK" ]] ; then
         MAIN_FUNC
         #Pause "$SLEEP"
