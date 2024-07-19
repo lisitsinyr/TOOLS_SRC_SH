@@ -357,12 +357,12 @@ function REPO_WORK () {
     #rm *.sh
 
     LFileName=$DIR_TOOLS_SRC_GIT/SH/A.WORK/lyrgit_push_main.sh
-    #echo LFileName:$LFileName
+    echo LFileName:$LFileName
     if [[ -f "$LFileName" ]] ; then
         cp $LFileName $ADirectory/
     fi
     LFileName=$DIR_TOOLS_SRC_GIT/SH/A.WORK/lyrgit_pull.sh
-    #echo LFileName:$LFileName
+    echo LFileName:$LFileName
     if [[ -f "$LFileName" ]] ; then
         cp $LFileName $ADirectory/
     fi
@@ -473,11 +473,11 @@ function MAIN_FUNC {
     # запуск скриптов
     # -------------------------------------------------------------------
 
-    MAIN_01_03_UNIX
+    #MAIN_01_03_UNIX
 
     #MAIN_05_02_Python
 
-    #MAIN_07_GIT
+    MAIN_07_GIT
 
     #PressAnyKey
 
