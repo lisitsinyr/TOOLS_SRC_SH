@@ -338,3 +338,24 @@ function CreateLink () {
     return 0
 }
 #endfunction
+
+#--------------------------------------------------------------------------------
+# procedure PathWin2PathUnix (APath)
+#--------------------------------------------------------------------------------
+function PathWin2PathUnix () {
+#beginfunction
+    if [[ "$DEBUG" -eq 1 ]] ; then
+        echo DEBUG: function $FUNCNAME ... >$(tty)
+    fi
+
+    APath=$1
+    #echo APath:$APath
+    LResult=${APath/:}
+    #echo LResult:$LResult
+    LResult=/${LResult//\\//}
+
+    echo $LResult  # работает всегда
+
+    return 0
+}
+#endfunction

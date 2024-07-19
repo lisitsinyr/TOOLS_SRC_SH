@@ -37,7 +37,8 @@ function __SET_VAR_SCRIPT () {
     # SCRIPT_FULLFILENAME - Файл скрипта [каталог+имя+расширение]
     #------------------------------------------------------
     SCRIPT_FULLFILENAME="$1"
-    echo SCRIPT_FULLFILENAME: $SCRIPT_FULLFILENAME
+    SCRIPT_FULLFILENAME=$AFULLFILENAME
+    #echo SCRIPT_FULLFILENAME: $SCRIPT_FULLFILENAME
     
     # -------------------------------------------------------------------
     # SCRIPT_BASEFILENAME - Файл скрипта [имя+расширение]
@@ -301,7 +302,7 @@ function __SET_LOG () {
             LOG_FILENAME="$DATETIME_STAMP"_"$LOG_FILENAME"
         fi
     fi
-    echo LOG_FILENAME: $LOG_FILENAME
+    #echo LOG_FILENAME: $LOG_FILENAME
 
     # -------------------------------------------------------------------
     # LOG_FULLFILENAME - Файл журнала [каталог+имя+расширение]
@@ -312,7 +313,7 @@ function __SET_LOG () {
         LOG_FULLFILENAME="$LOG_DIR"/"$REPO_NAME"_"$LOG_FILENAME.log"
         LOG_FULLFILENAME="$LOG_DIR"/"$LOG_FILENAME.log"
     fi
-    echo LOG_FULLFILENAME: "$LOG_FULLFILENAME"
+    #echo LOG_FULLFILENAME: "$LOG_FULLFILENAME"
 
 
     return 0
@@ -330,7 +331,16 @@ function SET_LIB () {
  
     ASCRIPT=$1
 
-    __SET_VAR_SCRIPT $ASCRIPT
+    LSCRIPT=$(PathWin2PathUnix "$1")
+
+    #Lpath=$1
+    #Lpath=${Lpath/:}
+    #Lpath=/${Lpath//\\//}
+    #LSCRIPT=$Lpath
+
+    #echo LSCRIPT:$LSCRIPT
+
+    __SET_VAR_SCRIPT $LSCRIPT
     __SET_VAR_DEFAULT
     __SET_VAR_PROJECTS
     __SET_LOG

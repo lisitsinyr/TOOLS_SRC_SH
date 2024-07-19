@@ -64,6 +64,8 @@ function MAIN_INIT () {
     source "$LIB_SH/LYRSupport.sh"
     source "$LIB_SH/LYRParserINI.sh"
 
+    #PressAnyKey
+
     return 0
 }
 #endfunction
@@ -76,12 +78,6 @@ function MAIN_SET () {
     if [[ "$DEBUG" -eq 1 ]] ; then
         echo DEBUG: procedure $FUNCNAME ... >$(tty)
     fi
-
-    #------------------------------------------------
-    # 07_GIT
-    #------------------------------------------------
-    DIR_TOOLS_SRC_GIT=$PROJECTS_LYR_DIR/CHECK_LIST/07_GIT/PROJECTS_GIT/TOOLS_SRC_GIT
-    DIR_TOOLS_GIT=$PROJECTS_LYR_DIR/CHECK_LIST/07_GIT/TOOLS_GIT
 
     #------------------------------------------------
     # 01_03_UNIX
@@ -102,6 +98,14 @@ function MAIN_SET () {
     DIR_TOOLS_SRC_PY=$DIR_PYTHON/TOOLS_SRC_PY
     DIR_TOOLS_PY=$PROJECTS_LYR_DIR/CHECK_LIST/05_DESKTOP/02_Python/TOOLS_PY
     DIR_TOOLS_PY_=~/TOOLS/TOOLS_PY
+
+    #------------------------------------------------
+    # 07_GIT
+    #------------------------------------------------
+    DIR_TOOLS_SRC_GIT=$PROJECTS_LYR_DIR/CHECK_LIST/07_GIT/PROJECTS_GIT/TOOLS_SRC_GIT
+    DIR_TOOLS_GIT=$PROJECTS_LYR_DIR/CHECK_LIST/07_GIT/TOOLS_GIT
+
+    #PressAnyKey
 
     return 0
 }
@@ -168,7 +172,7 @@ function UPDATE_TOOLS_SH () {
     LDIR_TO=$DIR_TOOLS_SH/SH
     echo LDIR_TO:$LDIR_TO
 
-    PressAnyKey
+    #PressAnyKey
 
     if [[ -d $LDIR_TO ]] ; then
         #sudo rm -R $LDIR_TO
@@ -187,7 +191,7 @@ function UPDATE_TOOLS_SH () {
     LDIR_TO=$DIR_TOOLS_SH/LIB
     echo LDIR_TO:$LDIR_TO
 
-    PressAnyKey
+    #PressAnyKey
 
     if [[ -d $LDIR_TO ]] ; then
         #sudo rm -R $LDIR_TO
@@ -208,7 +212,7 @@ function UPDATE_TOOLS_SH () {
     #D:\WORK\UBU\PROJECTS_LYR\CHECK_LIST\01_OS\03_UNIX\TOOLS_SH\SH_GIT
     echo LDIR_TO:$LDIR_TO
 
-    PressAnyKey
+    #PressAnyKey
 
     if [[ -d $LDIR_TO ]] ; then
         #sudo rm -R $LDIR_TO
@@ -471,13 +475,13 @@ function MAIN_FUNC {
     # запуск скриптов
     # -------------------------------------------------------------------
 
-    #MAIN_07_GIT
-
     MAIN_01_03_UNIX
 
-    #MAIN_05_02_Python
+    MAIN_05_02_Python
 
-    # PressAnyKey
+    MAIN_07_GIT
+
+    #PressAnyKey
 
     return 0
 }
@@ -510,9 +514,11 @@ function MAIN () {
     Read_N
     echo Read_N:$Read_N
 
-    SET_LIB "$0"
+    SET_LIB $0
+    
     #echo CURRENT_DIR:$CURRENT_DIR
-    echo SCRIPT_FULLFILENAME:$SCRIPT_FULLFILENAME
+    #echo SCRIPT_FULLFILENAME:$SCRIPT_FULLFILENAME
+    PressAnyKey
 
     StartLogFile
 
