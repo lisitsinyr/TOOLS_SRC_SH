@@ -198,7 +198,7 @@ function MAIN () {
     if [[ ! -z "$OK" ]] ; then
         MAIN_FUNC
         #Pause "$SLEEP"
-        PressAnyKey
+        #PressAnyKey
     fi
 
     StopLogFile
