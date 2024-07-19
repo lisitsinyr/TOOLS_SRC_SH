@@ -262,12 +262,11 @@ function COPY_FILES () {
     AARG=$4
     echo AARG:$AARG
 
-    #find $ADIR_FROM\ -type f -iname *.sh
-    find "$ADIR_FROM" -name "*.sh" -exec cp {} "$ADIR_TO" \;
-    #find "$ADIR_FROM" -name "*.sh" -exec ls {} \;
+    #find "$ADIR_FROM" -type f -iname *.sh
+    #find "$ADIR_FROM" -type f -name "*.*" -exec cp {} "$ADIR_TO" \;
+    #find "$ADIR_FROM" -type f -name "*.sh" -exec ls {} \;
 
-    #cp $ADIR_FROM/$AMASK $ADIR_TO/
-    #echo ERROR: function $FUNCNAME not implemented! ...
+    find "$ADIR_FROM" -type f -name "$AMASK" -exec cp $AARG {} "$ADIR_TO" \;
 
     return 0
 }
@@ -282,7 +281,7 @@ function XCOPY_FILES () {
         echo DEBUG: function $FUNCNAME ... >$(tty)
     fi
 
-    echo ERROR: function $FUNCNAME not implemented! ...
+    find "$ADIR_FROM" -type f -name "$AMASK" -exec -r cp {} "$ADIR_TO" \;
 
     return 0
 }

@@ -172,8 +172,6 @@ function UPDATE_TOOLS_SH () {
     LDIR_TO=$DIR_TOOLS_SH/SH
     echo LDIR_TO:$LDIR_TO
 
-    #PressAnyKey
-
     if [[ -d $LDIR_TO ]] ; then
         #sudo rm -R $LDIR_TO
         echo 'sudo rm -R' $LDIR_TO
@@ -182,6 +180,9 @@ function UPDATE_TOOLS_SH () {
     #sudo mkdir -p $LDIR_TO
     echo 'sudo mkdir -p' $LDIR_TO
     mkdir -p "$LDIR_TO"
+
+    #PressAnyKey
+
     COPY_FILES "$LDIR_FROM" "$LDIR_TO" "$LMASK"
 
     LDIR_FROM=$DIR_TOOLS_SRC_SH/LIB
@@ -204,12 +205,10 @@ function UPDATE_TOOLS_SH () {
     COPY_FILES "$LDIR_FROM" "$LDIR_TO" "$LMASK"
 
     LDIR_FROM=$DIR_TOOLS_SRC_GIT/SH
-    #D:\WORK\UBU\PROJECTS_LYR\CHECK_LIST\07_GIT\PROJECTS_GIT\TOOLS_SRC_GIT\SH
     echo LDIR_FROM:$LDIR_FROM
     LMASK=*.*
     echo LMASK:$LMASK
     LDIR_TO=$DIR_TOOLS_SH/SH_GIT
-    #D:\WORK\UBU\PROJECTS_LYR\CHECK_LIST\01_OS\03_UNIX\TOOLS_SH\SH_GIT
     echo LDIR_TO:$LDIR_TO
 
     #PressAnyKey
@@ -318,7 +317,7 @@ function git_pull () {
     echo ADirectory:$ADirectory
     cd "$ADirectory"/
 
-    #./lyrgit_pull.sh
+    ./lyrgit_pull.sh
     #git pull
 
     return 0
@@ -385,11 +384,10 @@ function REPO_WORK () {
 
     echo Права $ADirectory/*.sh
     find "$ADirectory" -name "*.sh" -exec chmod u+x {} \;
-    #find "$ADIR_FROM" -name "*.sh" -exec cp {} "$ADIR_TO" \;
 
     chmod u+x $ADirectory/*.sh
 
-    #./lyrgit_push_main.sh
+    ./lyrgit_push_main.sh
 
     return 0
 }
@@ -449,7 +447,7 @@ function MAIN_07_GIT () {
 
     REPO_WORK $DIR_TOOLS_SRC_GIT 0
     UPDATE_TOOLS_GIT
-    #REPO_WORK $DIR_TOOLS_GIT 0
+    REPO_WORK $DIR_TOOLS_GIT 0
 
     #DIR_TOOLS_GIT_=D:/TOOLS/TOOLS_GIT
     #git_pull $DIR_TOOLS_GIT_
@@ -477,9 +475,9 @@ function MAIN_FUNC {
 
     MAIN_01_03_UNIX
 
-    MAIN_05_02_Python
+    #MAIN_05_02_Python
 
-    MAIN_07_GIT
+    #MAIN_07_GIT
 
     #PressAnyKey
 
@@ -518,7 +516,7 @@ function MAIN () {
     
     #echo CURRENT_DIR:$CURRENT_DIR
     #echo SCRIPT_FULLFILENAME:$SCRIPT_FULLFILENAME
-    PressAnyKey
+    #PressAnyKey
 
     StartLogFile
 
