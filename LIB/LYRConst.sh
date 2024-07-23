@@ -31,7 +31,7 @@ function __SET_VAR_SCRIPT () {
         echo DEBUG: procedure $FUNCNAME ... >$(tty)
     fi
 
-    AFULLFILENAME=$1
+    AFULLFILENAME="$1"
 
     # -------------------------------------------------------------------
     # SCRIPT_FULLFILENAME - Файл скрипта [каталог+имя+расширение]
@@ -329,18 +329,20 @@ function SET_LIB () {
         echo DEBUG: procedure $FUNCNAME ... >$(tty)
     fi
  
-    ASCRIPT=$1
-
-    LSCRIPT=$(PathWin2PathUnix "$1")
+    ASCRIPT="$1"
 
     #Lpath=$1
     #Lpath=${Lpath/:}
     #Lpath=/${Lpath//\\//}
     #LSCRIPT=$Lpath
 
+    LSCRIPT=$(PathWin2PathUnix "$1")
     #echo LSCRIPT:$LSCRIPT
 
-    __SET_VAR_SCRIPT $LSCRIPT
+    LSCRIPT=$(cygpath "$1")
+    #echo LSCRIPT:$LSCRIPT
+
+    __SET_VAR_SCRIPT "$LSCRIPT"
     __SET_VAR_DEFAULT
     __SET_VAR_PROJECTS
     __SET_LOG
