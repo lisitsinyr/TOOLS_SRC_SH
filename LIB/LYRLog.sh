@@ -119,7 +119,7 @@ function __SHORTLevelName () {
 # endfunction
 
 #--------------------------------------------------------------------------------
-# function __LOG_STR (Alevel, Amessage) -> __LOG_STR
+# function __LOG_STR (Alevel, ...) -> __LOG_STR
 #--------------------------------------------------------------------------------
 function __LOG_STR () {
 #beginfunction
@@ -128,25 +128,17 @@ function __LOG_STR () {
     fi
 
     Alevel=$1
-    # echo 'Alevel:'Alevel
+    #echo Alevel:$Alevel
+    shift 1
 
-    Amessage="$2 $3 $4 $5 $6 $7 $8 $9"
-    # echo
-
-
-    
-
-    
-    
-    
+    Amessage="$*"
+    #echo Amessage:$Amessage
     
     FORMAT='%Y-%m-%d %H:%M:%S %N'
-    # echo
+    #echo FORMAT:$FORMAT
 
     __SHORTLevelName $Alevel
-    # echo
-    
-
+    #echo SHORTLevelName:$SHORTLevelName
 
     printf -v asctime '%(%Y/%m/%d %H:%M:%S)T' -1
 
@@ -194,6 +186,7 @@ function __LOG_STR () {
     $TEXT)
         Linfo='TEXT'
         printf -v LOG_STR "%-s" "$Amessage"
+        #echo LOG_STR:$LOG_STR
         ;;
     *)
         Linfo=''
@@ -218,17 +211,21 @@ function AddLog () {
     #------------------------------------------------------
     Lout=$1
     Llevel=$2
-    __LOG_STR "$Llevel" "$3" "$4" "$5" "$6" "$7" "$8" "$9"
+
+    shift 2
+    __LOG_STR $Llevel "$*"
+
     if [ $Lout -eq 0 ] ; then
-        echo "$LOG_STR" >$(tty)
+        echo $LOG_STR >$(tty)
     elif [ $Lout -eq 1 ] ; then
         # echo "$LOG_STR" >&3
-        echo "$LOG_STR" >> "$LOG_FULLFILENAME"
+        echo $LOG_STR >> "$LOG_FULLFILENAME"
     elif [ $Lout -eq 2 ] ; then
-        echo "$LOG_STR" >$(tty)
-        echo "$LOG_STR" >> "$LOG_FULLFILENAME"
-        # echo "$LOG_STR" >&3
-        # echo "$LOG_STR" | tee -a "$LOG_FULLFILENAME"
+        #echo LOG_STR:$LOG_STR
+        echo $LOG_STR >$(tty)
+        echo $LOG_STR >> "$LOG_FULLFILENAME"
+        # echo $LOG_STR >&3
+        # echo $LOG_STR | tee -a "$LOG_FULLFILENAME"
     else
         echo 'ERROR' $Lout
     fi
@@ -259,10 +256,16 @@ function AddLogFile () {
 
         # Использование дескриптора файла
         # Вы также можете предоставить ввод в цикл, используя дескриптор файла:
-        while IFS= read -r -u9 LValue; do
+
+        IFS_save="$IFS"
+        IFS=$'\r'
+        #while IFS= read -r -u9 LValue; do
+        while read -r -u9 LValue; do
+            #echo LValue:$LValue
             AddLog $Lout $TEXT "$LValue"
         done 9< "$LFileName"
         exec 9>&-
+        IFS="$IFS_save"
     else
         AddLog $Lout $ERROR "$LFileName"
     fi
