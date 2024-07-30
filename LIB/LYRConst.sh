@@ -302,7 +302,7 @@ function __SET_LOG () {
             LOG_FILENAME="$DATETIME_STAMP"_"$LOG_FILENAME"
         fi
     fi
-    #echo LOG_FILENAME: $LOG_FILENAME
+    echo LOG_FILENAME: $LOG_FILENAME
 
     # -------------------------------------------------------------------
     # LOG_FULLFILENAME - Файл журнала [каталог+имя+расширение]
@@ -313,7 +313,7 @@ function __SET_LOG () {
         LOG_FULLFILENAME="$LOG_DIR"/"$REPO_NAME"_"$LOG_FILENAME.log"
         LOG_FULLFILENAME="$LOG_DIR"/"$LOG_FILENAME.log"
     fi
-    #echo LOG_FULLFILENAME: "$LOG_FULLFILENAME"
+    echo LOG_FULLFILENAME: "$LOG_FULLFILENAME"
 
 
     return 0

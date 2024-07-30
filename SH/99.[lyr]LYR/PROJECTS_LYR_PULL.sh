@@ -92,6 +92,7 @@ function MAIN_INIT () {
     source "$LIB_SH/LYRDateTime.sh"
     source "$LIB_SH/LYRSupport.sh"
     source "$LIB_SH/LYRParserINI.sh"
+    source "$LIB_SH/LUConsole.sh"
 
     #PressAnyKey
 
@@ -154,8 +155,8 @@ function MAIN_CHECK_PARAMETR () {
     PN_CAPTION=O1
     Read_P O1 O1
     echo O1:$O1
-    #AddLog $loAll $TEXT O1:$O1
-    #AddLog $loAll $INFO O1:$O1
+    #AddLog $loAll $tlsTEXT O1:$O1
+    #AddLog $loAll $tlsINFO O1:$O1
     if [[ ! -z "$O1" ]] ; then
         OPTION="$OPTION --O1 $O1"
     else
@@ -170,8 +171,8 @@ function MAIN_CHECK_PARAMETR () {
     PN_CAPTION=A1
     Read_P A1 A1
     echo A1:$A1
-    #AddLog $loAll $TEXT A1:$A1
-    #AddLog $loAll $INFO A1:$A1
+    #AddLog $loAll $tlsTEXT A1:$A1
+    #AddLog $loAll $tlsINFO A1:$A1
     if [[ ! -z "$A1" ]] ; then
         ARGS="$ARGS $A1"
     else
@@ -455,9 +456,9 @@ function MAIN_FUNC {
         echo DEBUG: procedure $FUNCNAME ... >$(tty)
     fi
 
-    AddLog $loAll $TEXT '--------------------------------------'
-    AddLog $loAll $TEXT 'MAIN_FUNC ...'
-    AddLog $loAll $TEXT '--------------------------------------'
+    AddLog $loAll $tlsTEXT '--------------------------------------'
+    AddLog $loAll $tlsTEXT 'MAIN_FUNC ...'
+    AddLog $loAll $tlsTEXT '--------------------------------------'
 
     # -------------------------------------------------------------------
     # запуск скриптов
