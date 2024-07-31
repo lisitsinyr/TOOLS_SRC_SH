@@ -176,43 +176,44 @@ function FormatColorStr () {
         LStyles=
 
         # --------------------------------------------
-        if [ ! -z $AStyles ] ||
-           [ ! -z $AFG8 ] || [ ! -z $ABG8 ] ||
-           [ ! -z $AFG256 ] || [ ! -z $ABG256 ] ; then
+        #-z string: True if the string is null (an empty string)
+        if [[ ! -z $AStyles ]] ||
+           [[ ! -z $AFG8 ]] || [[ ! -z $ABG8 ]] ||
+           [[ ! -z $AFG256 ]] || [[ ! -z $ABG256 ]] ; then
             LResult=$sBEGIN'0'
         fi
         # --------------------------------------------
-        if [ ! -z $AStyles ] ; then
+        if [[ ! -z $AStyles ]] ; then
             LResult=$LResult$LStyles
         fi
         # --------------------------------------------
-        if [ ! -z $AFG8 ] ; then
-            if [ ! -z $AStyles ] ; then
+        if [[ ! -z $AFG8 ]] ; then
+            if [[ ! -z $AStyles ]] ; then
                 LResult=$LResult';'$AFG8
             else
                 LResult=$LResult$AFG8
             fi
         fi
         # --------------------------------------------
-        if [ ! -z $ABG8 ] ; then
-            if [ ! -z "$LStyles" ] || [ ! -z "$AFG8" ] ; then
+        if [[ ! -z $ABG8 ]] ; then
+            if [[ ! -z "$LStyles" ]] || [[ ! -z "$AFG8" ]] ; then
                 LResult=$LResult';'$ABG8
             else
                 LResult=$LResult$ABG8
             fi
         fi
         # --------------------------------------------
-        if [ -z "$AFG8" ] && [ -z "$ABG8" ] ; then
-            if [ ! -z "$AFG256" ] ; then
-                if [ ! -z $AStyles ] ; then
+        if [[ -z "$AFG8" ]] && [[ -z "$ABG8" ]] ; then
+            if [[ ! -z "$AFG256" ]] ; then
+                if [[ ! -z $AStyles ]] ; then
                     LResult=$LResult';'$sFG256_BEGIN$AFG256
                 else
                     LResult=$LResult$sFG256_BEGIN$AFG256
                 fi
             fi
             # --------------------------------------------
-            if [ ! -z $ABG256 ] ; then
-                if [ ! -z $AStyles ] > 0 || [ ! -z $AFG256 ] ; then
+            if [[ ! -z $ABG256 ]] ; then
+                if [[ ! -z $AStyles ]] > 0 || [[ ! -z $AFG256 ]] ; then
                     LResult=$LResult';'$sBG256_BEGIN$ABG256
                 else
                     LResult=$LResult$sBG256_BEGIN$ABG256
@@ -220,7 +221,7 @@ function FormatColorStr () {
             fi
         fi
         # --------------------------------------------
-        if [ ! -z $LResult ] ; then
+        if [[ ! -z $LResult ]] ; then
             LResult=$LResult$sEND$As$sRESET
         else
             LResult=$As
@@ -272,13 +273,14 @@ function WriteLN () {
         echo DEBUG: procedure $FUNCNAME ... >$(tty)
     fi
 
-    str="\n"
-    echo -e -n $str
-
-    Write "$1" "$2" "$3" "$4" "$5" "$6" "$7"
-
-    str="\n"
-    echo -e -n $str
+    As="$1"
+    #echo ${#As} 
+    if [[ ${#As} -eq 0 ]] ; then
+        echo -e -n "\n"
+    else
+        Write "$1" "$2" "$3" "$4" "$5" "$6" "$7"
+        echo -e -n "\n"
+    fi
 
     return 0
 }
