@@ -123,17 +123,64 @@ function Read_F () {
     #echo P_Name:$P_Name
     # список создаваемых вариантов
     P_List=$2
-    # echo P_List:$P_List
-    # Atimeout
+    #echo P_List:$P_List
+    #Atimeout
     Atimeout=$3
     #echo Atimeout:$Atimeout
-
     if [ -z $Atimeout ] ; then
         Atimeout=10
     fi
-    # echo Atimeout:$Atimeout
+    #echo Atimeout:$Atimeout
 
-    echo ERROR: function $FUNCNAME not implemented! ...
+    P_Value=
+
+    # Значение по умолчанию ${!P_Name}
+    #eval ${P_Name}=${!P_Name}
+
+    if [[ ! -z $P_List ]] ; then
+
+        Input=${!P_Name}
+        if [ -z $P_Value ] ; then
+            #if [ ! -z $PN_CAPTION ] ; then
+            #    echo $PN_CAPTION[${P_Name}][${!P_Name}]:
+            #else
+            #    echo [${P_Name}][${!P_Name}]:
+            #fi
+            read -r -N 1 -t $Atimeout -p "$PN_CAPTION [$P_List]" Input
+        else
+            eval ${P_Name}=$P_Value
+            return 0
+        fi
+        #echo Input:$Input
+
+        if [ -z $Input ] ; then
+            eval ${P_Name}=${!P_Name}
+        else
+            eval ${P_Name}=$Input
+        fi
+        echo -e -n "\n"
+
+        #echo $PN_CAPTION
+        #read -r -N 1 -t $Atimeout -p "$PN_CAPTION [$P_List]" Input
+        #if [[ -z $Input ]] ; then
+        #    $Input=N
+        #fi
+        #case "$response" in
+        #    [yY][eE][sS]|[yY])
+        #        echo $response
+        #        ;;
+        #    *)
+        #        echo $response
+        #        ;;
+        #esac
+
+        #choice /C !P_List! /D !%P_Name%! /T !Atimeout! /M "!PN_CAPTION!"
+        #if !ERRORLEVEL!==1 (
+        #    set %P_Name%=!ERRORLEVEL!
+        #) else (
+        #    set %P_Name%=
+        #)
+    fi
 
     return 0
 }
