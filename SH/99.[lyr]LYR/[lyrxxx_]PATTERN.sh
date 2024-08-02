@@ -17,12 +17,13 @@ function MAIN_INIT () {
     # SCRIPTS_DIR - каталог скриптов
     # -------------------------------------------------------------------
     UNAME=$(uname -n)
+    echo UNAME:$UNAME
     case "$UNAME" in
         'ASUS-W10P')
             PROJECTS_LYR_DIR='/d/PROJECTS_LYR'
             SCRIPTS_DIR='/d/PROJECTS_LYR/CHECK_LIST/01_OS/03_UNIX/PROJECTS_UNIX/TOOLS_SRC_SH'
             ;;
-        'ASUS-U2204-VB' | 'ASUS-U2204-VM' | 'ASUS-U2310-VB' | 'ASUS-U2310-VB' | 'ASUS-U2310')
+        'ASUS-U2204-VB' | 'ASUS-U2204-VM' | 'ASUS-U2404-VB' | 'ASUS-U2404-VM' | 'ASUS-U2310')
             PROJECTS_LYR_DIR='/home/lyr/PROJECTS_LYR'
             SCRIPTS_DIR='/home/lyr/PROJECTS_LYR/CHECK_LIST/01_OS/03_UNIX/PROJECTS_UNIX/TOOLS_SRC_SH'
         ;;
