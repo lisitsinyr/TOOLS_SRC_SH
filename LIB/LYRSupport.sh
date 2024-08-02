@@ -28,11 +28,11 @@ function PressAnyKey () {
     fi
     # How can I make "Press any key to continue" [duplicate]
     # You can use the read command. If you are using bash:
-    #read -p "Press enter to continue"
+    # read -p "Press enter to continue"
 
     # In other shells, you can do:
-    #printf "%s " "Press enter to continue"
-    #read ans
+    # printf "%s " "Press enter to continue"
+    # read ans
 
     # As mentioned in the comments above, this command does
     # actually require the user to press enter; a solution
@@ -43,7 +43,10 @@ function PressAnyKey () {
     # -s hides the user's input
     # -r causes the string to be interpreted "raw" (without considering backslash escapes)
 
-    read -n 1 -s -r -p $'Press any key to continue ...\n'
+    Atimeout=0
+    if [[ $PRESSANYKEY -eq 1 ]] ; then
+        read -N 1 -s -r -p $'Press any key to continue ...\n'
+    fi
 
     return 0
 }
@@ -82,7 +85,6 @@ function Read_P () {
 
     P_Name=$1
     #echo P_Name: $P_Name
-
     P_Value=$2
     #echo P_Value: $P_Value
 
@@ -119,34 +121,39 @@ function Read_F () {
         echo DEBUG: procedure $FUNCNAME ... >$(tty)
     fi
 
+    # P_Name     - Имя переменной
+    # P_Value    - Значение переменной
+    # ${!P_Name} - Значение переменной по умолчанию 
+    # P_List     - список создаваемых вариантов
+    # Atimeout   - TIMEOUT
+
     P_Name=$1
     #echo P_Name:$P_Name
-    # список создаваемых вариантов
     P_List=$2
     #echo P_List:$P_List
-    #Atimeout
     Atimeout=$3
     #echo Atimeout:$Atimeout
     if [ -z $Atimeout ] ; then
-        Atimeout=10
+        Atimeout=$TIMEOUT
     fi
     #echo Atimeout:$Atimeout
 
     P_Value=
 
-    # Значение по умолчанию ${!P_Name}
-    #eval ${P_Name}=${!P_Name}
-
     if [[ ! -z $P_List ]] ; then
 
-        Input=${!P_Name}
-        if [ -z $P_Value ] ; then
-            #if [ ! -z $PN_CAPTION ] ; then
-            #    echo $PN_CAPTION[${P_Name}][${!P_Name}]:
-            #else
-            #    echo [${P_Name}][${!P_Name}]:
-            #fi
-            read -r -N 1 -t $Atimeout -p "$PN_CAPTION [$P_List]" Input
+        Input=${!P_Name} # ${!P_Name} - Значение переменной по умолчанию 
+        if [[ -z $P_Value ]] ; then
+            if [[ ! -z $PN_CAPTION ]] ; then
+                #echo $PN_CAPTION[${P_Name}][${!P_Name}] "[$P_List]":
+                LPN_CAPTION="$PN_CAPTION[${P_Name}][$P_List][${!P_Name}]:"
+            else
+                #echo [${P_Name}][${!P_Name}] "[$P_List]":
+                LPN_CAPTION="[${P_Name}][$P_List][${!P_Name}]:"
+            fi
+
+            read -r -N 1 -t $Atimeout -p "$LPN_CAPTION" Input
+
         else
             eval ${P_Name}=$P_Value
             return 0
@@ -156,30 +163,14 @@ function Read_F () {
         if [ -z $Input ] ; then
             eval ${P_Name}=${!P_Name}
         else
-            eval ${P_Name}=$Input
+            if [[ $P_List =~ $Input ]]; then
+                eval ${P_Name}=$Input
+            else
+                eval ${P_Name}=${!P_Name}
+            fi
         fi
+
         echo -e -n "\n"
-
-        #echo $PN_CAPTION
-        #read -r -N 1 -t $Atimeout -p "$PN_CAPTION [$P_List]" Input
-        #if [[ -z $Input ]] ; then
-        #    $Input=N
-        #fi
-        #case "$response" in
-        #    [yY][eE][sS]|[yY])
-        #        echo $response
-        #        ;;
-        #    *)
-        #        echo $response
-        #        ;;
-        #esac
-
-        #choice /C !P_List! /D !%P_Name%! /T !Atimeout! /M "!PN_CAPTION!"
-        #if !ERRORLEVEL!==1 (
-        #    set %P_Name%=!ERRORLEVEL!
-        #) else (
-        #    set %P_Name%=
-        #)
     fi
 
     return 0
