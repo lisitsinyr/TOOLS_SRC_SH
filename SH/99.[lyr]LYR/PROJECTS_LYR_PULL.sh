@@ -112,6 +112,7 @@ function MAIN_SET () {
     #------------------------------------------------
     # 01_03_UNIX
     #------------------------------------------------
+    DIR_COMMANDS_SH=$PROJECTS_LYR_DIR/CHECK_LIST/01_OS/03_UNIX/PROJECTS_UNIX/COMMANDS_SH
     DIR_TOOLS_SRC_SH=$PROJECTS_LYR_DIR/CHECK_LIST/01_OS/03_UNIX/PROJECTS_UNIX/TOOLS_SRC_SH
     DIR_TOOLS_SH=$PROJECTS_LYR_DIR/CHECK_LIST/01_OS/03_UNIX/TOOLS_SH
 
@@ -280,8 +281,8 @@ function MAIN_01_03_UNIX () {
     GRepo=
     MAIN_CreateDirectory
 
-    GDirectory=$DIR_03_UNIX/PROJECTS_UNIX/COMMANDS
-    GRepo=
+    GDirectory=$DIR_03_UNIX/PROJECTS_UNIX/COMMANDS_SH
+    GRepo=git@github.com:lisitsinyr/COMMANDS_SH.git
     MAIN_CreateDirectory
 
     GDirectory=$DIR_03_UNIX/PROJECTS_UNIX/TESTS_SH
