@@ -168,62 +168,43 @@ function UPDATE_TOOLS_SH () {
         echo DEBUG: procedure $FUNCNAME ... >$(tty)
     fi
 
-    LDIR_FROM=$DIR_TOOLS_SRC_SH/SH
-    echo LDIR_FROM:$LDIR_FROM
-    LMASK=*.*
-    echo LMASK:$LMASK
     LDIR_TO=$DIR_TOOLS_SH/SH
-    echo LDIR_TO:$LDIR_TO
-
+    #echo LDIR_TO:$LDIR_TO
     if [[ -d $LDIR_TO ]] ; then
-        #sudo rm -R $LDIR_TO
-        echo 'sudo rm -R' $LDIR_TO
+        #echo 'sudo rm -R' $LDIR_TO
         rm -R "$LDIR_TO"
     fi
-    #sudo mkdir -p $LDIR_TO
-    echo 'sudo mkdir -p' $LDIR_TO
+    #echo 'sudo mkdir -p'$LDIR_TO
     mkdir -p "$LDIR_TO"
-
-    #PressAnyKey
-
+    LDIR_FROM=$DIR_TOOLS_SRC_SH/SH
+    #echo LDIR_FROM:$LDIR_FROM
+    LMASK=*.sh
     COPY_FILES "$LDIR_FROM" "$LDIR_TO" "$LMASK"
 
-    LDIR_FROM=$DIR_TOOLS_SRC_SH/LIB
-    echo LDIR_FROM:$LDIR_FROM
-    LMASK=*.*
-    echo LMASK:$LMASK
     LDIR_TO=$DIR_TOOLS_SH/LIB
-    echo LDIR_TO:$LDIR_TO
-
-    #PressAnyKey
-
+    #echo LDIR_TO:$LDIR_TO
     if [[ -d $LDIR_TO ]] ; then
-        #sudo rm -R $LDIR_TO
-        echo 'sudo rm -R' $LDIR_TO
+        #echo 'sudo rm -R' $LDIR_TO
         rm -R "$LDIR_TO"
     fi
-    #sudo mkdir -p $LDIR_TO
-    echo 'sudo mkdir -p' $LDIR_TO
+    #echo 'sudo mkdir -p' $LDIR_TO
     mkdir -p "$LDIR_TO"
+    LDIR_FROM=$DIR_TOOLS_SRC_SH/LIB
+    #echo LDIR_FROM:$LDIR_FROM
+    LMASK=*.*
     COPY_FILES "$LDIR_FROM" "$LDIR_TO" "$LMASK"
 
-    LDIR_FROM=$DIR_TOOLS_SRC_GIT/SH
-    echo LDIR_FROM:$LDIR_FROM
-    LMASK=*.*
-    echo LMASK:$LMASK
     LDIR_TO=$DIR_TOOLS_SH/SH_GIT
-    echo LDIR_TO:$LDIR_TO
-
-    #PressAnyKey
-
+    #echo LDIR_TO:$LDIR_TO
     if [[ -d $LDIR_TO ]] ; then
-        #sudo rm -R $LDIR_TO
-        echo 'sudo rm -R' $LDIR_TO
+        #echo 'sudo rm -R' $LDIR_TO
         rm -R "$LDIR_TO"
     fi
-    #sudo mkdir -p $LDIR_TO
-    echo 'sudo mkdir -p' $LDIR_TO
+    #echo 'sudo mkdir -p' $LDIR_TO
     mkdir -p "$LDIR_TO"
+    LDIR_FROM=$DIR_TOOLS_SRC_GIT/SH
+    #echo LDIR_FROM:$LDIR_FROM
+    LMASK=*.sh
     COPY_FILES "$LDIR_FROM" "$LDIR_TO" "$LMASK"
 
     return 0
@@ -239,36 +220,30 @@ function UPDATE_TOOLS_PY () {
         echo DEBUG: procedure $FUNCNAME ... >$(tty)
     fi
 
-    LDIR_FROM=$DIR_TOOLS_SRC_PY/SRC/SH
-    echo LDIR_FROM:$LDIR_FROM
-    LMASK=*.*
-    echo LMASK:$LMASK
     LDIR_TO=$DIR_TOOLS_PY/SH
-    echo LDIR_TO:$LDIR_TO
+    #echo LDIR_TO:$LDIR_TO
     if [[ -d $LDIR_TO ]] ; then
-        #sudo rm -R $LDIR_TO
-        echo 'sudo rm -R' $LDIR_TO
+        #echo 'sudo rm -R' $LDIR_TO
         rm -R "$LDIR_TO"
     fi
-    #sudo mkdir -p $LDIR_TO
-    echo 'sudo mkdir -p' $LDIR_TO
+    #echo 'sudo mkdir -p' $LDIR_TO
     mkdir -p "$LDIR_TO"
+    LDIR_FROM=$DIR_TOOLS_SRC_PY/SRC/SH
+    #echo LDIR_FROM:$LDIR_FROM
+    LMASK=*.sh
     COPY_FILES "$LDIR_FROM" "$LDIR_TO" "$LMASK"
 
-    LDIR_FROM=$DIR_TOOLS_SRC_PY/SRC/SCRIPTS
-    echo LDIR_FROM:$LDIR_FROM
-    LMASK=*.*
-    echo LMASK:$LMASK
     LDIR_TO=$DIR_TOOLS_PY/SCRIPTS
     echo LDIR_TO:$LDIR_TO
     if [[ -d $LDIR_TO ]] ; then
-        #sudo rm -R $LDIR_TO
-        echo 'sudo rm -R' $LDIR_TO
+        #echo 'sudo rm -R' $LDIR_TO
         rm -R "$LDIR_TO"
     fi
-    #sudo mkdir -p $LDIR_TO
-    echo 'sudo mkdir -p' $LDIR_TO
+    #echo 'sudo mkdir -p' $LDIR_TO
     mkdir -p "$LDIR_TO"
+    LDIR_FROM=$DIR_TOOLS_SRC_PY/SRC/SCRIPTS
+    #echo LDIR_FROM:$LDIR_FROM
+    LMASK=*.*
     COPY_FILES "$LDIR_FROM" "$LDIR_TO" "$LMASK"
 
     return 0
@@ -284,22 +259,18 @@ function UPDATE_TOOLS_GIT () {
         echo DEBUG: procedure $FUNCNAME ... >$(tty)
     fi
 
-    LDIR_FROM=$DIR_TOOLS_SRC_GIT/SH
-    echo LDIR_FROM:$LDIR_FROM
-    LMASK=*.*
-    echo LMASK:$LMASK
     LDIR_TO=$DIR_TOOLS_GIT/SH
-    echo LDIR_TO:$LDIR_TO
+    #echo LDIR_TO:$LDIR_TO
     if [[ -d $LDIR_TO ]] ; then
-        #sudo rm -R $LDIR_TO
-        echo 'sudo rm -R' $LDIR_TO
+        #echo 'sudo rm -R' $LDIR_TO
         rm -R "$LDIR_TO"
     fi
-    #sudo mkdir -p $LDIR_TO
-    echo 'sudo mkdir -p' $LDIR_TO
+    #echo 'sudo mkdir -p' $LDIR_TO
     mkdir -p "$LDIR_TO"
-
-    #COPY_FILES "$LDIR_FROM" "$LDIR_TO" "$LMASK"
+    LDIR_FROM=$DIR_TOOLS_SRC_GIT/SH
+    #echo LDIR_FROM:$LDIR_FROM
+    LMASK=*.sh
+    COPY_FILES "$LDIR_FROM" "$LDIR_TO" "$LMASK"
 
     return 0
 }
@@ -337,23 +308,23 @@ function REPO_WORK () {
     fi
 
     ADirectory=$1
-    echo ADirectory:$ADirectory
+    #echo ADirectory:$ADirectory
     cd $ADirectory/
     CURRENT_DIR=$(CurrentDir)
-    echo CURRENT_DIR:$CURRENT_DIR
+    #echo CURRENT_DIR:$CURRENT_DIR
 
     APYTHON=$2
-    echo APYTHON:$APYTHON
+    #echo APYTHON:$APYTHON
 
-    echo ...GetINIParametr_PY...
+    #echo ...GetINIParametr_PY...
     GetINIParametr_PY REPO.ini general REPO_NAME
     echo REPO_NAME:$REPO_NAME
 
-    echo ...GetINIParametr_PY...
+    #echo ...GetINIParametr_PY...
     GetINIParametr_PY REPO.ini general
     echo general_repo_name:${general[repo_name]}
 
-    echo ...GetINIParametr_SH...
+    #echo ...GetINIParametr_SH...
     REPO_NAME=$(GetINIParametr_SH REPO.ini general REPO_NAME)
     echo REPO_NAME:$REPO_NAME
 
@@ -361,12 +332,12 @@ function REPO_WORK () {
     rm *.sh
 
     LFileName=$DIR_TOOLS_SRC_GIT/SH/A.WORK/lyrgit_push_main.sh
-    echo LFileName:$LFileName
+    #echo LFileName:$LFileName
     if [[ -f "$LFileName" ]] ; then
         cp $LFileName $ADirectory/
     fi
     LFileName=$DIR_TOOLS_SRC_GIT/SH/A.WORK/lyrgit_pull.sh
-    echo LFileName:$LFileName
+    #echo LFileName:$LFileName
     if [[ -f "$LFileName" ]] ; then
         cp $LFileName $ADirectory/
     fi
@@ -374,19 +345,19 @@ function REPO_WORK () {
     if [ $APYTHON -eq 1 ] ; then
         DIR_TOOLS_SRC_PY=$PROJECTS_LYR_DIR/CHECK_LIST/05_DESKTOP/02_Python/PROJECTS_PY/TOOLS_SRC_PY
         LFileName=$DIR_TOOLS_SRC_PY/SRC/BAT/PROJECT_PYupdate.sh
-        echo LFileName:$LFileName
+        #echo LFileName:$LFileName
         if [[ -f $LFileName ]] ; then
             cp $LFileName $ADirectory/
         fi
         DIR_PYTHON=$PROJECTS_LYR_DIR/CHECK_LIST/05_DESKTOP/02_Python/PROJECTS_PY
         LFileName=$DIR_PYTHON/PATTERN_PY/pyproject.toml
-        echo LFileName:$LFileName
+        #echo LFileName:$LFileName
         if [[ -f $LFileName ]] ; then
             cp $LFileName $ADirectory/
         fi
     fi
 
-    echo Права $ADirectory/*.sh
+    echo "Права $ADirectory/*.sh"
     find "$ADirectory" -name "*.sh" -exec chmod u+x {} \;
 
     chmod u+x $ADirectory/*.sh

@@ -23,10 +23,8 @@ function MAIN_INIT () {
             PROJECTS_LYR_ROOT=/d
             PROJECTS_LYR_ROOT=/d/WORK/UBU
             PROJECTS_LYR_DIR=$PROJECTS_LYR_ROOT/PROJECTS_LYR
-
             SCRIPTS_DIR=$PROJECTS_LYR_DIR/CHECK_LIST/01_OS/03_UNIX/PROJECTS_UNIX/TOOLS_SRC_SH
             SCRIPTS_DIR=/d/PROJECTS_LYR/CHECK_LIST/01_OS/03_UNIX/PROJECTS_UNIX/TOOLS_SRC_SH
-
             ;;
         'ASUS-U2204-VB' | 'ASUS-U2204-VM' | 'ASUS-U2404-VB' | 'ASUS-U2404-VM' | 'ASUS-U2310')
             PROJECTS_LYR_ROOT=/home/lyr
@@ -45,21 +43,19 @@ function MAIN_INIT () {
     if [[ ! -d "$PROJECTS_LYR_DIR" ]] ; then
         #echo INFO: Dir "$PROJECTS_LYR_DIR" not exist...
         #echo INFO: Create "$PROJECTS_LYR_DIR" ...
-
         result=$(mkdir -p "$PROJECTS_LYR_DIR")
         echo result:$result
         if [[ ! $result==0 ]] ; then
             echo ERROR: Dir "$PROJECTS_LYR_DIR" not created...
             exit 1
         fi
-
     fi
 
     UNAME=$(uname -n)
     case "$UNAME" in
         'ASUS-W10P')
             ;;
-        'ASUS-U2204-VB' | 'ASUS-U2204-VM' | 'ASUS-U2404-VB' | 'ASUS-U2404-VM')
+        'ASUS-U2204-VB' | 'ASUS-U2204-VM' | 'ASUS-U2404-VB' | 'ASUS-U2404-VM' | 'ASUS-U2310')
             # Задаем права на созданный каталог
             sudo chmod -R 770 "$PROJECTS_LYR_DIR"
             # Задаем владельца на созданный каталог
