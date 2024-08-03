@@ -340,9 +340,9 @@ function SET_LIB () {
     #LSCRIPT=$Lpath
 
     LSCRIPT=$(PathWin2PathUnix "$1")
-    #echo LSCRIPT:$LSCRIPT
+    echo LSCRIPT:$LSCRIPT
 
-    LSCRIPT=$(cygpath "$1")
+    #LSCRIPT=$(cygpath "$1")
     #echo LSCRIPT:$LSCRIPT
 
     __SET_VAR_SCRIPT "$LSCRIPT"
