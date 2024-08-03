@@ -417,7 +417,7 @@ function MAIN_01_03_UNIX () {
         echo DEBUG: procedure $FUNCNAME ... >$(tty)
     fi
 
-    REPO_WORK $DIR_COMMANDS_SH 0
+    #REPO_WORK $DIR_COMMANDS_SH 0
     REPO_WORK $DIR_TOOLS_SRC_SH 0
     UPDATE_TOOLS_SH
     REPO_WORK $DIR_TOOLS_SH 0
