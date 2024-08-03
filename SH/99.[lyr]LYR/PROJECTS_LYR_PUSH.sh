@@ -88,7 +88,7 @@ function MAIN_SET () {
     DIR_TOOLS_SRC_SH=$PROJECTS_LYR_DIR/CHECK_LIST/01_OS/03_UNIX/PROJECTS_UNIX/TOOLS_SRC_SH
     DIR_TOOLS_SH=$PROJECTS_LYR_DIR/CHECK_LIST/01_OS/03_UNIX/TOOLS_SH
 
-    DIR_TOOLS_SH_=PROJECTS_LYR_ROOT/TOOLS/TOOLS_SH
+    DIR_TOOLS_SH_=$PROJECTS_LYR_ROOT/TOOLS/TOOLS_SH
 
     #------------------------------------------------
     # 05_02_Python
@@ -177,7 +177,7 @@ function git_pull () {
     cd "$ADirectory"/
 
     echo -------------------------------
-    echo "git pull $ADirectory" ...
+    echo git pull $ADirectory ...
     echo -------------------------------
 
     if [[ -f "./lyrgit_pull.sh" ]] ; then
