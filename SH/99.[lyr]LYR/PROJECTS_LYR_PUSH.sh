@@ -181,6 +181,8 @@ function UPDATE_TOOLS_SH () {
     LMASK=*.sh
     COPY_FILES "$LDIR_FROM" "$LDIR_TO" "$LMASK"
 
+    PressAnyKey
+
     LDIR_TO=$DIR_TOOLS_SH/LIB
     #echo LDIR_TO:$LDIR_TO
     if [[ -d $LDIR_TO ]] ; then
@@ -194,6 +196,8 @@ function UPDATE_TOOLS_SH () {
     LMASK=*.*
     COPY_FILES "$LDIR_FROM" "$LDIR_TO" "$LMASK"
 
+    PressAnyKey
+
     LDIR_TO=$DIR_TOOLS_SH/SH_GIT
     #echo LDIR_TO:$LDIR_TO
     if [[ -d $LDIR_TO ]] ; then
@@ -206,6 +210,8 @@ function UPDATE_TOOLS_SH () {
     #echo LDIR_FROM:$LDIR_FROM
     LMASK=*.sh
     COPY_FILES "$LDIR_FROM" "$LDIR_TO" "$LMASK"
+
+    PressAnyKey
 
     return 0
 }
@@ -342,7 +348,9 @@ function REPO_WORK () {
         cp $LFileName $ADirectory/
     fi
 
-    if [ $APYTHON -eq 1 ] ; then
+    PressAnyKey
+
+    if [[ $APYTHON -eq 1 ]] ; then
         DIR_TOOLS_SRC_PY=$PROJECTS_LYR_DIR/CHECK_LIST/05_DESKTOP/02_Python/PROJECTS_PY/TOOLS_SRC_PY
         LFileName=$DIR_TOOLS_SRC_PY/SRC/BAT/PROJECT_PYupdate.sh
         #echo LFileName:$LFileName
@@ -357,12 +365,18 @@ function REPO_WORK () {
         fi
     fi
 
+    PressAnyKey
+
     echo "Права $ADirectory/*.sh"
     find "$ADirectory" -name "*.sh" -exec chmod u+x {} \;
 
     chmod u+x $ADirectory/*.sh
 
+    PressAnyKey
+
     ./lyrgit_push_main.sh
+
+    PressAnyKey
 
     return 0
 }
@@ -451,9 +465,9 @@ function MAIN_FUNC {
 
     MAIN_01_03_UNIX
 
-    MAIN_05_02_Python
+    #MAIN_05_02_Python
 
-    MAIN_07_GIT
+    #MAIN_07_GIT
 
     PressAnyKey
 
