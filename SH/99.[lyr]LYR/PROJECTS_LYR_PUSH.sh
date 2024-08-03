@@ -417,7 +417,7 @@ function MAIN_05_02_Python () {
     UPDATE_TOOLS_PY
     REPO_WORK $DIR_TOOLS_PY 0
 
-    #git_pull $DIR_TOOLS_PY_
+    git_pull $DIR_TOOLS_PY_
 
     return 0
 }
@@ -480,11 +480,11 @@ function MAIN_FUNC {
 
     MAIN_01_03_UNIX
 
-    #MAIN_05_02_Python
+    MAIN_05_02_Python
 
-    #MAIN_07_GIT
+    MAIN_07_GIT
 
-    #PressAnyKey
+    PressAnyKey
 
     return 0
 }
