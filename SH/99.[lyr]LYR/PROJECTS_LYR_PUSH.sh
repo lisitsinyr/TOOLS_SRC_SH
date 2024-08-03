@@ -334,7 +334,7 @@ function REPO_WORK () {
     REPO_NAME=$(GetINIParametr_SH REPO.ini general REPO_NAME)
     echo REPO_NAME:$REPO_NAME
 
-    rm *.bat
+    #rm *.bat
     rm *.sh
 
     LFileName=$DIR_TOOLS_SRC_GIT/SH/A.WORK/lyrgit_push_main.sh

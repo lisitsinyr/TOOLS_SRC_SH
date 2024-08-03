@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 """GetINI.py"""
 # -*- coding: UTF-8 -*-
