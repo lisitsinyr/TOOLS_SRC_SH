@@ -181,7 +181,7 @@ function UPDATE_TOOLS_SH () {
     LMASK=*.sh
     COPY_FILES "$LDIR_FROM" "$LDIR_TO" "$LMASK"
 
-    PressAnyKey
+    #PressAnyKey
 
     LDIR_TO=$DIR_TOOLS_SH/LIB
     #echo LDIR_TO:$LDIR_TO
@@ -196,7 +196,7 @@ function UPDATE_TOOLS_SH () {
     LMASK=*.*
     COPY_FILES "$LDIR_FROM" "$LDIR_TO" "$LMASK"
 
-    PressAnyKey
+    #PressAnyKey
 
     LDIR_TO=$DIR_TOOLS_SH/SH_GIT
     #echo LDIR_TO:$LDIR_TO
@@ -211,7 +211,7 @@ function UPDATE_TOOLS_SH () {
     LMASK=*.sh
     COPY_FILES "$LDIR_FROM" "$LDIR_TO" "$LMASK"
 
-    PressAnyKey
+    #PressAnyKey
 
     return 0
 }
@@ -324,15 +324,13 @@ function REPO_WORK () {
 
     #echo ...GetINIParametr_PY...
     GetINIParametr_PY REPO.ini general REPO_NAME
-    echo REPO_NAME:$REPO_NAME
-
+    #echo REPO_NAME:$REPO_NAME
     #echo ...GetINIParametr_PY...
     GetINIParametr_PY REPO.ini general
-    echo general_repo_name:${general[repo_name]}
-
+    #echo general_repo_name:${general[repo_name]}
     #echo ...GetINIParametr_SH...
     REPO_NAME=$(GetINIParametr_SH REPO.ini general REPO_NAME)
-    echo REPO_NAME:$REPO_NAME
+    #echo REPO_NAME:$REPO_NAME
 
     #rm *.bat
     rm *.sh
@@ -348,7 +346,7 @@ function REPO_WORK () {
         cp $LFileName $ADirectory/
     fi
 
-    PressAnyKey
+    #PressAnyKey
 
     if [[ $APYTHON -eq 1 ]] ; then
         DIR_TOOLS_SRC_PY=$PROJECTS_LYR_DIR/CHECK_LIST/05_DESKTOP/02_Python/PROJECTS_PY/TOOLS_SRC_PY
@@ -365,18 +363,18 @@ function REPO_WORK () {
         fi
     fi
 
-    PressAnyKey
+    #PressAnyKey
 
     echo "Права $ADirectory/*.sh"
     find "$ADirectory" -name "*.sh" -exec chmod u+x {} \;
 
     chmod u+x $ADirectory/*.sh
 
-    PressAnyKey
+    #PressAnyKey
 
     ./lyrgit_push_main.sh
 
-    PressAnyKey
+    #PressAnyKey
 
     return 0
 }
@@ -417,7 +415,7 @@ function MAIN_01_03_UNIX () {
         echo DEBUG: procedure $FUNCNAME ... >$(tty)
     fi
 
-    #REPO_WORK $DIR_COMMANDS_SH 0
+    REPO_WORK $DIR_COMMANDS_SH 0
     REPO_WORK $DIR_TOOLS_SRC_SH 0
     UPDATE_TOOLS_SH
     REPO_WORK $DIR_TOOLS_SH 0
