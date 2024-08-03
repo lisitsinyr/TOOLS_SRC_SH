@@ -467,7 +467,7 @@ function MAIN_FUNC {
 
     #MAIN_07_GIT
 
-    PressAnyKey
+    #PressAnyKey
 
     return 0
 }
