@@ -88,6 +88,8 @@ function MAIN_SET () {
     DIR_TOOLS_SRC_SH=$PROJECTS_LYR_DIR/CHECK_LIST/01_OS/03_UNIX/PROJECTS_UNIX/TOOLS_SRC_SH
     DIR_TOOLS_SH=$PROJECTS_LYR_DIR/CHECK_LIST/01_OS/03_UNIX/TOOLS_SH
 
+    DIR_TOOLS_SH_=PROJECTS_LYR_ROOT/TOOLS/TOOLS_SH
+
     #------------------------------------------------
     # 05_02_Python
     #------------------------------------------------
@@ -154,6 +156,104 @@ function MAIN_CHECK_PARAMETR () {
         echo ERROR: A1 not defined ...
         OK=
     fi
+
+    return 0
+}
+#endfunction
+
+# =================================================
+# procedure git_pull (ADirectory)
+# =================================================
+function git_pull () {
+#beginfunction
+    if [[ "$DEBUG" -eq 1 ]] ; then
+        echo DEBUG: procedure $FUNCNAME ... >$(tty)
+    fi
+
+    LOG_FILE_ADD=1
+
+    ADirectory=$1
+    echo ADirectory:$ADirectory
+    cd "$ADirectory"/
+
+    ./lyrgit_pull.sh
+    #git pull
+
+    return 0
+}
+#endfunction
+
+# --------------------------------------------------------------------------------
+# procedure REPO_WORK (ADirectory, APYTHON)
+# --------------------------------------------------------------------------------
+function REPO_WORK () {
+#beginfunction
+    if [[ "$DEBUG" -eq 1 ]] ; then
+        echo DEBUG: procedure $FUNCNAME ... >$(tty)
+    fi
+
+    ADirectory=$1
+    #echo ADirectory:$ADirectory
+    cd $ADirectory/
+    CURRENT_DIR=$(CurrentDir)
+    #echo CURRENT_DIR:$CURRENT_DIR
+
+    APYTHON=$2
+    #echo APYTHON:$APYTHON
+
+    #echo ...GetINIParametr_PY...
+    GetINIParametr_PY REPO.ini general REPO_NAME
+    #echo REPO_NAME:$REPO_NAME
+    #echo ...GetINIParametr_PY...
+    GetINIParametr_PY REPO.ini general
+    #echo general_repo_name:${general[repo_name]}
+    #echo ...GetINIParametr_SH...
+    REPO_NAME=$(GetINIParametr_SH REPO.ini general REPO_NAME)
+    #echo REPO_NAME:$REPO_NAME
+
+    #rm *.bat
+    rm *.sh
+
+    LFileName=$DIR_TOOLS_SRC_GIT/SH/A.WORK/lyrgit_push_main.sh
+    #echo LFileName:$LFileName
+    if [[ -f "$LFileName" ]] ; then
+        cp $LFileName $ADirectory/
+    fi
+    LFileName=$DIR_TOOLS_SRC_GIT/SH/A.WORK/lyrgit_pull.sh
+    #echo LFileName:$LFileName
+    if [[ -f "$LFileName" ]] ; then
+        cp $LFileName $ADirectory/
+    fi
+
+    #PressAnyKey
+
+    if [[ $APYTHON -eq 1 ]] ; then
+        DIR_TOOLS_SRC_PY=$PROJECTS_LYR_DIR/CHECK_LIST/05_DESKTOP/02_Python/PROJECTS_PY/TOOLS_SRC_PY
+        LFileName=$DIR_TOOLS_SRC_PY/SRC/BAT/PROJECT_PYupdate.sh
+        #echo LFileName:$LFileName
+        if [[ -f $LFileName ]] ; then
+            cp $LFileName $ADirectory/
+        fi
+        DIR_PYTHON=$PROJECTS_LYR_DIR/CHECK_LIST/05_DESKTOP/02_Python/PROJECTS_PY
+        LFileName=$DIR_PYTHON/PATTERN_PY/pyproject.toml
+        #echo LFileName:$LFileName
+        if [[ -f $LFileName ]] ; then
+            cp $LFileName $ADirectory/
+        fi
+    fi
+
+    #PressAnyKey
+
+    echo "Права $ADirectory/*.sh"
+    find "$ADirectory" -name "*.sh" -exec chmod u+x {} \;
+
+    chmod u+x $ADirectory/*.sh
+
+    #PressAnyKey
+
+    ./lyrgit_push_main.sh
+
+    #PressAnyKey
 
     return 0
 }
@@ -282,99 +382,22 @@ function UPDATE_TOOLS_GIT () {
 }
 # endfunction
 
-# =================================================
-# procedure git_pull (ADirectory)
-# =================================================
-function git_pull () {
+
+# --------------------------------------------------------------------------------
+# procedure MAIN_01_03_UNIX ()
+# --------------------------------------------------------------------------------
+function MAIN_01_03_UNIX () {
 #beginfunction
     if [[ "$DEBUG" -eq 1 ]] ; then
         echo DEBUG: procedure $FUNCNAME ... >$(tty)
     fi
 
-    LOG_FILE_ADD=1
+    REPO_WORK $DIR_COMMANDS_SH 0
+    REPO_WORK $DIR_TOOLS_SRC_SH 0
+    UPDATE_TOOLS_SH
+    REPO_WORK $DIR_TOOLS_SH 0
 
-    ADirectory=$1
-    echo ADirectory:$ADirectory
-    cd "$ADirectory"/
-
-    ./lyrgit_pull.sh
-    #git pull
-
-    return 0
-}
-#endfunction
-
-# --------------------------------------------------------------------------------
-# procedure REPO_WORK (ADirectory, APYTHON)
-# --------------------------------------------------------------------------------
-function REPO_WORK () {
-#beginfunction
-    if [[ "$DEBUG" -eq 1 ]] ; then
-        echo DEBUG: procedure $FUNCNAME ... >$(tty)
-    fi
-
-    ADirectory=$1
-    #echo ADirectory:$ADirectory
-    cd $ADirectory/
-    CURRENT_DIR=$(CurrentDir)
-    #echo CURRENT_DIR:$CURRENT_DIR
-
-    APYTHON=$2
-    #echo APYTHON:$APYTHON
-
-    #echo ...GetINIParametr_PY...
-    GetINIParametr_PY REPO.ini general REPO_NAME
-    #echo REPO_NAME:$REPO_NAME
-    #echo ...GetINIParametr_PY...
-    GetINIParametr_PY REPO.ini general
-    #echo general_repo_name:${general[repo_name]}
-    #echo ...GetINIParametr_SH...
-    REPO_NAME=$(GetINIParametr_SH REPO.ini general REPO_NAME)
-    #echo REPO_NAME:$REPO_NAME
-
-    #rm *.bat
-    rm *.sh
-
-    LFileName=$DIR_TOOLS_SRC_GIT/SH/A.WORK/lyrgit_push_main.sh
-    #echo LFileName:$LFileName
-    if [[ -f "$LFileName" ]] ; then
-        cp $LFileName $ADirectory/
-    fi
-    LFileName=$DIR_TOOLS_SRC_GIT/SH/A.WORK/lyrgit_pull.sh
-    #echo LFileName:$LFileName
-    if [[ -f "$LFileName" ]] ; then
-        cp $LFileName $ADirectory/
-    fi
-
-    #PressAnyKey
-
-    if [[ $APYTHON -eq 1 ]] ; then
-        DIR_TOOLS_SRC_PY=$PROJECTS_LYR_DIR/CHECK_LIST/05_DESKTOP/02_Python/PROJECTS_PY/TOOLS_SRC_PY
-        LFileName=$DIR_TOOLS_SRC_PY/SRC/BAT/PROJECT_PYupdate.sh
-        #echo LFileName:$LFileName
-        if [[ -f $LFileName ]] ; then
-            cp $LFileName $ADirectory/
-        fi
-        DIR_PYTHON=$PROJECTS_LYR_DIR/CHECK_LIST/05_DESKTOP/02_Python/PROJECTS_PY
-        LFileName=$DIR_PYTHON/PATTERN_PY/pyproject.toml
-        #echo LFileName:$LFileName
-        if [[ -f $LFileName ]] ; then
-            cp $LFileName $ADirectory/
-        fi
-    fi
-
-    #PressAnyKey
-
-    echo "Права $ADirectory/*.sh"
-    find "$ADirectory" -name "*.sh" -exec chmod u+x {} \;
-
-    chmod u+x $ADirectory/*.sh
-
-    #PressAnyKey
-
-    ./lyrgit_push_main.sh
-
-    #PressAnyKey
+    git_pull $DIR_TOOLS_SH_
 
     return 0
 }
@@ -401,24 +424,6 @@ function MAIN_05_02_Python () {
     REPO_WORK $DIR_TOOLS_PY 0
 
     git_pull $DIR_TOOLS_PY_
-
-    return 0
-}
-#endfunction
-
-# --------------------------------------------------------------------------------
-# procedure MAIN_01_03_UNIX ()
-# --------------------------------------------------------------------------------
-function MAIN_01_03_UNIX () {
-#beginfunction
-    if [[ "$DEBUG" -eq 1 ]] ; then
-        echo DEBUG: procedure $FUNCNAME ... >$(tty)
-    fi
-
-    REPO_WORK $DIR_COMMANDS_SH 0
-    REPO_WORK $DIR_TOOLS_SRC_SH 0
-    UPDATE_TOOLS_SH
-    REPO_WORK $DIR_TOOLS_SH 0
 
     return 0
 }
