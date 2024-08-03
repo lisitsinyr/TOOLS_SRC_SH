@@ -193,9 +193,8 @@ function MAIN_CreateDirectory () {
 
     cd $PROJECTS_LYR_DIR
 
-    echo GDirectory:$GDirectory
-
     if [[ ! -d "$GDirectory" ]] ; then
+        echo GDirectory:$GDirectory
         #echo INFO: Dir "$GDirectory" not exist ...
         #echo INFO: Create "$GDirectory" ...
         result=$(mkdir -p "$GDirectory")
