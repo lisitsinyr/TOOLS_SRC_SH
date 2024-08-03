@@ -188,6 +188,8 @@ function git_pull () {
         git pull
     fi
 
+    PressAnyKey
+
     return 0
 }
 #endfunction
