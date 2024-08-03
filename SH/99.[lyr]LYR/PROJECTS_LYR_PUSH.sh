@@ -177,12 +177,14 @@ function git_pull () {
     cd "$ADirectory"/
 
     echo -------------------------------
-    echo git pull $ADirectory ...
+    echo "git pull $ADirectory" ...
     echo -------------------------------
 
     if [[ -f "./lyrgit_pull.sh" ]] ; then
+        echo 'lyrgit_pull.sh'
         ./lyrgit_pull.sh
     else
+        echo 'git pull'
         git pull
     fi
 
