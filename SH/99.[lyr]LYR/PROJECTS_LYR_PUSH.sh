@@ -451,9 +451,6 @@ function MAIN_07_GIT () {
     UPDATE_TOOLS_GIT
     REPO_WORK $DIR_TOOLS_GIT 0
 
-    #DIR_TOOLS_GIT_=D:/TOOLS/TOOLS_GIT
-    #git_pull $DIR_TOOLS_GIT_
-
     return 0
 }
 # endfunction
@@ -461,7 +458,7 @@ function MAIN_07_GIT () {
 #--------------------------------------------------------------------------------
 # 04.MAIN_FUNC ()
 #--------------------------------------------------------------------------------
-function MAIN_FUNC {
+function MAIN_FUNC () {
 #beginfunction
     if [[ "$DEBUG" -eq 1 ]] ; then
         echo DEBUG: procedure $FUNCNAME ... >$(tty)

@@ -106,6 +106,8 @@ function MAIN_SET () {
         echo DEBUG: procedure $FUNCNAME ... >$(tty)
     fi
 
+    DIR_TOOLS=~/TOOLS
+
     #------------------------------------------------
     # 01_03_UNIX
     #------------------------------------------------
@@ -125,6 +127,7 @@ function MAIN_SET () {
     DIR_TESTS_PY=$DIR_PYTHON/TESTS_PY
     DIR_TOOLS_SRC_PY=$DIR_PYTHON/TOOLS_SRC_PY
     DIR_TOOLS_PY=$PROJECTS_LYR_DIR/CHECK_LIST/05_DESKTOP/02_Python/TOOLS_PY
+
     DIR_TOOLS_PY_=~/TOOLS/TOOLS_PY
 
     #------------------------------------------------
@@ -289,6 +292,10 @@ function MAIN_01_03_UNIX () {
     GRepo="git@github.com:lisitsinyr/TOOLS_SRC_SH.git"
     MAIN_CreateDirectory
 
+    GDirectory=$DIR_TOOLS/TOOLS_SH
+    GRepo="git@github.com:lisitsinyr/TOOLS_SH.git"
+    MAIN_CreateDirectory
+
     return 0
 }
 #endfunction
@@ -378,6 +385,10 @@ function MAIN_05_02_Python () {
 
     GDirectory=$DIR_05_02_Python/PROJECTS_PY/YOUTUBE_PY
     GRepo="git@github.com:lisitsinyr/YOUTUBE_PY.git"
+    MAIN_CreateDirectory
+
+    GDirectory=$DIR_TOOLS/TOOLS_PY
+    GRepo="git@github.com:lisitsinyr/TOOLS_PY.git"
     MAIN_CreateDirectory
 
     return 0

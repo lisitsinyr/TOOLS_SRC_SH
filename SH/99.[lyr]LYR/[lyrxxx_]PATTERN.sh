@@ -124,7 +124,7 @@ function MAIN_CHECK_PARAMETR () {
 #--------------------------------------------------------------------------------
 # procedure MAIN_FUNC ()
 #--------------------------------------------------------------------------------
-function MAIN_FUNC {
+function MAIN_FUNC () {
 #beginfunction
     AddLog $loAll $tlsTEXT '--------------------------------------'
     AddLog $loAll $tlsTEXT 'MAIN_FUNC ...'
