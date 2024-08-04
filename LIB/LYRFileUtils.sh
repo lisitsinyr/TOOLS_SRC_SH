@@ -320,18 +320,26 @@ function CreateDirectory () {
 #endfunction
 
 #--------------------------------------------------------------------------------
-# procedure CreateLink (Directory)
+# procedure CreateLink (Object, Link)
 #--------------------------------------------------------------------------------
 function CreateLink () {
 #beginfunction
-    if [[ "$DEBUG" -eq 1 ]] ; then
-        echo DEBUG: function $FUNCNAME ... >$(tty)
-    fi
+    AObject=$1
+    #echo AObject:$AObject
+    ALink=$2
+    #echo ALink:$ALink
 
-    ADirectory=$1
-    if [[ -d $ADirectory ]] ; then
+    if [[ -d $AObject ]] ; then
+        echo $ALink каталог ...
         cd ~/Desktop/
-        ln -s $ADirectory
+        rm $ALink
+        ln -s $AObject $ALink
+    fi
+    if [[ -f $AObject ]] ; then
+        echo $ALink файл ...
+        cd ~/Desktop/
+        rm $ALink
+        ln -s $AObject $ALink
     fi
 
     return 0

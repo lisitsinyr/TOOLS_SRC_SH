@@ -30,24 +30,53 @@ function CreateLink () {
 }
 #endfunction
 
+#--------------------------------------------------------------------------------
+# procedure CreateScriptDesktop (Script, Link)
+#--------------------------------------------------------------------------------
+function CreateScriptDesktop () {
+#beginfunction
+    AScript=$1
+    #echo AScript:$AScript
+    ASCRIPTdesktop=$2
+    #echo ASCRIPTdesktop:$ASCRIPTdesktop
+    ASCRIPTdesktopName=$3
+    #echo ASCRIPTdesktopName:$ASCRIPTdesktopName
+    if [[ -f $AObject ]] ; then
+        cd ~/Desktop/
+        rm $ASCRIPTdesktop
+        touch $ASCRIPTdesktop
+        echo '[Desktop Entry]'          >> $ASCRIPTdesktop
+        echo 'Name='$ASCRIPTdesktopName >> $ASCRIPTdesktop
+        echo 'Exec='$AScript            >> $ASCRIPTdesktop
+        echo 'Terminal=true'            >> $ASCRIPTdesktop
+        echo 'Type=Application'         >> $ASCRIPTdesktop
+        chmod u+x $ASCRIPTdesktop
+    fi
+
+    return 0
+}
+#endfunction
+
 #begin
     # ------------------------------------------------------------------
     # 
     # ------------------------------------------------------------------
     DIR_SH=~/PROJECTS_LYR/CHECK_LIST/01_OS/03_UNIX/PROJECTS_UNIX/TOOLS_SRC_SH
 
-    PROJECTS_LYR_PULL=$DIR_SH/SH/'99.[lyr]LYR'/PROJECTS_LYR_PULL.sh
-    PROJECTS_LYR_PULL_desktop=$DIR_SH/SH/'99.[lyr]LYR'/PROJECTS_LYR_PULL.desktop
-    #echo PROJECTS_LYR_PULL:$PROJECTS_LYR_PULL
-    #CreateLink $PROJECTS_LYR_PULL PROJECTS_LYR_PULL
-    cp $PROJECTS_LYR_PULL_desktop ~/Desktop
-    chmod u+x ~/Desktop/PROJECTS_LYR_PULL.desktop
+    LSCRIPT=$DIR_SH/SH/'99.[lyr]LYR'/PROJECTS_LYR_PULL.sh
+    LSCRIPTdesktopName='PROJECTS_LYR_PULL'
+    Ldesktop=$DIR_SH/SH/'99.[lyr]LYR'/PROJECTS_LYR_PULL.desktop
+    #cp $Ldesktop ~/Desktop
+    #chmod u+x $LSCRIPTdesktop
+    LSCRIPTdesktop=~/Desktop/PROJECTS_LYR_PULL.desktop
+    CreateScriptDesktop $LSCRIPT $LSCRIPTdesktop $LSCRIPTdesktopName
 
-    PROJECTS_LYR_PUSH=$DIR_SH/SH/'99.[lyr]LYR'/PROJECTS_LYR_PUSH.sh
-    PROJECTS_LYR_PUSH_desktop=$DIR_SH/SH/'99.[lyr]LYR'/PROJECTS_LYR_PUSH.desktop
-    #echo PROJECTS_LYR_PUSH:$PROJECTS_LYR_PUSH
-    #CreateLink $PROJECTS_LYR_PUSH PROJECTS_LYR_PUSH
-    cp $PROJECTS_LYR_PUSH_desktop ~/Desktop
-    chmod u+x ~/Desktop/PROJECTS_LYR_PUSH.desktop
+    LSCRIPT=$DIR_SH/SH/'99.[lyr]LYR'/PROJECTS_LYR_PUSH.sh
+    LSCRIPTdesktopName='PROJECTS_LYR_PUSH'
+    Ldesktop=$DIR_SH/SH/'99.[lyr]LYR'/PROJECTS_LYR_PUSH.desktop
+    #cp $Ldesktop ~/Desktop
+    #chmod u+x $LSCRIPTdesktop
+    LSCRIPTdesktop=~/Desktop/PROJECTS_LYR_PUSH.desktop
+    CreateScriptDesktop $LSCRIPT $LSCRIPTdesktop $LSCRIPTdesktopName
 
 #end
