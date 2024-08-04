@@ -41,5 +41,4 @@ function CreateLink () {
     PROJECTS_LYR_PUSH=$DIR_SH/SH/99.[lyr]LYR/PROJECTS_LYR_PUSH.sh
     CreateLink $PROJECTS_LYR_PUSH PROJECTS_LYR_PUSH
 
-    return 0
 #end
