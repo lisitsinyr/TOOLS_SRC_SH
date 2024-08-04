@@ -208,13 +208,14 @@ function MAIN_CreateDirectory () {
     cd $GDirectory
 
     if [[ ! -z "$GRepo" ]] ; then
+        echo GDirectory:$GDirectory
         #echo GRepo:$GRepo
         if [[ ! -d ".git" ]] ; then
             cd ../
-            echo git clone:$GRepo
+            echo ...git clone:$GRepo
             git clone $GRepo
         else
-            echo git pull:$GRepo
+            echo ...git pull:$GRepo
             git pull
         fi
     fi
