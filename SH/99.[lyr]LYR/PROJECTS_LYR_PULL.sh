@@ -282,6 +282,8 @@ function MAIN_01_03_UNIX () {
     GDirectory=$DIR_03_UNIX/PROJECTS_UNIX/COMMANDS_SH
     GRepo=git@github.com:lisitsinyr/COMMANDS_SH.git
     MAIN_CreateDirectory
+    #chmod -R u+x $GDirectory
+    find $GDirectory/ -name "*.sh" -exec chmod u+x {} \;
 
     GDirectory=$DIR_03_UNIX/PROJECTS_UNIX/TESTS_SH
     GRepo=
@@ -290,10 +292,12 @@ function MAIN_01_03_UNIX () {
     GDirectory=$DIR_03_UNIX/PROJECTS_UNIX/TOOLS_SRC_SH
     GRepo="git@github.com:lisitsinyr/TOOLS_SRC_SH.git"
     MAIN_CreateDirectory
+    find $GDirectory/ -name "*.sh" -exec chmod u+x {} \;
 
     GDirectory=$DIR_TOOLS/TOOLS_SH
     GRepo="git@github.com:lisitsinyr/TOOLS_SH.git"
     MAIN_CreateDirectory
+    find $GDirectory/ -name "*.sh" -exec chmod u+x {} \;
 
     return 0
 }
