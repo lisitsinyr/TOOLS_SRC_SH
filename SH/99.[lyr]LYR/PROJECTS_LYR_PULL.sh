@@ -195,7 +195,7 @@ function MAIN_CreateDirectory () {
     cd $PROJECTS_LYR_DIR
 
     if [[ ! -d "$GDirectory" ]] ; then
-        echo GDirectory:$GDirectory
+        echo $GDirectory
         #echo INFO: Dir "$GDirectory" not exist ...
         echo INFO: Create "$GDirectory" ...
         result=$(mkdir -p "$GDirectory")
@@ -208,7 +208,7 @@ function MAIN_CreateDirectory () {
     cd $GDirectory
 
     if [[ ! -z "$GRepo" ]] ; then
-        echo GDirectory:$GDirectory
+        echo $PROJECTS_LYR_DIR/$GDirectory
         #echo GRepo:$GRepo
         if [[ ! -d ".git" ]] ; then
             cd ../
