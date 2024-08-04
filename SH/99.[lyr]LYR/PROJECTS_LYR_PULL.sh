@@ -196,7 +196,7 @@ function MAIN_CreateDirectory () {
     if [[ ! -d "$GDirectory" ]] ; then
         echo GDirectory:$GDirectory
         #echo INFO: Dir "$GDirectory" not exist ...
-        #echo INFO: Create "$GDirectory" ...
+        echo INFO: Create "$GDirectory" ...
         result=$(mkdir -p "$GDirectory")
         if [[ ! $result==0 ]] ; then
             echo ERROR: Dir "$GDirectory" not created...
@@ -210,10 +210,10 @@ function MAIN_CreateDirectory () {
         #echo GRepo:$GRepo
         if [[ ! -d ".git" ]] ; then
             cd ../
-            echo git clone: $GRepo
+            echo git clone:$GRepo
             git clone $GRepo
         else
-            echo git pull: $GRepo
+            echo git pull:$GRepo
             git pull
         fi
     fi
