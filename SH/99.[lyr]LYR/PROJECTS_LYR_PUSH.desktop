@@ -1,0 +1,5 @@
+[Desktop Entry]
+Name=PROJECTS_LYR_PUSH
+Exec="/home/lyr/PROJECTS_LYR/CHECK_LIST/01_OS/03_UNIX/PROJECTS_UNIX/TOOLS_SRC_SH/SH/99.[lyr]LYR/PROJECTS_LYR_PUSH.sh"
+Terminal=true
+Type=Application
