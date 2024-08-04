@@ -192,7 +192,9 @@ function MAIN_CreateDirectory () {
         echo DEBUG: procedure $FUNCNAME ... >$(tty)
     fi
 
-    cd $PROJECTS_LYR_DIR
+    if [[ "$GDirectory" != "$DIR_TOOLS/TOOLS_SH" ]] ; then
+        cd $PROJECTS_LYR_DIR
+    fi
 
     if [[ ! -d "$GDirectory" ]] ; then
         echo $GDirectory
@@ -208,7 +210,11 @@ function MAIN_CreateDirectory () {
     cd $GDirectory
 
     if [[ ! -z "$GRepo" ]] ; then
-        echo $PROJECTS_LYR_DIR/$GDirectory
+        if [[ "$GDirectory" != "$DIR_TOOLS/TOOLS_SH" ]] ; then
+            echo $PROJECTS_LYR_DIR/$GDirectory
+        else
+            echo $GDirectory
+        fi
         #echo GRepo:$GRepo
         if [[ ! -d ".git" ]] ; then
             cd ../
@@ -283,7 +289,7 @@ function MAIN_01_03_UNIX () {
     GRepo=git@github.com:lisitsinyr/COMMANDS_SH.git
     MAIN_CreateDirectory
     #chmod -R u+x $GDirectory
-    find $GDirectory/ -name "*.sh" -exec chmod u+x {} \;
+    find $PROJECTS_LYR_DIR/$GDirectory/ -name "*.sh" -exec chmod u+x {} \;
 
     GDirectory=$DIR_03_UNIX/PROJECTS_UNIX/TESTS_SH
     GRepo=
@@ -292,7 +298,9 @@ function MAIN_01_03_UNIX () {
     GDirectory=$DIR_03_UNIX/PROJECTS_UNIX/TOOLS_SRC_SH
     GRepo="git@github.com:lisitsinyr/TOOLS_SRC_SH.git"
     MAIN_CreateDirectory
-    find $GDirectory/ -name "*.sh" -exec chmod u+x {} \;
+    find $PROJECTS_LYR_DIR/$GDirectory/ -name "*.sh" -exec chmod u+x {} \;
+
+
 
     GDirectory=$DIR_TOOLS/TOOLS_SH
     GRepo="git@github.com:lisitsinyr/TOOLS_SH.git"
