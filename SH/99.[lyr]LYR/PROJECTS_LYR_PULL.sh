@@ -128,8 +128,6 @@ function MAIN_SET () {
     DIR_TOOLS_SRC_PY=$DIR_PYTHON/TOOLS_SRC_PY
     DIR_TOOLS_PY=$PROJECTS_LYR_DIR/CHECK_LIST/05_DESKTOP/02_Python/TOOLS_PY
 
-    DIR_TOOLS_PY_=~/TOOLS/TOOLS_PY
-
     #------------------------------------------------
     # 07_GIT
     #------------------------------------------------
