@@ -39,19 +39,19 @@ function CreateScriptDesktop () {
     #echo AScript:$AScript
     ASCRIPTdesktop=$2
     #echo ASCRIPTdesktop:$ASCRIPTdesktop
+    ASCRIPTdesktopName=$3
+    echo ASCRIPTdesktopName:$ASCRIPTdesktopName
     if [[ -f $ASCRIPTdesktop ]] ; then
-        ASCRIPTdesktopName=$3
-        echo ASCRIPTdesktopName:$ASCRIPTdesktopName
         cd ~/Desktop/
         rm $ASCRIPTdesktop
-        touch $ASCRIPTdesktop
-        echo '[Desktop Entry]'          >> $ASCRIPTdesktop
-        echo 'Name='$ASCRIPTdesktopName >> $ASCRIPTdesktop
-        echo 'Exec='$AScript            >> $ASCRIPTdesktop
-        echo 'Terminal=true'            >> $ASCRIPTdesktop
-        echo 'Type=Application'         >> $ASCRIPTdesktop
-        chmod u+x $ASCRIPTdesktop
     fi
+    touch $ASCRIPTdesktop
+    echo '[Desktop Entry]'          >> $ASCRIPTdesktop
+    echo 'Name='$ASCRIPTdesktopName >> $ASCRIPTdesktop
+    echo 'Exec='$AScript            >> $ASCRIPTdesktop
+    echo 'Terminal=true'            >> $ASCRIPTdesktop
+    echo 'Type=Application'         >> $ASCRIPTdesktop
+    chmod u+x $ASCRIPTdesktop
 
     return 0
 }
