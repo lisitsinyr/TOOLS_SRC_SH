@@ -239,6 +239,10 @@ function MAIN_01_03_UNIX () {
         echo DEBUG: procedure $FUNCNAME ... >$(tty)
     fi
 
+    echo ===============================
+    echo 01_03_UNIX ...
+    echo ===============================
+
     DIR_03_UNIX=CHECK_LIST/01_OS/03_UNIX
 
     GDirectory=$DIR_03_UNIX/SOFTWARE
@@ -300,8 +304,6 @@ function MAIN_01_03_UNIX () {
     MAIN_CreateDirectory
     find $PROJECTS_LYR_DIR/$GDirectory/ -name "*.sh" -exec chmod u+x {} \;
 
-
-
     GDirectory=$DIR_TOOLS/TOOLS_SH
     GRepo="git@github.com:lisitsinyr/TOOLS_SH.git"
     MAIN_CreateDirectory
@@ -319,6 +321,10 @@ function MAIN_05_02_Python () {
     if [[ "$DEBUG" -eq 1 ]] ; then
         echo DEBUG: procedure $FUNCNAME ... >$(tty)
     fi
+
+    echo ===============================
+    echo 05_02_Python ...
+    echo ===============================
 
     DIR_05_02_Python=CHECK_LIST/05_DESKTOP/02_Python
 
@@ -414,6 +420,10 @@ function MAIN_07_GIT () {
     if [[ "$DEBUG" -eq 1 ]] ; then
         echo DEBUG: procedure $FUNCNAME ... >$(tty)
     fi
+
+    echo ===============================
+    echo 07_GIT ...
+    echo ===============================
 
     DIR_07_GIT=CHECK_LIST/07_GIT
 
