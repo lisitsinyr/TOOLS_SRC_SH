@@ -41,7 +41,7 @@ function CreateScriptDesktop () {
     #echo ASCRIPTdesktop:$ASCRIPTdesktop
     ASCRIPTdesktopName=$3
     #echo ASCRIPTdesktopName:$ASCRIPTdesktopName
-    if [[ -f $AObject ]] ; then
+    if [[ -f $ASCRIPTdesktop ]] ; then
         cd ~/Desktop/
         rm $ASCRIPTdesktop
         touch $ASCRIPTdesktop

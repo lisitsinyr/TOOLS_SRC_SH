@@ -347,6 +347,33 @@ function CreateLink () {
 #endfunction
 
 #--------------------------------------------------------------------------------
+# procedure CreateScriptDesktop (Script, Link)
+#--------------------------------------------------------------------------------
+function CreateScriptDesktop () {
+#beginfunction
+    AScript=$1
+    #echo AScript:$AScript
+    ASCRIPTdesktop=$2
+    #echo ASCRIPTdesktop:$ASCRIPTdesktop
+    ASCRIPTdesktopName=$3
+    #echo ASCRIPTdesktopName:$ASCRIPTdesktopName
+    if [[ -f $ASCRIPTdesktop ]] ; then
+        cd ~/Desktop/
+        rm $ASCRIPTdesktop
+        touch $ASCRIPTdesktop
+        echo '[Desktop Entry]'          >> $ASCRIPTdesktop
+        echo 'Name='$ASCRIPTdesktopName >> $ASCRIPTdesktop
+        echo 'Exec='$AScript            >> $ASCRIPTdesktop
+        echo 'Terminal=true'            >> $ASCRIPTdesktop
+        echo 'Type=Application'         >> $ASCRIPTdesktop
+        chmod u+x $ASCRIPTdesktop
+    fi
+
+    return 0
+}
+#endfunction
+
+#--------------------------------------------------------------------------------
 # procedure PathWin2PathUnix (APath)
 #--------------------------------------------------------------------------------
 function PathWin2PathUnix () {
