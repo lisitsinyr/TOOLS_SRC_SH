@@ -212,7 +212,9 @@ function REPO_WORK () {
 
     #echo ...GetINIParametr_PY...
     GetINIParametr_PY REPO.ini general REPO_NAME
-    #echo REPO_NAME:$REPO_NAME
+    echo -------------------------------
+    echo REPO_NAME:$REPO_NAME
+    echo -------------------------------
     #echo ...GetINIParametr_PY...
     GetINIParametr_PY REPO.ini general
     #echo general_repo_name:${general[repo_name]}
@@ -401,6 +403,10 @@ function MAIN_01_03_UNIX () {
         echo DEBUG: procedure $FUNCNAME ... >$(tty)
     fi
 
+    echo ===============================
+    echo 01_03_UNIX ...
+    echo ===============================
+
     REPO_WORK $DIR_COMMANDS_SH 0
     REPO_WORK $DIR_TOOLS_SRC_SH 0
     UPDATE_TOOLS_SH
@@ -420,6 +426,10 @@ function MAIN_05_02_Python () {
     if [[ "$DEBUG" -eq 1 ]] ; then
         echo DEBUG: procedure $FUNCNAME ... >$(tty)
     fi
+
+    echo ===============================
+    echo 05_02_Python ...
+    echo ===============================
 
     REPO_WORK $DIR_EXAMPLES_PY 1
     REPO_WORK $DIR_MobileAPP_PY 1
@@ -446,6 +456,10 @@ function MAIN_07_GIT () {
     if [[ "$DEBUG" -eq 1 ]] ; then
         echo DEBUG: procedure $FUNCNAME ... >$(tty)
     fi
+
+    echo ===============================
+    echo 07_GIT ...
+    echo ===============================
 
     REPO_WORK $DIR_TOOLS_SRC_GIT 0
     UPDATE_TOOLS_GIT
