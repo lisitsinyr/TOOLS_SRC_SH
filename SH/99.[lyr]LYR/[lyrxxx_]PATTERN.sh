@@ -92,8 +92,8 @@ function MAIN_CHECK_PARAMETR () {
     PN_CAPTION=O1
     Read_P O1
     echo O1:$O1
-    #AddLog $loAll $tlsTEXT O1:$O1
-    #AddLog $loAll $tlsINFO O1:$O1
+    #AddLog $loALL $tlsTEXT O1:$O1
+    #AddLog $loALL $tlsINFO O1:$O1
     if [[ ! -z "$O1" ]] ; then
         OPTION="$OPTION --O1 $O1"
     else
@@ -108,8 +108,8 @@ function MAIN_CHECK_PARAMETR () {
     PN_CAPTION=A1
     Read_P A1 A1
     echo A1:$A1
-    #AddLog $loAll $tlsTEXT A1:$A1
-    #AddLog $loAll $tlsINFO A1:$A1
+    #AddLog $loALL $tlsTEXT A1:$A1
+    #AddLog $loALL $tlsINFO A1:$A1
     if [[ ! -z "$A1" ]] ; then
         ARGS="$ARGS $A1"
     else
@@ -126,9 +126,9 @@ function MAIN_CHECK_PARAMETR () {
 #--------------------------------------------------------------------------------
 function MAIN_FUNC () {
 #beginfunction
-    AddLog $loAll $tlsTEXT '--------------------------------------'
-    AddLog $loAll $tlsTEXT 'MAIN_FUNC ...'
-    AddLog $loAll $tlsTEXT '--------------------------------------'
+    AddLog $loALL $tlsTEXT '--------------------------------------'
+    AddLog $loALL $tlsTEXT 'MAIN_FUNC ...'
+    AddLog $loALL $tlsTEXT '--------------------------------------'
     # -------------------------------------------------------------------
     # запуск скриптов
     # -------------------------------------------------------------------
@@ -170,17 +170,17 @@ function MAIN () {
 
     StartLogFile
 
-    AddLog $loAll $tlsNOTSET NOTSET
-    AddLog $loAll $tlsDEBUG DEBUG
-    AddLog $loAll $tlsINFO INFO
-    AddLog $loAll $tlsWARNING WARNING
-    AddLog $loAll $tlsERROR ERROR
-    AddLog $loAll $tlsCRITICAL CRITICAL
-    AddLog $loAll $tlsDEBUGTEXT DEBUGTEXT
-    AddLog $loAll $tlsBEGIN BEGIN
-    AddLog $loAll $tlcEND END
-    AddLog $loAll $tlsPROCESS PROCESS
-    AddLog $loAll $tlsTEXT TEXT
+    AddLog $loALL $tlsNOTSET NOTSET
+    AddLog $loALL $tlsDEBUG DEBUG
+    AddLog $loALL $tlsINFO INFO
+    AddLog $loALL $tlsWARNING WARNING
+    AddLog $loALL $tlsERROR ERROR
+    AddLog $loALL $tlsCRITICAL CRITICAL
+    AddLog $loALL $tlsDEBUGTEXT DEBUGTEXT
+    AddLog $loALL $tlsBEGIN BEGIN
+    AddLog $loALL $tlsEND END
+    AddLog $loALL $tlsPROCESS PROCESS
+    AddLog $loALL $tlsTEXT TEXT
     
     OK=yes
     MAIN_SET

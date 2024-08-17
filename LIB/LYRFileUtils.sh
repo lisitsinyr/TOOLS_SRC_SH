@@ -259,14 +259,14 @@ function COPY_FILES () {
 
     AMASK=$3
     echo AMASK:$AMASK
-    AARG=$4
-    echo AARG:$AARG
+    AArg=$4
+    echo AArg:$AArg
 
     #find "$ADIR_FROM" -type f -iname *.sh
     #find "$ADIR_FROM" -type f -name "*.*" -exec cp {} "$ADIR_TO" \;
     #find "$ADIR_FROM" -type f -name "*.sh" -exec ls {} \;
 
-    find "$ADIR_FROM" -type f -name "$AMASK" -exec cp $AARG {} "$ADIR_TO" \;
+    find "$ADIR_FROM" -type f -name "$AMASK" -exec cp $AArg {} "$ADIR_TO" \;
 
     return 0
 }

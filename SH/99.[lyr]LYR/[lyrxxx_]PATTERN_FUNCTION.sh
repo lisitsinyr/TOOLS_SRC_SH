@@ -12,7 +12,7 @@ function FUNC_01 () {
         echo DEBUG: procedure $FUNCNAME ... >$(tty)
     fi
 
-    AddLog $loAll $INFO Вызов $FUNCNAME ...
+    AddLog $loALL $INFO Вызов $FUNCNAME ...
 
     return 0
 }

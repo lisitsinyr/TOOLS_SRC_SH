@@ -23,7 +23,7 @@ function LYRStrUtils () {
 #endfunction
 
 #--------------------------------------------------------------------------------
-# function TrimLeft (ASTR) -> TrimLeft
+# function TrimLeft (AStr) -> TrimLeft
 #--------------------------------------------------------------------------------
 function TrimLeft () {
 #beginfunction
@@ -31,7 +31,7 @@ function TrimLeft () {
         echo DEBUG: function $FUNCNAME ... >$(tty)
     fi
 
-    ASTR=$1
+    AStr=$1
 
     echo ERROR: function $FUNCNAME not implemented! ...
 
@@ -40,7 +40,7 @@ function TrimLeft () {
 #endfunction
 
 #--------------------------------------------------------------------------------
-# function TrimRight (ASTR) -> TrimRight
+# function TrimRight (AStr) -> TrimRight
 #--------------------------------------------------------------------------------
 function TrimRight () {
 #beginfunction
@@ -48,7 +48,7 @@ function TrimRight () {
         echo DEBUG: function $FUNCNAME ... >$(tty)
     fi
 
-    ASTR=$1
+    AStr=$1
 
     echo ERROR: function $FUNCNAME not implemented! ...
 
@@ -57,7 +57,7 @@ function TrimRight () {
 #endfunction
 
 #--------------------------------------------------------------------------------
-# function Trim (ASTR) -> Trim
+# function Trim (AStr) -> Trim
 #--------------------------------------------------------------------------------
 function Trim () {
 #beginfunction
@@ -65,7 +65,7 @@ function Trim () {
         echo DEBUG: function $FUNCNAME ... >$(tty)
     fi
 
-    ASTR=$1
+    AStr=$1
 
     echo ERROR: function $FUNCNAME not implemented! ...
 
@@ -74,7 +74,7 @@ function Trim () {
 #endfunction
 
 #--------------------------------------------------------------------------------
-# function Left (ASTR) -> Left
+# function Left (AStr) -> Left
 #--------------------------------------------------------------------------------
 function Left () {
 #beginfunction
@@ -82,7 +82,7 @@ function Left () {
         echo DEBUG: function $FUNCNAME ... >$(tty)
     fi
 
-    ASTR=$1
+    AStr=$1
 
     echo ERROR: function $FUNCNAME not implemented! ...
 
@@ -91,7 +91,7 @@ function Left () {
 #endfunction
 
 #--------------------------------------------------------------------------------
-# function Mid (ASTR, Aposition, Alen) -> Mid
+# function Mid (AStr, APosition, ALen) -> Mid
 #--------------------------------------------------------------------------------
 function TrimQuotes () {
 #beginfunction
@@ -99,9 +99,9 @@ function TrimQuotes () {
         echo DEBUG: function $FUNCNAME ... >$(tty)
     fi
 
-    ASTR=$1
-    Aposition=$2
-    Alen=$3
+    AStr=$1
+    APosition=$2
+    ALen=$3
 
     echo ERROR: function $FUNCNAME not implemented! ...
 
@@ -110,7 +110,7 @@ function TrimQuotes () {
 #endfunction
 
 #--------------------------------------------------------------------------------
-# function TrimQuotes (ASTR) -> TrimQuotes
+# function TrimQuotes (AStr) -> TrimQuotes
 #--------------------------------------------------------------------------------
 function TrimQuotes () {
 #beginfunction
@@ -118,7 +118,7 @@ function TrimQuotes () {
         echo DEBUG: function $FUNCNAME ... >$(tty)
     fi
 
-    ASTR=$1
+    AStr=$1
 
     echo ERROR: function $FUNCNAME not implemented! ...
 

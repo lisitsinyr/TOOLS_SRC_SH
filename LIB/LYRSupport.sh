@@ -296,7 +296,7 @@ function Read_N () {
 #endfunction
 
 #--------------------------------------------------------------------------------
-# procedure GetDir (ASET, Aview, Aarg)
+# procedure GetDir (ASET, AView, AArg)
 #--------------------------------------------------------------------------------
 function GetDir () {
 #beginfunction
@@ -306,10 +306,10 @@ function GetDir () {
 
     ASET=$1
     #echo ASET:$ASET
-    Aview=$2
-    # echo Aview:$Aview
-    Aarg=$3
-    # echo Aarg:$Aarg
+    AView=$2
+    # echo AView:$AView
+    AArg=$3
+    # echo AArg:$AArg
 
     echo ERROR: function $FUNCNAME not implemented! ...
 
@@ -318,7 +318,7 @@ function GetDir () {
 #endfunction
 
 #--------------------------------------------------------------------------------
-# procedure GetFile (ASET, Aview, Aarg)
+# procedure GetFile (ASET, AView, AArg)
 #--------------------------------------------------------------------------------
 function GetFile () {
 #beginfunction
@@ -328,10 +328,10 @@ function GetFile () {
 
     ASET=$1
     #echo ASET:$ASET
-    Aview=$2
-    # echo Aview:$Aview
-    Aarg=$3
-    # echo Aarg:$Aarg
+    AView=$2
+    # echo AView:$AView
+    AArg=$3
+    # echo AArg:$AArg
 
     echo ERROR: function $FUNCNAME not implemented! ...
 
@@ -340,7 +340,7 @@ function GetFile () {
 #endfunction
 
 #--------------------------------------------------------------------------------
-# procedure FORCicle (Astart, Astep, Aend)
+# procedure FORCicle (AStart, Astep, Aend)
 #--------------------------------------------------------------------------------
 function GetFile () {
 #beginfunction
@@ -348,11 +348,11 @@ function GetFile () {
         echo DEBUG: procedure $FUNCNAME ... >$(tty)
     fi
 
-    Astart=$1
-    #echo Astart:$Astart
-    Astep=$2
+    AStart=$1
+    #echo AStart:$AStart
+    AStep=$2
     # echo Astep:$Astep
-    Aend=$3
+    AEnd=$3
     # echo Aend:$Aend
 
     echo ERROR: function $FUNCNAME not implemented! ...

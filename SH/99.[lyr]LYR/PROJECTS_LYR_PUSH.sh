@@ -130,8 +130,8 @@ function MAIN_CHECK_PARAMETR () {
     PN_CAPTION=O1
     Read_P O1 O1
     echo O1:$O1
-    #AddLog $loAll $tlsTEXT O1:$O1
-    #AddLog $loAll $tlsINFO O1:$O1
+    #AddLog $loALL $tlsTEXT O1:$O1
+    #AddLog $loALL $tlsINFO O1:$O1
     if [[ ! -z "$O1" ]] ; then
         OPTION="$OPTION --O1 $O1"
     else
@@ -146,8 +146,8 @@ function MAIN_CHECK_PARAMETR () {
     PN_CAPTION=A1
     Read_P A1 A1
     echo A1:$A1
-    #AddLog $loAll $tlsTEXT A1:$A1
-    #AddLog $loAll $tlsINFO A1:$A1
+    #AddLog $loALL $tlsTEXT A1:$A1
+    #AddLog $loALL $tlsINFO A1:$A1
     if [[ ! -z "$A1" ]] ; then
         ARGS="$ARGS $A1"
     else
@@ -478,9 +478,9 @@ function MAIN_FUNC () {
         echo DEBUG: procedure $FUNCNAME ... >$(tty)
     fi
 
-    AddLog $loAll $tlsTEXT '--------------------------------------'
-    AddLog $loAll $tlsTEXT 'MAIN_FUNC ...'
-    AddLog $loAll $tlsTEXT '--------------------------------------'
+    AddLog $loALL $tlsTEXT '--------------------------------------'
+    AddLog $loALL $tlsTEXT 'MAIN_FUNC ...'
+    AddLog $loALL $tlsTEXT '--------------------------------------'
 
     # -------------------------------------------------------------------
     # запуск скриптов

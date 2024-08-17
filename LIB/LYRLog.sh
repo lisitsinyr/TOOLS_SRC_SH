@@ -35,9 +35,9 @@ function __SETVarLog () {
     S01=------------------------------------------------------
 
     # --------------------------------
-    loStandard=0
-    loTextFile=1
-    loAll=2
+    loSTANDART=0
+    loTEXTFILE=1
+    loALL=2
     
     # --------------------------------
     NOTSET=0
@@ -60,7 +60,7 @@ function __SETVarLog () {
     tlsCRITICAL=5
     tlsDEBUGTEXT=11
     tlsBEGIN=21
-    tlcEND=22
+    tlsEND=22
     tlsPROCESS=23
     tlsTEXT=24
     # --------------------------------
@@ -72,7 +72,7 @@ function __SETVarLog () {
     stlsCRITICAL='CRITICAL'
     stlsDEBUGTEXT='DEBUGTEXT'
     stlsBEGIN='BEGIN'
-    stlcEND='END'
+    stlsEND='END'
     stlsPROCESS='PROCESS'
     stlsTEXT='TEXT'
     
@@ -84,7 +84,7 @@ function __SETVarLog () {
     ctlsERROR='E'
     ctlsCRITICAL='C'
     ctlsBEGIN='<'
-    ctlcEND='>'
+    ctlsEND='>'
     ctlsPROCESS='P'
     ctlsDEBUGTEXT='T'
     ctlsTEXT='T'
@@ -131,8 +131,8 @@ function __SHORTLevelName () {
     if [ $Alevel = $tlsBEGIN ] ; then
         SHORTLevelName=$ctlsBEGIN
     fi
-    if [ $Alevel = $tlcEND ] ; then
-        SHORTLevelName=$ctlcEND
+    if [ $Alevel = $tlsEND ] ; then
+        SHORTLevelName=$ctlsEND
     fi
     if [ $Alevel = $tlsPROCESS ] ; then
         SHORTLevelName=$ctlsPROCESS
@@ -182,7 +182,7 @@ function __COLORLevel () {
     if [ $Alevel = $tlsBEGIN ] ; then
         COLORLevel=$cS_BOLD';'$cFG8_GREEN$cEND
     fi
-    if [ $Alevel = $tlcEND ] ; then
+    if [ $Alevel = $tlsEND ] ; then
         COLORLevel=$cS_BOLD';'$cFG8_GREEN$cEND
     fi
     if [ $Alevel = $tlsPROCESS ] ; then
@@ -209,8 +209,8 @@ function __LOG_STR () {
     #echo Alevel:$Alevel
     shift 1
 
-    Amessage="$*"
-    #echo Amessage:$Amessage
+    AMessage="$*"
+    #echo AMessage:$AMessage
     
     FORMAT='%Y-%m-%d %H:%M:%S %N'
     #echo FORMAT:$FORMAT
@@ -225,52 +225,52 @@ function __LOG_STR () {
 
     case "$Alevel" in
     $tlsNOTSET)
-        Linfo=$stlsNOTSET
-        printf -v LOG_STR "%-s %-s %-s" "$asctime" "$SHORTLevelName" "$Amessage"
+        LInfo=$stlsNOTSET
+        printf -v LOG_STR "%-s %-s %-s" "$asctime" "$SHORTLevelName" "$AMessage"
         ;;
     $tlsDEBUG)
-        Linfo=$stlsDEBUG
-        printf -v LOG_STR "%-s %-s %-s" "$asctime" "$SHORTLevelName" "$Amessage"
+        LInfo=$stlsDEBUG
+        printf -v LOG_STR "%-s %-s %-s" "$asctime" "$SHORTLevelName" "$AMessage"
         ;;
     $tlsINFO)
-        Linfo=$stlsINFO
-        printf -v LOG_STR "%-s %-s %-s" "$asctime" "$SHORTLevelName" "$Amessage"
+        LInfo=$stlsINFO
+        printf -v LOG_STR "%-s %-s %-s" "$asctime" "$SHORTLevelName" "$AMessage"
         ;;
     $tlsWARNING)
-        Linfo=$stlsWARNING
-        printf -v LOG_STR "%-s %-s %-s" "$asctime" "$SHORTLevelName" "$Amessage"
+        LInfo=$stlsWARNING
+        printf -v LOG_STR "%-s %-s %-s" "$asctime" "$SHORTLevelName" "$AMessage"
         ;;
     $tlsERROR)
-        Linfo=$stlsERROR
-        printf -v LOG_STR "%-s %-s %-s" "$asctime" "$SHORTLevelName" "$Amessage"
+        LInfo=$stlsERROR
+        printf -v LOG_STR "%-s %-s %-s" "$asctime" "$SHORTLevelName" "$AMessage"
         ;;
     $tlsCRITICAL)
-        Linfo=$stlsCRITICAL
-        printf -v LOG_STR "%-s %-s %-s" "$asctime" "$SHORTLevelName" "$Amessage"
+        LInfo=$stlsCRITICAL
+        printf -v LOG_STR "%-s %-s %-s" "$asctime" "$SHORTLevelName" "$AMessage"
         ;;
     $tlsDEBUGTEXT)
-        Linfo=$stlsDEBUGTEXT
-        printf -v LOG_STR "%-s %-s" "$SHORTLevelName" "$Amessage"
+        LInfo=$stlsDEBUGTEXT
+        printf -v LOG_STR "%-s %-s" "$SHORTLevelName" "$AMessage"
         ;;
     $tlsBEGIN)
-        Linfo=$stlsBEGIN
-        printf -v LOG_STR "%-s %-s %-s" "$asctime" "$SHORTLevelName" "$Amessage"
+        LInfo=$stlsBEGIN
+        printf -v LOG_STR "%-s %-s %-s" "$asctime" "$SHORTLevelName" "$AMessage"
         ;;
-    $tlcEND)
-        Linfo=$stlcEND
-        printf -v LOG_STR "%-s %-s %-s" "$asctime" "$SHORTLevelName" "$Amessage"
+    $tlsEND)
+        LInfo=$stlsEND
+        printf -v LOG_STR "%-s %-s %-s" "$asctime" "$SHORTLevelName" "$AMessage"
         ;;
     $tlsPROCESS)
-        Linfo=$stlsPROCESS
-        printf -v LOG_STR "%-s %-s %-s" "$asctime" "$SHORTLevelName" "$Amessage"
+        LInfo=$stlsPROCESS
+        printf -v LOG_STR "%-s %-s %-s" "$asctime" "$SHORTLevelName" "$AMessage"
         ;;
     $tlsTEXT)
-        Linfo=$stlsTEXT
-        printf -v LOG_STR "%-s" "$Amessage"
+        LInfo=$stlsTEXT
+        printf -v LOG_STR "%-s" "$AMessage"
         #echo LOG_STR:$LOG_STR
         ;;
     *)
-        Linfo=''
+        LInfo=''
         ;;
     esac
 
@@ -290,24 +290,24 @@ function AddLog () {
     #------------------------------------------------------
     #
     #------------------------------------------------------
-    Lout=$1
-    Llevel=$2
+    LOut=$1
+    LLevel=$2
 
     shift 2
-    __LOG_STR $Llevel "$*"
+    __LOG_STR $LLevel "$*"
 
     IFS_save="$IFS"
     IFS=$'\r'
 
-    if [ $Lout -eq 0 ] ; then
+    if [ $LOut -eq 0 ] ; then
         #echo LOG_STR:$LOG_STR
         #echo -e $LOG_STR >$(tty)
         echo -e $cBEGIN_OCT$COLORLevel$LOG_STR$sRESET >$(tty)
 
-    elif [ $Lout -eq 1 ] ; then
+    elif [ $LOut -eq 1 ] ; then
         # echo -e "$LOG_STR" >&3
         echo -e $LOG_STR >> "$LOG_FULLFILENAME"
-    elif [ $Lout -eq 2 ] ; then
+    elif [ $LOut -eq 2 ] ; then
         #echo LOG_STR:$LOG_STR
         #echo -e $LOG_STR >$(tty)
         echo -e $cBEGIN_OCT$COLORLevel$LOG_STR$sRESET >$(tty)
@@ -323,7 +323,7 @@ function AddLog () {
         # echo -e $LOG_STR >&3
         # echo -e $LOG_STR | tee -a "$LOG_FULLFILENAME"
     else
-        echo 'ERROR' $Lout
+        echo 'ERROR' $LOut
     fi
 
     IFS="$IFS_save"
@@ -344,12 +344,12 @@ function AddLogFile () {
     #------------------------------------------------------
     #
     #------------------------------------------------------
-    Lout=$1
+    LOut=$1
     LFileName="$2"
     if [ -r "$LFileName" ] ; then
         # чтения файла построчно
         # while IFS= read -r LValue; do
-        #     AddLog $Lout $tlsTEXT "$LValue"
+        #     AddLog $LOut $tlsTEXT "$LValue"
         # done < "$LFileName"
 
         # Использование дескриптора файла
@@ -361,14 +361,14 @@ function AddLogFile () {
         #while IFS= read -r -u9 LValue; do
         while read -r -u9 LValue; do
             #echo LValue:$LValue
-            AddLog $Lout $tlsTEXT "$LValue"
+            AddLog $LOut $tlsTEXT "$LValue"
         done 9< "$LFileName"
         exec 9>&-
 
         IFS="$IFS_save"
 
     else
-        AddLog $Lout $ERROR "$LFileName"
+        AddLog $LOut $ERROR "$LFileName"
     fi
 
     return 0
@@ -403,9 +403,9 @@ function StartLogFile () {
         fi
     fi
     # -------------------------------------------------------------------
-    AddLog $loAll $tlsTEXT $S01
-    AddLog $loAll $tlsINFO Старт: "$SCRIPT_BASEFILENAME"
-    AddLog $loAll $tlsTEXT $S01
+    AddLog $loALL $tlsTEXT $S01
+    AddLog $loALL $tlsINFO Старт: "$SCRIPT_BASEFILENAME"
+    AddLog $loALL $tlsTEXT $S01
     # -------------------------------------------------------------------
 
     return 0
@@ -426,9 +426,9 @@ function StopLogFile () {
     #------------------------------------------------------
     #
     #------------------------------------------------------
-    AddLog $loAll $tlsTEXT $S01
-    AddLog $loAll $tlsINFO Стоп: "$SCRIPT_BASEFILENAME"
-    AddLog $loAll $tlsTEXT $S01
+    AddLog $loALL $tlsTEXT $S01
+    AddLog $loALL $tlsINFO Стоп: "$SCRIPT_BASEFILENAME"
+    AddLog $loALL $tlsTEXT $S01
     # -------------------------------------------------------------------
     exec 3>&-
 
