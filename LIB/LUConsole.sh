@@ -14,14 +14,27 @@
     sRESET=$sBEGIN_oct'0'$sEND          # сброс к начальным значениям
     sRESET_1=$sBEGIN_oct'0;'$sEND       # вернуться к начальному стилю
     sRESET_2=$sBEGIN_oct$sEND
-    sRESET_3='\033[0m'                  #сбросить все до значений по умолчанию.
+    sRESET_3='\033[0m'                  # сбросить все до значений по умолчанию.
 
-    sR='\r'
-    sN='\n'
-    sB='\b'                             # символ возврата
+    sR='\r'                             # BeginLine
+    sN='\n'                             # NewLine
+    sB='\b'                             # Backspace 
 
     sERASE_LINE='\x1b[2K'               # erase line command
-    sCURSOR_UP_ONE='\033[K'
+    sERASE_LINE='\033[2K'               # erase line command
+    sERASE_LINE='\033[0K'               # erase line command
+    sERASE_LINE='\033[K'               # erase line command
+    #sCURSOR_UP_ONE='\033[K'
+
+    #Position the Cursor: \033[<L>;<C>H Or \033[<L>;<C>f puts the cursor at line L and column C.
+    #Move the cursor up N lines: \033[<N>A
+    #Move the cursor down N lines: \033[<N>B
+    #Move the cursor forward N columns: \033[<N>C
+    #Move the cursor backward N columns: \033[<N>D
+    #Clear the screen, move to (0,0): \033[2J
+    #Erase to end of line: \033[K
+    #Save cursor position: \033[s
+    #Restore cursor position: \033[u
 
     #--------------------------------------
     # Изменения стиля (Styles)
@@ -295,8 +308,60 @@ function ClearLine () {
         echo DEBUG: procedure $FUNCNAME ... >$(tty)
     fi
 
-    str="\r"
-    echo -e $str
+    #str="\r"
+    #echo -e $str
+    printf $sR
+    printf $sERASE_LINE
+
+    return 0
+}
+#endfunction
+
+#-------------------------------------------------
+# procedure BeginLine
+#-------------------------------------------------
+function BeginLine () {
+#beginfunction
+    if [[ "$DEBUG" -eq 1 ]] ; then
+        echo DEBUG: procedure $FUNCNAME ... >$(tty)
+    fi
+
+    #str="\r"
+    #echo -e $str
+    printf $sR
+
+    return 0
+}
+#endfunction
+
+#-------------------------------------------------
+# procedure NewLine
+#-------------------------------------------------
+function NewLine () {
+#beginfunction
+    if [[ "$DEBUG" -eq 1 ]] ; then
+        echo DEBUG: procedure $FUNCNAME ... >$(tty)
+    fi
+
+    #str="\n"
+    #echo -e $str
+    printf $sN
+
+    return 0
+}
+#endfunction
+
+#-------------------------------------------------
+# procedure Backspace
+#-------------------------------------------------
+function Backspace () {
+#beginfunction
+    if [[ "$DEBUG" -eq 1 ]] ; then
+        echo DEBUG: procedure $FUNCNAME ... >$(tty)
+    fi
+
+    #echo -e "$sB $sB"
+    printf "$sB $sB"
 
     return 0
 }

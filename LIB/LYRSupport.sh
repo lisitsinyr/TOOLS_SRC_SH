@@ -113,9 +113,9 @@ function Read_P () {
 #endfunction
 
 #--------------------------------------------------------------------------------
-# procedure Read_F (P_Name, P_List, Atimeout)
+# procedure __Read_F (P_Name, P_List, Atimeout)
 #--------------------------------------------------------------------------------
-function Read_F () {
+function __Read_F () {
 #beginfunction
     if [[ "$DEBUG" -eq 1 ]] ; then
         echo DEBUG: procedure $FUNCNAME ... >$(tty)
@@ -154,6 +154,18 @@ function Read_F () {
 
             read -r -N 1 -t $Atimeout -p "$LPN_CAPTION" Input
 
+            while [[ ! $P_List =~ $Input ]] ; do
+                #printf $sR
+                #printf $sERASE_LINE
+                #ClearLine
+                #read -r -N 1 -t $Atimeout -p "$LPN_CAPTION" Input
+
+                #printf "$sB $sB"
+                Backspace
+                read -r -N 1 -t $Atimeout Input
+
+            done
+
         else
             eval ${P_Name}=$P_Value
             return 0
@@ -170,7 +182,84 @@ function Read_F () {
             fi
         fi
 
-        echo -e -n "\n"
+        #echo -e -n "\n"
+        NewLine
+    fi
+
+    return 0
+}
+#endfunction
+
+#--------------------------------------------------------------------------------
+# procedure Read_F (P_Name, P_List, ADefault, ACaption, Atimeout)
+#--------------------------------------------------------------------------------
+function Read_F () {
+#beginfunction
+    if [[ "$DEBUG" -eq 1 ]] ; then
+        echo DEBUG: procedure $FUNCNAME ... >$(tty)
+    fi
+
+    # P_Name     - Имя переменной
+    # P_Value    - Значение переменной
+    # ${!P_Name} - Значение переменной по умолчанию 
+    # P_List     - список создаваемых вариантов
+    # Atimeout   - TIMEOUT
+
+    P_Name=$1
+    echo P_Name:$P_Name
+    P_List=$2
+    echo P_List:$P_List
+    ADefault=$3
+    echo ADefault:$ADefault
+    #if [ -z $ADefault ] ; then
+    #    ADefault=${!P_Name}
+    #fi
+    ACaption=$4
+    echo ACaption:$ACaption
+    if [ -z $ACaption ] ; then
+        ACaption=$PN_CAPTION
+    fi
+    Atimeout=$5
+    Atimeout=$TIMEOUT
+    #echo Atimeout:$Atimeout
+
+    eval ${P_Name}=$ADefault
+    P_Value=
+
+    if [[ ! -z $P_List ]] ; then
+
+        Input=$ADefault             # - Значение переменной по умолчанию 
+
+        if [[ -z $P_Value ]] ; then
+            if [[ ! -z $ACaption ]] ; then
+                LCAPTION="$ACaption[${P_Name}][$P_List][${!P_Name}]:"
+            else
+                LCAPTION="[${P_Name}][$P_List][${!P_Name}]:"
+            fi
+
+            read -r -N 1 -t $Atimeout -p "$LCAPTION" Input
+
+            while [[ ! $P_List =~ $Input ]] ; do
+                Backspace
+                read -r -N 1 -t $Atimeout Input
+            done
+
+        else
+            eval ${P_Name}=$P_Value
+            return 0
+        fi
+        #echo Input:$Input
+
+        if [ -z $Input ] ; then
+            eval ${P_Name}=${!P_Name}
+        else
+            if [[ $P_List =~ $Input ]]; then
+                eval ${P_Name}=$Input
+            else
+                eval ${P_Name}=${!P_Name}
+            fi
+        fi
+        NewLine
     fi
 
     return 0
