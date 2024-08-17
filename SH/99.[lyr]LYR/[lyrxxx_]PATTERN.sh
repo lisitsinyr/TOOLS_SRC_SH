@@ -178,7 +178,7 @@ function MAIN () {
     AddLog $loAll $tlsCRITICAL CRITICAL
     AddLog $loAll $tlsDEBUGTEXT DEBUGTEXT
     AddLog $loAll $tlsBEGIN BEGIN
-    AddLog $loAll $tlsEND END
+    AddLog $loAll $tlcEND END
     AddLog $loAll $tlsPROCESS PROCESS
     AddLog $loAll $tlsTEXT TEXT
     

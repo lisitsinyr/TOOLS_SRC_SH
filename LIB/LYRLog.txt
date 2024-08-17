@@ -23,7 +23,7 @@ procedure __SETVarLog ()
     ctlsERROR=E
     ctlsCRITICAL=C
     ctlsBEGIN="<"
-    ctlsEND=">"
+    ctlcEND=">"
     ctlsPROCESS=P
     ctlsDEBUGTEXT=T
     ctlsTEXT=T

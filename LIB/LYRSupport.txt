@@ -9,7 +9,7 @@ procedure Check_P (P_Name, P_Value)
 
 procedure Read_P (P_Name, P_Value)
 
-procedure Read_F (P_Name, P_List, Atimeout)
+procedure Read_F (P_Name, P_List, ATimeout)
 
 function Read_N () -> Read_N
 

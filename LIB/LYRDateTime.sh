@@ -38,7 +38,7 @@ function YYYYMMDDHHMMSS () {
 #endfunction
 
 #--------------------------------------------------------------------------------
-# function DateTime (AFORMAT) -> DateTime
+# function DateTime (AFormat) -> DateTime
 #--------------------------------------------------------------------------------
 function DateTime () {
 #beginfunction
@@ -46,8 +46,8 @@ function DateTime () {
         echo DEBUG: function $FUNCNAME ... >$(tty)
     fi
 
-    AFORMAT="$1"
-    printf "%($AFORMAT)T"
+    AFormat="$1"
+    printf "%($AFormat)T"
 
     return 0
 }

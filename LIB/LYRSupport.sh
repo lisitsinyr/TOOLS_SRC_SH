@@ -43,10 +43,21 @@ function PressAnyKey () {
     # -s hides the user's input
     # -r causes the string to be interpreted "raw" (without considering backslash escapes)
 
-    Atimeout=0
-    if [[ $PRESSANYKEY -eq 1 ]] ; then
-        read -N 1 -s -r -p $'Press any key to continue ...\n'
+    ATimeout=$1
+    #echo ATimeout:$ATimeout
+
+    if [[ -z $PRESSANYKEY ]] ; then
+        if [[ -z $ATimeout ]] ; then
+            read -N 1 -s -r -p $'Press any key to continue ...\n'
+            return 0
+        else
+            ATimeout=$TIMEOUT
+            ATimeout=3
+        fi
+    else
+        ATimeout=$PRESSANYKEY
     fi
+    read -N 1 -s -r -t $ATimeout -p $'Press any key to continue ...\n'
 
     return 0
 }
@@ -113,7 +124,7 @@ function Read_P () {
 #endfunction
 
 #--------------------------------------------------------------------------------
-# procedure __Read_F (P_Name, P_List, Atimeout)
+# procedure __Read_F (P_Name, P_List, ATimeout)
 #--------------------------------------------------------------------------------
 function __Read_F () {
 #beginfunction
@@ -125,18 +136,18 @@ function __Read_F () {
     # P_Value    - Значение переменной
     # ${!P_Name} - Значение переменной по умолчанию 
     # P_List     - список создаваемых вариантов
-    # Atimeout   - TIMEOUT
+    # ATimeout   - TIMEOUT
 
     P_Name=$1
     #echo P_Name:$P_Name
     P_List=$2
     #echo P_List:$P_List
-    Atimeout=$3
-    #echo Atimeout:$Atimeout
-    if [ -z $Atimeout ] ; then
-        Atimeout=$TIMEOUT
+    ATimeout=$3
+    #echo ATimeout:$ATimeout
+    if [ -z $ATimeout ] ; then
+        ATimeout=$TIMEOUT
     fi
-    #echo Atimeout:$Atimeout
+    #echo ATimeout:$ATimeout
 
     P_Value=
 
@@ -152,17 +163,17 @@ function __Read_F () {
                 LPN_CAPTION="[${P_Name}][$P_List][${!P_Name}]:"
             fi
 
-            read -r -N 1 -t $Atimeout -p "$LPN_CAPTION" Input
+            read -r -N 1 -t $ATimeout -p "$LPN_CAPTION" Input
 
             while [[ ! $P_List =~ $Input ]] ; do
                 #printf $sR
-                #printf $sERASE_LINE
+                #printf $cERASE_LINE
                 #ClearLine
-                #read -r -N 1 -t $Atimeout -p "$LPN_CAPTION" Input
+                #read -r -N 1 -t $ATimeout -p "$LPN_CAPTION" Input
 
                 #printf "$sB $sB"
                 Backspace
-                read -r -N 1 -t $Atimeout Input
+                read -r -N 1 -t $ATimeout Input
 
             done
 
@@ -191,7 +202,7 @@ function __Read_F () {
 #endfunction
 
 #--------------------------------------------------------------------------------
-# procedure Read_F (P_Name, P_List, ADefault, ACaption, Atimeout)
+# procedure Read_F (P_Name, P_List, ADefault, ACaption, ATimeout)
 #--------------------------------------------------------------------------------
 function Read_F () {
 #beginfunction
@@ -200,10 +211,13 @@ function Read_F () {
     fi
 
     # P_Name     - Имя переменной
+    # P_List     - список создаваемых вариантов
+    # ADefault   - Значение по умолчанию
+    # ACaption   - CAPTION
+    # ATimeout   - TIMEOUT
+
     # P_Value    - Значение переменной
     # ${!P_Name} - Значение переменной по умолчанию 
-    # P_List     - список создаваемых вариантов
-    # Atimeout   - TIMEOUT
 
     P_Name=$1
     echo P_Name:$P_Name
@@ -215,13 +229,13 @@ function Read_F () {
     #    ADefault=${!P_Name}
     #fi
     ACaption=$4
-    echo ACaption:$ACaption
     if [ -z $ACaption ] ; then
         ACaption=$PN_CAPTION
     fi
-    Atimeout=$5
-    Atimeout=$TIMEOUT
-    #echo Atimeout:$Atimeout
+    echo ACaption:$ACaption
+    ATimeout=$5
+    ATimeout=$TIMEOUT
+    #echo ATimeout:$ATimeout
 
     eval ${P_Name}=$ADefault
     P_Value=
@@ -237,11 +251,11 @@ function Read_F () {
                 LCAPTION="[${P_Name}][$P_List][${!P_Name}]:"
             fi
 
-            read -r -N 1 -t $Atimeout -p "$LCAPTION" Input
+            read -r -N 1 -t $ATimeout -p "$LCAPTION" Input
 
             while [[ ! $P_List =~ $Input ]] ; do
                 Backspace
-                read -r -N 1 -t $Atimeout Input
+                read -r -N 1 -t $ATimeout Input
             done
 
         else

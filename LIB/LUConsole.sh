@@ -6,24 +6,24 @@
 #------------------------------------------
 # CONST
 #------------------------------------------
-    sBEGIN_hex='\x1b['
-    sBEGIN_Unicode='\u001b'
-    sBEGIN_oct='\033['
-    sBEGIN=$sBEGIN_hex
-    sEND='m'
-    sRESET=$sBEGIN_oct'0'$sEND          # сброс к начальным значениям
-    sRESET_1=$sBEGIN_oct'0;'$sEND       # вернуться к начальному стилю
-    sRESET_2=$sBEGIN_oct$sEND
-    sRESET_3='\033[0m'                  # сбросить все до значений по умолчанию.
+    cBEGIN_HEX='\x1b['
+    cBEGIN_UNICODE='\u001b'
+    cBEGIN_OCT='\033['
+    sBEGIN=$cBEGIN_HEX
+    cEND='m'
+    sRESET=$cBEGIN_OCT'0'$cEND          # сброс к начальным значениям
+    sRESET_1=$cBEGIN_OCT'0;'$cEND       # вернуться к начальному стилю
+    sRESET_2=$cBEGIN_OCT$cEND
+    cRESET_3='\033[0m'                  # сбросить все до значений по умолчанию.
 
     sR='\r'                             # BeginLine
     sN='\n'                             # NewLine
     sB='\b'                             # Backspace 
 
-    sERASE_LINE='\x1b[2K'               # erase line command
-    sERASE_LINE='\033[2K'               # erase line command
-    sERASE_LINE='\033[0K'               # erase line command
-    sERASE_LINE='\033[K'               # erase line command
+    cERASE_LINE='\x1b[2K'               # erase line command
+    cERASE_LINE='\033[2K'               # erase line command
+    cERASE_LINE='\033[0K'               # erase line command
+    cERASE_LINE='\033[K'               # erase line command
     #sCURSOR_UP_ONE='\033[K'
 
     #Position the Cursor: \033[<L>;<C>H Or \033[<L>;<C>f puts the cursor at line L and column C.
@@ -125,18 +125,18 @@
     #--------------------------------------
     # Изменения цвета шрифта
     #--------------------------------------
-    sFG256_BEGIN='38;05;'
+    cFG256_BEGIN='38;05;'
     #--------------------------------------
     # Изменения цвета фона
     #--------------------------------------
-    sBG256_BEGIN='48;05;'
+    cBG256_BEGIN='48;05;'
     #--------------------------------------
     #--------------------------------------
     # Избранные цвета 256
     #--------------------------------------
-    sFG256_01='38;05;'+'15'
-    sBG256_01='48;05;'+'21'
-    sColor256_01=$sBEGIN_oct$cS_BOLD';'$sFG256_01';'$sBG256_01$sEND
+    cFG256_01='38;05;'+'15'
+    cBG256_01='48;05;'+'21'
+    cColor256_01=$cBEGIN_OCT$cS_BOLD';'$cFG256_01';'$cBG256_01$cEND
 
 # =================================================
 # ФУНКЦИИ
@@ -219,23 +219,23 @@ function FormatColorStr () {
         if [[ -z "$AFG8" ]] && [[ -z "$ABG8" ]] ; then
             if [[ ! -z "$AFG256" ]] ; then
                 if [[ ! -z $AStyles ]] ; then
-                    LResult=$LResult';'$sFG256_BEGIN$AFG256
+                    LResult=$LResult';'$cFG256_BEGIN$AFG256
                 else
-                    LResult=$LResult$sFG256_BEGIN$AFG256
+                    LResult=$LResult$cFG256_BEGIN$AFG256
                 fi
             fi
             # --------------------------------------------
             if [[ ! -z $ABG256 ]] ; then
                 if [[ ! -z $AStyles ]] > 0 || [[ ! -z $AFG256 ]] ; then
-                    LResult=$LResult';'$sBG256_BEGIN$ABG256
+                    LResult=$LResult';'$cBG256_BEGIN$ABG256
                 else
-                    LResult=$LResult$sBG256_BEGIN$ABG256
+                    LResult=$LResult$cBG256_BEGIN$ABG256
                 fi
             fi
         fi
         # --------------------------------------------
         if [[ ! -z $LResult ]] ; then
-            LResult=$LResult$sEND$As$sRESET
+            LResult=$LResult$cEND$As$sRESET
         else
             LResult=$As
         fi
@@ -311,7 +311,7 @@ function ClearLine () {
     #str="\r"
     #echo -e $str
     printf $sR
-    printf $sERASE_LINE
+    printf $cERASE_LINE
 
     return 0
 }

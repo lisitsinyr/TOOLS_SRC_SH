@@ -60,7 +60,7 @@ function __SETVarLog () {
     tlsCRITICAL=5
     tlsDEBUGTEXT=11
     tlsBEGIN=21
-    tlsEND=22
+    tlcEND=22
     tlsPROCESS=23
     tlsTEXT=24
     # --------------------------------
@@ -72,7 +72,7 @@ function __SETVarLog () {
     stlsCRITICAL='CRITICAL'
     stlsDEBUGTEXT='DEBUGTEXT'
     stlsBEGIN='BEGIN'
-    stlsEND='END'
+    stlcEND='END'
     stlsPROCESS='PROCESS'
     stlsTEXT='TEXT'
     
@@ -84,7 +84,7 @@ function __SETVarLog () {
     ctlsERROR='E'
     ctlsCRITICAL='C'
     ctlsBEGIN='<'
-    ctlsEND='>'
+    ctlcEND='>'
     ctlsPROCESS='P'
     ctlsDEBUGTEXT='T'
     ctlsTEXT='T'
@@ -131,8 +131,8 @@ function __SHORTLevelName () {
     if [ $Alevel = $tlsBEGIN ] ; then
         SHORTLevelName=$ctlsBEGIN
     fi
-    if [ $Alevel = $tlsEND ] ; then
-        SHORTLevelName=$ctlsEND
+    if [ $Alevel = $tlcEND ] ; then
+        SHORTLevelName=$ctlcEND
     fi
     if [ $Alevel = $tlsPROCESS ] ; then
         SHORTLevelName=$ctlsPROCESS
@@ -159,37 +159,37 @@ function __COLORLevel () {
 
     COLORLevel=''
     if [ $Alevel = $tlsNOTSET ] ; then
-        COLORLevel=$cFG8_BLUE$sEND
+        COLORLevel=$cFG8_BLUE$cEND
     fi
     if [ $Alevel = $tlsDEBUG ] ; then
-        COLORLevel=$cFG8_BLUE$sEND
+        COLORLevel=$cFG8_BLUE$cEND
     fi
     if [ $Alevel = $tlsINFO ] ; then
-        COLORLevel=$cFG8_WHITE$sEND
+        COLORLevel=$cFG8_WHITE$cEND
     fi
     if [ $Alevel = $tlsWARNING ] ; then
-        COLORLevel=$cS_BOLD';'$cFG8_YELLOW$sEND
+        COLORLevel=$cS_BOLD';'$cFG8_YELLOW$cEND
     fi
     if [ $Alevel = $tlsERROR ] ; then
-        COLORLevel=$cS_BOLD';'$cFG8_RED$sEND
+        COLORLevel=$cS_BOLD';'$cFG8_RED$cEND
     fi
     if [ $Alevel = $tlsCRITICAL ] ; then
-        COLORLevel=$cS_BOLD+';'$cFG8_BLACK';'$cBG8_RED$sEND
+        COLORLevel=$cS_BOLD+';'$cFG8_BLACK';'$cBG8_RED$cEND
     fi
     if [ $Alevel = $tlsDEBUGTEXT ] ; then
-        COLORLevel=$cS_BOLD';'$cFG8_BLUE$sEND
+        COLORLevel=$cS_BOLD';'$cFG8_BLUE$cEND
     fi
     if [ $Alevel = $tlsBEGIN ] ; then
-        COLORLevel=$cS_BOLD';'$cFG8_GREEN$sEND
+        COLORLevel=$cS_BOLD';'$cFG8_GREEN$cEND
     fi
-    if [ $Alevel = $tlsEND ] ; then
-        COLORLevel=$cS_BOLD';'$cFG8_GREEN$sEND
+    if [ $Alevel = $tlcEND ] ; then
+        COLORLevel=$cS_BOLD';'$cFG8_GREEN$cEND
     fi
     if [ $Alevel = $tlsPROCESS ] ; then
-        COLORLevel=$cS_BOLD';'$cFG8_GREEN$sEND
+        COLORLevel=$cS_BOLD';'$cFG8_GREEN$cEND
     fi
     if [ $Alevel = $tlsTEXT ] ; then
-        COLORLevel=$cS_BOLD+';'$cFG8_YELLOW$sEND
+        COLORLevel=$cS_BOLD+';'$cFG8_YELLOW$cEND
     fi
 
     return 0
@@ -256,8 +256,8 @@ function __LOG_STR () {
         Linfo=$stlsBEGIN
         printf -v LOG_STR "%-s %-s %-s" "$asctime" "$SHORTLevelName" "$Amessage"
         ;;
-    $tlsEND)
-        Linfo=$stlsEND
+    $tlcEND)
+        Linfo=$stlcEND
         printf -v LOG_STR "%-s %-s %-s" "$asctime" "$SHORTLevelName" "$Amessage"
         ;;
     $tlsPROCESS)
@@ -302,7 +302,7 @@ function AddLog () {
     if [ $Lout -eq 0 ] ; then
         #echo LOG_STR:$LOG_STR
         #echo -e $LOG_STR >$(tty)
-        echo -e $sBEGIN_oct$COLORLevel$LOG_STR$sRESET >$(tty)
+        echo -e $cBEGIN_OCT$COLORLevel$LOG_STR$sRESET >$(tty)
 
     elif [ $Lout -eq 1 ] ; then
         # echo -e "$LOG_STR" >&3
@@ -310,11 +310,11 @@ function AddLog () {
     elif [ $Lout -eq 2 ] ; then
         #echo LOG_STR:$LOG_STR
         #echo -e $LOG_STR >$(tty)
-        echo -e $sBEGIN_oct$COLORLevel$LOG_STR$sRESET >$(tty)
+        echo -e $cBEGIN_OCT$COLORLevel$LOG_STR$sRESET >$(tty)
 
 #LCOLOR = COLORS_tls.get (T)
 #if LCOLOR is not None:
-#    LFmt = LUConsole.sBEGIN_oct + LCOLOR + _s + LUConsole.sRESET
+#    LFmt = LUConsole.cBEGIN_OCT + LCOLOR + _s + LUConsole.sRESET
 #else:
 #    LFmt = _s
 #LUConsole.WriteLN (LFmt)
