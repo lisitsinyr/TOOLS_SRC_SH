@@ -19,7 +19,7 @@ function LYRSupport () {
 #endfunction
 
 #--------------------------------------------------------------------------------
-# procedure PressAnyKey ()
+# procedure PressAnyKey (ATimeout)
 #--------------------------------------------------------------------------------
 function PressAnyKey () {
 #beginfunction
@@ -45,18 +45,21 @@ function PressAnyKey () {
 
     ATimeout=$1
     #echo ATimeout:$ATimeout
+    if [[ -z $ATimeout ]] ; then
 
-    if [[ -z $PRESSANYKEYTIMEOUT ]] ; then
-        if [[ -z $ATimeout ]] ; then
-            read -N 1 -s -r -p $'Press any key to continue ...\n'
-            return 0
+        if [[ -z $PRESSANYKEYTIMEOUT ]] ; then
+            if [[ -z $ATimeout ]] ; then
+                read -N 1 -s -r -p $'Press any key to continue ...\n'
+                return 0
+            else
+                ATimeout=$TIMEOUT
+                ATimeout=3
+            fi
         else
-            ATimeout=$TIMEOUT
-            ATimeout=3
+            ATimeout=$PRESSANYKEYTIMEOUT
         fi
-    else
-        ATimeout=$PRESSANYKEYTIMEOUT
     fi
+
     read -N 1 -s -r -t $ATimeout -p $'Press any key to continue ...\n'
 
     return 0
@@ -73,12 +76,12 @@ function Pause () {
     fi
 
     APause=$1
-    #echo Pause:$1
+    #echo APause:$APause
 
-    if [ -z $1 ] ; then
+    if [[ -z $APause ]] ; then
         sleep 0s
     else
-        sleep "$1"
+        sleep "$APause"
     fi
 
     return 0
