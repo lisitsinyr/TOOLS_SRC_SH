@@ -46,7 +46,7 @@ function PressAnyKey () {
     ATimeout=$1
     #echo ATimeout:$ATimeout
 
-    if [[ -z $PRESSANYKEY ]] ; then
+    if [[ -z $PRESSANYKEYTIMEOUT ]] ; then
         if [[ -z $ATimeout ]] ; then
             read -N 1 -s -r -p $'Press any key to continue ...\n'
             return 0
@@ -55,7 +55,7 @@ function PressAnyKey () {
             ATimeout=3
         fi
     else
-        ATimeout=$PRESSANYKEY
+        ATimeout=$PRESSANYKEYTIMEOUT
     fi
     read -N 1 -s -r -t $ATimeout -p $'Press any key to continue ...\n'
 
@@ -220,11 +220,11 @@ function Read_F () {
     # ${!P_Name} - Значение переменной по умолчанию 
 
     P_Name=$1
-    echo P_Name:$P_Name
+    #echo P_Name:$P_Name
     P_List=$2
-    echo P_List:$P_List
+    #echo P_List:$P_List
     ADefault=$3
-    echo ADefault:$ADefault
+    #echo ADefault:$ADefault
     #if [ -z $ADefault ] ; then
     #    ADefault=${!P_Name}
     #fi
