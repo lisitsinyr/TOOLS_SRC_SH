@@ -107,37 +107,37 @@ function __SHORTLevelName () {
 
     SHORTLevelName=''
 
-    if [ $Alevel = $tlsNOTSET ] ; then
+    if [[ $Alevel = $tlsNOTSET ]] ; then
         SHORTLevelName=$ctlsNOTSET
     fi
-    if [ $Alevel = $tlsDEBUG ] ; then
+    if [[ $Alevel = $tlsDEBUG ]] ; then
         SHORTLevelName=$ctlsDEBUG
     fi
-    if [ $Alevel = $tlsINFO ] ; then
+    if [[ $Alevel = $tlsINFO ]] ; then
         SHORTLevelName=$ctlsINFO
     fi
-    if [ $Alevel = $tlsWARNING ] ; then
+    if [[ $Alevel = $tlsWARNING ]] ; then
         SHORTLevelName=$ctlsWARNING
     fi
-    if [ $Alevel = $tlsERROR ] ; then
+    if [[ $Alevel = $tlsERROR ]] ; then
         SHORTLevelName=$ctlsERROR
     fi
-    if [ $Alevel = $tlsCRITICAL ] ; then
+    if [[ $Alevel = $tlsCRITICAL ]] ; then
         SHORTLevelName=$ctlsCRITICAL
     fi
-    if [ $Alevel = $tlsDEBUGTEXT ] ; then
+    if [[ $Alevel = $tlsDEBUGTEXT ]] ; then
         SHORTLevelName=$ctlsDEBUGTEXT
     fi
-    if [ $Alevel = $tlsBEGIN ] ; then
+    if [[ $Alevel = $tlsBEGIN ]] ; then
         SHORTLevelName=$ctlsBEGIN
     fi
-    if [ $Alevel = $tlsEND ] ; then
+    if [[ $Alevel = $tlsEND ]] ; then
         SHORTLevelName=$ctlsEND
     fi
-    if [ $Alevel = $tlsPROCESS ] ; then
+    if [[ $Alevel = $tlsPROCESS ]] ; then
         SHORTLevelName=$ctlsPROCESS
     fi
-    if [ $Alevel = $tlsTEXT ] ; then
+    if [[ $Alevel = $tlsTEXT ]] ; then
         SHORTLevelName=$ctlsTEXT
     fi
 
@@ -158,37 +158,37 @@ function __COLORLevel () {
     #echo Alevel:$Alevel
 
     COLORLevel=''
-    if [ $Alevel = $tlsNOTSET ] ; then
+    if [[ $Alevel = $tlsNOTSET ]] ; then
         COLORLevel=$cFG8_BLUE$cEND
     fi
-    if [ $Alevel = $tlsDEBUG ] ; then
+    if [[ $Alevel = $tlsDEBUG ]] ; then
         COLORLevel=$cFG8_BLUE$cEND
     fi
-    if [ $Alevel = $tlsINFO ] ; then
+    if [[ $Alevel = $tlsINFO ]] ; then
         COLORLevel=$cFG8_WHITE$cEND
     fi
-    if [ $Alevel = $tlsWARNING ] ; then
+    if [[ $Alevel = $tlsWARNING ]] ; then
         COLORLevel=$cS_BOLD';'$cFG8_YELLOW$cEND
     fi
-    if [ $Alevel = $tlsERROR ] ; then
+    if [[ $Alevel = $tlsERROR ]] ; then
         COLORLevel=$cS_BOLD';'$cFG8_RED$cEND
     fi
-    if [ $Alevel = $tlsCRITICAL ] ; then
+    if [[ $Alevel = $tlsCRITICAL ]] ; then
         COLORLevel=$cS_BOLD+';'$cFG8_BLACK';'$cBG8_RED$cEND
     fi
-    if [ $Alevel = $tlsDEBUGTEXT ] ; then
+    if [[ $Alevel = $tlsDEBUGTEXT ]] ; then
         COLORLevel=$cS_BOLD';'$cFG8_BLUE$cEND
     fi
-    if [ $Alevel = $tlsBEGIN ] ; then
+    if [[ $Alevel = $tlsBEGIN ]] ; then
         COLORLevel=$cS_BOLD';'$cFG8_GREEN$cEND
     fi
-    if [ $Alevel = $tlsEND ] ; then
+    if [[ $Alevel = $tlsEND ]] ; then
         COLORLevel=$cS_BOLD';'$cFG8_GREEN$cEND
     fi
-    if [ $Alevel = $tlsPROCESS ] ; then
+    if [[ $Alevel = $tlsPROCESS ]] ; then
         COLORLevel=$cS_BOLD';'$cFG8_GREEN$cEND
     fi
-    if [ $Alevel = $tlsTEXT ] ; then
+    if [[ $Alevel = $tlsTEXT ]] ; then
         COLORLevel=$cS_BOLD+';'$cFG8_YELLOW$cEND
     fi
 
@@ -290,40 +290,46 @@ function AddLog () {
     #------------------------------------------------------
     #
     #------------------------------------------------------
-    LOut=$1
-    LLevel=$2
+    AOut=$1
+    #echo AOut:$AOut
+    ALevel=$2
+    #echo ALevel:$ALevel
 
     shift 2
-    __LOG_STR $LLevel "$*"
+    __LOG_STR $ALevel "$*"
+
 
     IFS_save="$IFS"
     IFS=$'\r'
 
-    if [ $LOut -eq 0 ] ; then
+    if [[ $AOut -eq 0 ]] ; then
         #echo LOG_STR:$LOG_STR
         #echo -e $LOG_STR >$(tty)
         echo -e $cBEGIN_OCT$COLORLevel$LOG_STR$sRESET >$(tty)
-
-    elif [ $LOut -eq 1 ] ; then
+    elif [[ $AOut -eq 1 ]] ; then
         # echo -e "$LOG_STR" >&3
-        echo -e $LOG_STR >> "$LOG_FULLFILENAME"
-    elif [ $LOut -eq 2 ] ; then
+        if [[ ! -z $LOG_FULLFILENAME ]] ; then
+            echo -e $LOG_STR >> "$LOG_FULLFILENAME"
+        fi
+    elif [[ $AOut -eq 2 ]] ; then
         #echo LOG_STR:$LOG_STR
         #echo -e $LOG_STR >$(tty)
         echo -e $cBEGIN_OCT$COLORLevel$LOG_STR$sRESET >$(tty)
 
 #LCOLOR = COLORS_tls.get (T)
 #if LCOLOR is not None:
-#    LFmt = LUConsole.cBEGIN_OCT + LCOLOR + _s + LUConsole.sRESET
+#    LFmt = LYRConsole.cBEGIN_OCT + LCOLOR + _s + LYRConsole.sRESET
 #else:
 #    LFmt = _s
-#LUConsole.WriteLN (LFmt)
+#LYRConsole.WriteLN (LFmt)
 
-        echo -e $LOG_STR >> "$LOG_FULLFILENAME"
+        if [[ ! -z $LOG_FULLFILENAME ]] ; then
+            echo -e $LOG_STR >> "$LOG_FULLFILENAME"
+        fi
         # echo -e $LOG_STR >&3
         # echo -e $LOG_STR | tee -a "$LOG_FULLFILENAME"
     else
-        echo 'ERROR' $LOut
+        echo 'ERROR:' $AOut
     fi
 
     IFS="$IFS_save"
@@ -346,7 +352,7 @@ function AddLogFile () {
     #------------------------------------------------------
     LOut=$1
     LFileName="$2"
-    if [ -r "$LFileName" ] ; then
+    if [[ -r "$LFileName" ]] ; then
         # чтения файла построчно
         # while IFS= read -r LValue; do
         #     AddLog $LOut $tlsTEXT "$LValue"
@@ -384,7 +390,7 @@ function StartLogFile () {
         echo DEBUG: procedure $FUNCNAME ... >$(tty)
     fi
 
-    __SETVarLog
+    #__SETVarLog
 
     LOG_FILESCRIPT="$SCRIPT_FILENAME"
 
@@ -393,12 +399,12 @@ function StartLogFile () {
     #------------------------------------------------------
     LFileName="$LOG_FULLFILENAME"
     if [[ "$LOG_FILE_ADD" -eq 0 ]] ; then
-        if [ -r "$LFileName" ] ; then
+        if [[ -r "$LFileName" ]] ; then
             rm "$LFileName"
         fi
         touch "$LFileName"
     else
-        if [ ! -r "$LFileName" ] ; then
+        if [[ ! -r "$LFileName" ]] ; then
             touch "$LFileName"
         fi
     fi

@@ -277,7 +277,7 @@ function __SET_LOG () {
     if [ -z "$LOG_DIR" ] ; then
         LOG_DIR="$PROJECTS_LYR_DIR/LOGS"
     fi
-    echo LOG_DIR: $LOG_DIR
+    #echo LOG_DIR: $LOG_DIR
     if [[ ! -d "$LOG_DIR" ]] ; then
         echo INFO: Dir "$LOG_DIR" not exist...
         #echo INFO: Каталог "$LOG_DIR" не существует...
@@ -311,7 +311,7 @@ function __SET_LOG () {
             LOG_FILENAME="$DATETIME_STAMP"_"$LOG_FILENAME"
         fi
     fi
-    echo LOG_FILENAME: $LOG_FILENAME
+    #echo LOG_FILENAME: $LOG_FILENAME
 
     # -------------------------------------------------------------------
     # LOG_FULLFILENAME - Файл журнала [каталог+имя+расширение]
@@ -322,8 +322,7 @@ function __SET_LOG () {
         LOG_FULLFILENAME="$LOG_DIR"/"$REPO_NAME"_"$LOG_FILENAME.log"
         LOG_FULLFILENAME="$LOG_DIR"/"$LOG_FILENAME.log"
     fi
-    echo LOG_FULLFILENAME: "$LOG_FULLFILENAME"
-
+    #echo LOG_FULLFILENAME: "$LOG_FULLFILENAME"
 
     return 0
 }
@@ -346,7 +345,7 @@ function SET_LIB () {
     #LSCRIPT=$Lpath
 
     LSCRIPT=$(PathWin2PathUnix "$1")
-    echo LSCRIPT:$LSCRIPT
+    #echo LSCRIPT:$LSCRIPT
 
     #LSCRIPT=$(cygpath "$1")
     #echo LSCRIPT:$LSCRIPT
@@ -355,6 +354,7 @@ function SET_LIB () {
     __SET_VAR_DEFAULT
     __SET_VAR_PROJECTS
     __SET_LOG
+    __SETVarLog
 
     return 0
 }

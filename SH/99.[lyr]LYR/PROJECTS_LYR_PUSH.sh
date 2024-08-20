@@ -17,7 +17,7 @@ function MAIN_INIT () {
     # SCRIPTS_DIR - каталог скриптов
     # -------------------------------------------------------------------
     UNAME=$(uname -n)
-    echo UNAME:$UNAME
+    #echo UNAME:$UNAME
     case "$UNAME" in
         'ASUS-W10P')
             PROJECTS_LYR_ROOT=/d
@@ -36,16 +36,16 @@ function MAIN_INIT () {
             exit 1
             ;;
     esac
-    echo PROJECTS_LYR_ROOT:$PROJECTS_LYR_ROOT
-    echo PROJECTS_LYR_DIR:$PROJECTS_LYR_DIR
-    echo SCRIPTS_DIR:$SCRIPTS_DIR
+    #echo PROJECTS_LYR_ROOT:$PROJECTS_LYR_ROOT
+    #echo PROJECTS_LYR_DIR:$PROJECTS_LYR_DIR
+    #echo SCRIPTS_DIR:$SCRIPTS_DIR
 
     # -------------------------------------------------------------------
     # LIB_SH - каталог библиотеки скриптов
     # -------------------------------------------------------------------
     if [[ -z "$LIB_SH" ]] ; then
         LIB_SH="$SCRIPTS_DIR/LIB"
-        echo LIB_SH: $LIB_SH
+        #echo LIB_SH:$LIB_SH
     fi
     if [[ ! -d "$LIB_SH" ]] ; then
         echo ERROR: Каталог библиотеки LYR $LIB_SH не существует...
@@ -55,16 +55,16 @@ function MAIN_INIT () {
     # -------------------------------------------------------------------
     # запуск скриптов БИБЛИОТЕКИ LYR
     # -------------------------------------------------------------------
-    source "$LIB_SH/LYRFileUtils.sh"
-    source "$LIB_SH/LYRConst.sh"
-    source "$LIB_SH/LYRLog.sh"
-    source "$LIB_SH/LYRConst.sh"
-    source "$LIB_SH/LYRDateTime.sh"
-    source "$LIB_SH/LYRSupport.sh"
-    source "$LIB_SH/LYRParserINI.sh"
-    source "$LIB_SH/LUConsole.sh"
-
-    #PressAnyKey
+    #source "$LIB_SH/LYRConst.sh"
+    #source "$LIB_SH/LYRFileUtils.sh"
+    #source "$LIB_SH/LYRLog.sh"
+    #source "$LIB_SH/LYRConst.sh"
+    #source "$LIB_SH/LYRDateTime.sh"
+    #source "$LIB_SH/LYRSupport.sh"
+    #source "$LIB_SH/LYRParserINI.sh"
+    #source "$LIB_SH/LYRConsole.sh"
+    source "$LIB_SH/LYRINIT.sh" "$0"
+    SET_LIB "$0"
 
     return 0
 }
@@ -129,7 +129,7 @@ function MAIN_CHECK_PARAMETR () {
     O1=O1_default
     PN_CAPTION=O1
     Read_P O1 O1
-    echo O1:$O1
+    #echo O1:$O1
     #AddLog $loALL $tlsTEXT O1:$O1
     #AddLog $loALL $tlsINFO O1:$O1
     if [[ ! -z "$O1" ]] ; then
@@ -145,7 +145,7 @@ function MAIN_CHECK_PARAMETR () {
     A1=
     PN_CAPTION=A1
     Read_P A1 A1
-    echo A1:$A1
+    #echo A1:$A1
     #AddLog $loALL $tlsTEXT A1:$A1
     #AddLog $loALL $tlsINFO A1:$A1
     if [[ ! -z "$A1" ]] ; then
@@ -171,7 +171,7 @@ function git_pull () {
     LOG_FILE_ADD=1
 
     ADirectory=$1
-    echo ADirectory:$ADirectory
+    #echo ADirectory:$ADirectory
     cd "$ADirectory"/
 
     echo -------------------------------
