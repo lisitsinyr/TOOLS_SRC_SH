@@ -23,7 +23,7 @@
     cERASE_LINE='\x1b[2K'               # erase line command
     cERASE_LINE='\033[2K'               # erase line command
     cERASE_LINE='\033[0K'               # erase line command
-    cERASE_LINE='\033[K'               # erase line command
+    cERASE_LINE='\033[K'                # erase line command
     #sCURSOR_UP_ONE='\033[K'
 
     #Position the Cursor: \033[<L>;<C>H Or \033[<L>;<C>f puts the cursor at line L and column C.
@@ -35,6 +35,8 @@
     #Erase to end of line: \033[K
     #Save cursor position: \033[s
     #Restore cursor position: \033[u
+    cUP_LINE='\033[A'                  # Move the cursor up N lines
+
 
     #--------------------------------------
     # Изменения стиля (Styles)

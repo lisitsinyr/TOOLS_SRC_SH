@@ -46,21 +46,18 @@ function PressAnyKey () {
     ATimeout=$1
     #echo ATimeout:$ATimeout
     if [[ -z $ATimeout ]] ; then
-
         if [[ -z $PRESSANYKEYTIMEOUT ]] ; then
-            if [[ -z $ATimeout ]] ; then
-                read -N 1 -s -r -p $'Press any key to continue ...\n'
-                return 0
-            else
-                ATimeout=$TIMEOUT
-                ATimeout=3
-            fi
+            #ATimeout=$TIMEOUT
+            read -N 1 -s -r -p $'Press any key to continue...\n'
+            return 0
         else
             ATimeout=$PRESSANYKEYTIMEOUT
         fi
     fi
 
-    read -N 1 -s -r -t $ATimeout -p $'Press any key to continue ...\n'
+    #read -N 1 -s -r -t $ATimeout -p $'Press any key to continue...\n'
+    read -N 1 -s -r -t $ATimeout -p $"Press any key to continue[$ATimeout]"
+    WriteLN
 
     return 0
 }
@@ -169,6 +166,9 @@ function __Read_F () {
             read -r -N 1 -t $ATimeout -p "$LPN_CAPTION" Input
 
             while [[ ! $P_List =~ $Input ]] ; do
+                #if [[ $Input = '\r' ]] ; then
+                #    echo 'test'
+                #fi
                 #printf $sR
                 #printf $cERASE_LINE
                 #ClearLine
@@ -235,7 +235,7 @@ function Read_F () {
     if [ -z $ACaption ] ; then
         ACaption=$PN_CAPTION
     fi
-    echo ACaption:$ACaption
+    #echo ACaption:$ACaption
     ATimeout=$5
     ATimeout=$TIMEOUT
     #echo ATimeout:$ATimeout
