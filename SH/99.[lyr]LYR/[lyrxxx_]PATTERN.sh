@@ -49,10 +49,10 @@ function INIT_PROJECT () {
         #-------------------------------------------------------------------
         PROJECT='TOOLS_SRC_SH'
         PROJECTS_DIR="$PROJECTS_LYR_DIR"/'CHECK_LIST/01_OS/03_UNIX/PROJECTS_UNIX'
-        PROJECT_DIR="$PROJECTS_DIR"/'TOOLS_SRC_SH'
-        LPROJECTSET="$PROJECT_DIR"/'PATTERN_SET.sh'
-
+        PROJECT_DIR="$PROJECTS_DIR"/$PROJECT
+        LPROJECTSET="$PROJECT_DIR"/$PROJECT'_SET.sh'
         if [[ -r "$LPROJECTSET" ]] ; then
+            echo INFO: Загрузка $LPROJECTSET ...
             source "$LPROJECTSET"
         else
             echo INFO: Файл $LPROJECTSET не существует...
@@ -78,22 +78,21 @@ function INIT_LIB () {
         # SCRIPTS_DIR - каталог скриптов
         # -------------------------------------------------------------------
         SCRIPTS_DIR="$PROJECTS_LYR_DIR"'/CHECK_LIST/01_OS/03_UNIX/PROJECTS_UNIX/TOOLS_SRC_SH'
-        echo SCRIPTS_DIR:$SCRIPTS_DIR
         # -------------------------------------------------------------------
         # LIB_SH - каталог библиотеки скриптов
         # -------------------------------------------------------------------
         if [[ -z "$LIB_SH" ]] ; then
             LIB_SH="$SCRIPTS_DIR/LIB"
-            echo LIB_SH:$LIB_SH
         fi
         if [[ ! -d "$LIB_SH" ]] ; then
             echo ERROR: Каталог библиотеки LYR $LIB_SH не существует...
-            exit 1
+        else
+            # -------------------------------------------------------------------
+            # Инициализация БИБЛИОТЕКИ LYR
+            # -------------------------------------------------------------------
+            echo INFO: Инициализация БИБЛИОТЕКИ LYR $LIB_SH ...
+            source "$LIB_SH/LYRINIT.sh" "$1"
         fi
-        # -------------------------------------------------------------------
-        # Инициализация БИБЛИОТЕКИ LYR
-        # -------------------------------------------------------------------
-        source "$LIB_SH/LYRINIT.sh" "$1"
     fi
 
     return 0
