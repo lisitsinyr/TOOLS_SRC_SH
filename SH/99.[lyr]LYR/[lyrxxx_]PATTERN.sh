@@ -4,9 +4,9 @@
 # -----------------------------------------------
 
 # -----------------------------------------------
-# procedure MAIN_INIT ()
+# procedure INIT_LIB (SCRIPT)
 # -----------------------------------------------
-function MAIN_INIT () {
+function INIT_LIB () {
 #beginfunction
     #echo DEBUG: $DEBUG
     if [[ "$DEBUG" -eq 1 ]] ; then
@@ -17,23 +17,21 @@ function MAIN_INIT () {
     # SCRIPTS_DIR - каталог скриптов
     # -------------------------------------------------------------------
     UNAME=$(uname -n)
-    #echo UNAME:$UNAME
     case "$UNAME" in
         'ASUS-W10P')
             PROJECTS_LYR_DIR='/d/PROJECTS_LYR'
             SCRIPTS_DIR='/d/PROJECTS_LYR/CHECK_LIST/01_OS/03_UNIX/PROJECTS_UNIX/TOOLS_SRC_SH'
             ;;
         'ASUS-U2204-VB' | 'ASUS-U2204-VM' | 'ASUS-U2404-VB' | 'ASUS-U2404-VM' | 'ASUS-U2310')
-            PROJECTS_LYR_ROOT=/home/lyr
-            PROJECTS_LYR_DIR=$PROJECTS_LYR_ROOT/PROJECTS_LYR
-            SCRIPTS_DIR=$PROJECTS_LYR_DIR/CHECK_LIST/01_OS/03_UNIX/PROJECTS_UNIX/TOOLS_SRC_SH
+            PROJECTS_LYR_DIR='/home/lyr/PROJECTS_LYR'
+            SCRIPTS_DIR='/home/lyr/PROJECTS_LYR/CHECK_LIST/01_OS/03_UNIX/PROJECTS_UNIX/TOOLS_SRC_SH'
         ;;
         *)
             echo "ERROR: Компьютер не определен...!"
             exit 1
             ;;
     esac
-    #echo PROJECTS_LYR_DIR:$PROJECTS_LYR_DIR
+    echo PROJECTS_LYR_DIR:$PROJECTS_LYR_DIR
     #echo SCRIPTS_DIR:$SCRIPTS_DIR
 
     # -------------------------------------------------------------------
@@ -41,7 +39,7 @@ function MAIN_INIT () {
     # -------------------------------------------------------------------
     if [[ -z "$LIB_SH" ]] ; then
         LIB_SH="$SCRIPTS_DIR/LIB"
-        #echo LIB_SH: $LIB_SH
+        #echo LIB_SH:$LIB_SH
     fi
     if [[ ! -d "$LIB_SH" ]] ; then
         echo ERROR: Каталог библиотеки LYR $LIB_SH не существует...
@@ -49,19 +47,30 @@ function MAIN_INIT () {
     fi
 
     # -------------------------------------------------------------------
-    # запуск скриптов БИБЛИОТЕКИ LYR
+    # Инициализация БИБЛИОТЕКИ LYR
     # -------------------------------------------------------------------
-    #source "$LIB_SH/LYRConst.sh"
-    #source "$LIB_SH/LYRFileUtils.sh"
-    #source "$LIB_SH/LYRLog.sh"
-    #source "$LIB_SH/LYRConst.sh"
-    #source "$LIB_SH/LYRDateTime.sh"
-    #source "$LIB_SH/LYRSupport.sh"
-    #source "$LIB_SH/LYRParserINI.sh"
-    #source "$LIB_SH/LYRConsole.sh"
-    source "$LIB_SH/LYRINIT.sh" "$0"
-    SET_LIB "$0"
+    source "$LIB_SH"/'LYRINIT.sh' "$1"
 
+    return 0
+}
+#endfunction
+
+# -----------------------------------------------
+# procedure INIT_PROJECT ()
+# -----------------------------------------------
+function INIT_PROJECT () {
+#beginfunction
+    if [[ "$DEBUG" -eq 1 ]] ; then
+        echo DEBUG: procedure $FUNCNAME ... >$(tty)
+    fi
+
+    #-------------------------------------------------------------------
+    # Инициализация проекта PATTERN
+    #-------------------------------------------------------------------
+    PROJECT='TOOLS_SRC_SH'
+    PROJECTS_DIR="$PROJECTS_LYR_DIR"/'CHECK_LIST/01_OS/03_UNIX/PROJECTS_UNIX'
+    PROJECT_DIR="$PROJECTS_DIR"/'TOOLS_SRC_SH'
+    source "$PROJECT_DIR"/'MAIN_SET.sh'
     return 0
 }
 #endfunction
@@ -132,11 +141,6 @@ function MAIN_FUNC () {
     AddLog $loALL $tlsTEXT '--------------------------------------'
     AddLog $loALL $tlsTEXT 'MAIN_FUNC ...'
     AddLog $loALL $tlsTEXT '--------------------------------------'
-    # -------------------------------------------------------------------
-    # запуск скриптов
-    # -------------------------------------------------------------------
-    #source "$PROJECTS_DIR"/"TOOLS_SH/LIB/[lyrxxx_]PATTERN_FUNCTION.sh"
-    #FUNC_01
 
     return 0
 }
@@ -156,34 +160,34 @@ function MAIN () {
 
     DEBUG=0
 
-    # -------------------------------------------------------------------
-    # SCRIPTS_DIR - Каталог скриптов
-    # LIB_BAT - каталог библиотеки скриптов
-    # SCRIPTS_DIR_KIX - Каталог скриптов KIX
-    # -------------------------------------------------------------------
-    MAIN_INIT
-
+    #-------------------------------------------------------------------
+    #
+    #-------------------------------------------------------------------
+    INIT_LIB "$0"
+    INIT_PROJECT
     # Количество аргументов
     Read_N
-    #echo Read_N:$Read_N
 
-    SET_LIB "$0"
-    #echo CURRENT_DIR:$CURRENT_DIR
-    #echo SCRIPT_FULLFILENAME:$SCRIPT_FULLFILENAME
+    __SHOW_VAR_SCRIPT
+    #__SHOW_VAR_DEFAULT
+    __SHOW_VAR_PROJECTS
+    __SHOW_LOG
 
     StartLogFile
 
-    AddLog $loALL $tlsNOTSET NOTSET
-    AddLog $loALL $tlsDEBUG DEBUG
-    AddLog $loALL $tlsINFO INFO
-    AddLog $loALL $tlsWARNING WARNING
-    AddLog $loALL $tlsERROR ERROR
-    AddLog $loALL $tlsCRITICAL CRITICAL
-    AddLog $loALL $tlsDEBUGTEXT DEBUGTEXT
-    AddLog $loALL $tlsBEGIN BEGIN
-    AddLog $loALL $tlsEND END
-    AddLog $loALL $tlsPROCESS PROCESS
-    AddLog $loALL $tlsTEXT TEXT
+    PressAnyKey
+
+    #AddLog $loALL $tlsNOTSET NOTSET
+    #AddLog $loALL $tlsDEBUG DEBUG
+    #AddLog $loALL $tlsINFO INFO
+    #AddLog $loALL $tlsWARNING WARNING
+    #AddLog $loALL $tlsERROR ERROR
+    #AddLog $loALL $tlsCRITICAL CRITICAL
+    #AddLog $loALL $tlsDEBUGTEXT DEBUGTEXT
+    #AddLog $loALL $tlsBEGIN BEGIN
+    #AddLog $loALL $tlsEND END
+    #AddLog $loALL $tlsPROCESS PROCESS
+    #AddLog $loALL $tlsTEXT TEXT
     
     OK=yes
     MAIN_SET

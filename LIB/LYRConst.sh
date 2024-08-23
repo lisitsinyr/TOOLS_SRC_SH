@@ -45,40 +45,34 @@ function __SET_VAR_SCRIPT () {
     # -------------------------------------------------------------------
     # SCRIPT_FULLFILENAME - Файл скрипта [каталог+имя+расширение]
     #------------------------------------------------------
-    SCRIPT_FULLFILENAME="$1"
     SCRIPT_FULLFILENAME=$AFULLFILENAME
-    #echo SCRIPT_FULLFILENAME: $SCRIPT_FULLFILENAME
-    
+
     # -------------------------------------------------------------------
     # SCRIPT_BASEFILENAME - Файл скрипта [имя+расширение]
     #------------------------------------------------------
     SCRIPT_BASEFILENAME=$(ExtractFileName "$SCRIPT_FULLFILENAME")
-    #echo SCRIPT_BASEFILENAME: $SCRIPT_BASEFILENAME
 
     # -------------------------------------------------------------------
     # SCRIPT_FILENAME - Файл скрипта [имя]
     #------------------------------------------------------
     SCRIPT_FILENAME=$(ExtractFileNameWithoutExt "$SCRIPT_BASEFILENAME")
-    #echo SCRIPT_FILENAME: $SCRIPT_FILENAME
     
     # -------------------------------------------------------------------
     # SCRIPT_FILEDIR - Файл скрипта: каталог
     #------------------------------------------------------
     SCRIPT_FILEDIR=$(ExtractFileDir "$SCRIPT_FULLFILENAME")
-    #echo SCRIPT_FILEDIR: $SCRIPT_FILEDIR
     
     # -------------------------------------------------------------------
     # SCRIPT_FILEEXT - Файл скрипта: расширение
     # -------------------------------------------------------------------
     SCRIPT_FILEEXT=$(ExtractFileExt "$SCRIPT_BASEFILENAME")
-    #echo SCRIPT_FILEEXT: $SCRIPT_FILEEXT
 
     return 0
 }
 #endfunction
 
 # --------------------------------------------------------------------------------
-# procedure __SET_VAR_DEFAULT (DEBUG)
+# procedure __SET_VAR_DEFAULT ()
 # --------------------------------------------------------------------------------
 function __SET_VAR_DEFAULT () {
 #beginfunction
@@ -91,11 +85,24 @@ function __SET_VAR_DEFAULT () {
     OPTION=
     ARGS=
     APPRUN=
-
-    touchRUN=
     touchRUN=
     SetINIAPP=
     GetINIAPP=
+
+    # -------------------------------------------------------------------
+    # CURRENT_SYSTEM -
+    #------------------------------------------------------
+    CURRENT_SYSTEM=$(uname -a)
+    
+    # -------------------------------------------------------------------
+    # UNAME - COMPUTERNAME
+    #------------------------------------------------------
+    UNAME=$(uname -n)
+    
+    # -------------------------------------------------------------------
+    # USERNAME - USERNAME
+    #------------------------------------------------------
+    USERNAME=$(whoami)
 
     # -------------------------------------------------------------------
     # DATETIME_STAMP - формат имени файла журнала [YYYYMMDDHHMMSS]
@@ -109,40 +116,16 @@ function __SET_VAR_DEFAULT () {
     # SLEEP - Number
     #------------------------------------------------------
     SLEEP=
-    #echo SLEEP: $SLEEP
 
     # -------------------------------------------------------------------
-    # REPO_INI - Файл с параметрами репозитария
-    # -------------------------------------------------------------------
-    REPO_INI=REPO.ini
-    # echo REPO_INI [REPO.ini]: !REPO_INI!
+    # CURRENT_DIR - Текущий каталог
+    #------------------------------------------------------
+    CURRENT_DIR=$(pwd)
 
     # -------------------------------------------------------------------
-    # REPO_NAME - Имя репозитария
+    # TEMP_DIR - Временный каталог
     # -------------------------------------------------------------------
-    REPO_NAME=
-
-    # -------------------------------------------------------------------
-    # PROJECT_INI - Файл с параметрами проекта
-    # -------------------------------------------------------------------
-    PROJECT_INI=PROJECT.ini
-    # echo PROJECT_INI [PROJECT.ini]: !PROJECT_INI!
-
-    # -------------------------------------------------------------------
-    # PROJECT_NAME - Имя проекта
-    # -------------------------------------------------------------------
-    PROJECT_NAME=
-
-    # -------------------------------------------------------------------
-    # POETRY_INI - Файл с параметрами проекта
-    # -------------------------------------------------------------------
-    POETRY_INI=POETRY.ini
-    # echo POETRY_INI [POETRY.ini]: !POETRY_INI!
-
-    # -------------------------------------------------------------------
-    # POETRY_NAME - Имя проекта
-    # -------------------------------------------------------------------
-    POETRY_NAME=
+    TEMP_DIR=
 
     return 0
 }
@@ -160,50 +143,57 @@ function __SET_VAR_PROJECTS () {
     # -------------------------------------------------------------------
     # PROJECTS_LYR_DIR -
     #------------------------------------------------------
-    #PROJECTS_LYR_DIR='/d/PROJECTS_LYR'
-    #echo PROJECTS_LYR_DIR:$PROJECTS_LYR_DIR
+    #PROJECTS_LYR_DIR='...'
+
+    # -------------------------------------------------------------------
+    # SCRIPTS_DIR - каталог скриптов
+    #------------------------------------------------------
+    #SCRIPTS_DIR='...'
+
+    # -------------------------------------------------------------------
+    # LIB_SH - каталог библиотекм LYR
+    #------------------------------------------------------
+    #LIB_SH='...'
+
+    # -------------------------------------------------------------------
+    # PROJECT_DIR -
+    #------------------------------------------------------
+    PROJECTS_DIR='...'
 
     # -------------------------------------------------------------------
     # PROJECT - проект
     #------------------------------------------------------
-    PROJECT=
-    #echo PROJECT: $PROJECT
+    PROJECT='...'
     
     # -------------------------------------------------------------------
-    # PROJECT_DIR -
-    #------------------------------------------------------
-    PROJECTS_DIR=
-    #echo PROJECT_DIR: $PROJECT_DIR
-    
+    # REPO_INI - Файл с параметрами репозитария
     # -------------------------------------------------------------------
-    # CURRENT_SYSTEM -
-    #------------------------------------------------------
-    CURRENT_SYSTEM=$(uname -a)
-    #echo CURRENT_SYSTEM: $CURRENT_SYSTEM
-    
-    # -------------------------------------------------------------------
-    # UNAME - COMPUTERNAME
-    #------------------------------------------------------
-    UNAME=$(uname -n)
-    #echo UNAME: $UNAME
-    
-    # -------------------------------------------------------------------
-    # USERNAME - USERNAME
-    #------------------------------------------------------
-    USERNAME=$(whoami)
-    #echo USERNAME: $USERNAME
+    REPO_INI=REPO.ini
 
     # -------------------------------------------------------------------
-    # CURRENT_DIR - Текущий каталог
-    #------------------------------------------------------
-    CURRENT_DIR=$(pwd)
-    #echo CURRENT_DIR: CURRENT_DIR
+    # REPO_NAME - Имя репозитария
+    # -------------------------------------------------------------------
+    REPO_NAME=
 
     # -------------------------------------------------------------------
-    # TEMP_DIR - Временный каталог
+    # PROJECT_INI - Файл с параметрами проекта
     # -------------------------------------------------------------------
-    TEMP_DIR=
-    # echo TEMP_DIR: !TEMP_DIR!
+    PROJECT_INI=PROJECT.ini
+
+    # -------------------------------------------------------------------
+    # PROJECT_NAME - Имя проекта
+    # -------------------------------------------------------------------
+    PROJECT_NAME=
+
+    # -------------------------------------------------------------------
+    # POETRY_INI - Файл с параметрами проекта
+    # -------------------------------------------------------------------
+    POETRY_INI=POETRY.ini
+
+    # -------------------------------------------------------------------
+    # POETRY_NAME - Имя проекта
+    # -------------------------------------------------------------------
+    POETRY_NAME=
 
     return 0
 }
@@ -221,19 +211,18 @@ function __SET_LOG () {
     # ------------------------------------------------------
     # LOG_FILESCRIPT - Файл первого скрипта [имя]
     # ------------------------------------------------------
-    LOG_FILESCRIPT=
+    LOG_FILESCRIPT='...'
 
     # ------------------------------------------------------
     # LOG_STR
     # ------------------------------------------------------
-    LOG_STR=
+    LOG_STR='...'
 
     # -------------------------------------------------------------------
     # LOG_DT_FORMAT_DEFAULT -
     #------------------------------------------------------
     #LOG_DT_FORMAT_DEFAULT='%Y%m%d%H%M%S'
     LOG_DT_FORMAT_DEFAULT='%Y%m%d'
-    #echo LOG_DT_FORMAT_DEFAULT: $LOG_DT_FORMAT_DEFAULT
 
     # -------------------------------------------------------------------
     # LOG_FILE_ADD - 1 добавлять к файлу, 0 - с начала файла
@@ -241,7 +230,6 @@ function __SET_LOG () {
     if [ -z "$LOG_FILE_ADD" ] ; then
         LOG_FILE_ADD=0
     fi
-    #echo "LOG_FILE_ADD=$LOG_FILE_ADD"
 
     # -------------------------------------------------------------------
     # LOG_FILE_DT - 1 добавлять к имени файла префикс DATETIME_STAMP
@@ -249,7 +237,6 @@ function __SET_LOG () {
     if [ -z "$LOG_FILE_DT" ] ; then
         LOG_FILE_DT=0
     fi
-    #echo "LOG_FILE_DT=$LOG_FILE_DT"
 
     #------------------------------------------------------
     # LOG_DT_FORMAT -
@@ -258,7 +245,6 @@ function __SET_LOG () {
     if [[ -z "$LOG_DT_FORMAT" ]] ; then
         LOG_DT_FORMAT=$LOG_DT_FORMAT_DEFAULT
     fi
-    #echo "LOG_DT_FORMAT=$LOG_DT_FORMAT"
 
     # -------------------------------------------------------------------
     # LOG_FILENAME_FORMAT - Формат имени файла журнала [FILENAME,DATETIME,...]
@@ -268,22 +254,17 @@ function __SET_LOG () {
         LOG_FILENAME_FORMAT=FILENAME
         #LOG_FILENAME_FORMAT=DATETIME
     fi
-    #echo LOG_FILENAME_FORMAT [FILENAME,DATETIME,...]: $LOG_FILENAME_FORMAT
 
     # -------------------------------------------------------------------
     # LOG_DIR - Каталог журнала [каталог]
     #------------------------------------------------------
-    #LOG_DIR=
     if [ -z "$LOG_DIR" ] ; then
         LOG_DIR="$PROJECTS_LYR_DIR/LOGS"
     fi
-    #echo LOG_DIR: $LOG_DIR
     if [[ ! -d "$LOG_DIR" ]] ; then
         echo INFO: Dir "$LOG_DIR" not exist...
-        #echo INFO: Каталог "$LOG_DIR" не существует...
         echo INFO: Create "$LOG_DIR" ...
         result=$(mkdir "$LOG_DIR")
-        # echo ERRORLEVEL: !ERRORLEVEL!
         if [[ ! $result==0 ]] ; then
             echo ERROR: Dir "$LOG_DIR" not created...
             exit 1
@@ -311,7 +292,6 @@ function __SET_LOG () {
             LOG_FILENAME="$DATETIME_STAMP"_"$LOG_FILENAME"
         fi
     fi
-    #echo LOG_FILENAME: $LOG_FILENAME
 
     # -------------------------------------------------------------------
     # LOG_FULLFILENAME - Файл журнала [каталог+имя+расширение]
@@ -322,7 +302,90 @@ function __SET_LOG () {
         LOG_FULLFILENAME="$LOG_DIR"/"$REPO_NAME"_"$LOG_FILENAME.log"
         LOG_FULLFILENAME="$LOG_DIR"/"$LOG_FILENAME.log"
     fi
-    #echo LOG_FULLFILENAME: "$LOG_FULLFILENAME"
+
+    return 0
+}
+#endfunction
+
+# --------------------------------------------------------------------------------
+# procedure __SHOW_VAR_SCRIPT ()
+# --------------------------------------------------------------------------------
+function __SHOW_VAR_SCRIPT () {
+#beginfunction
+    if [[ "$DEBUG" -eq 1 ]] ; then
+        echo DEBUG: procedure $FUNCNAME ... >$(tty)
+    fi
+    echo SCRIPT_FULLFILENAME: $SCRIPT_FULLFILENAME
+    echo SCRIPT_BASEFILENAME: $SCRIPT_BASEFILENAME
+    echo SCRIPT_FILENAME: $SCRIPT_FILENAME
+    echo SCRIPT_FILEDIR: $SCRIPT_FILEDIR
+    echo SCRIPT_FILEEXT: $SCRIPT_FILEEXT
+
+    return 0
+}
+#endfunction
+
+# --------------------------------------------------------------------------------
+# procedure __SHOW_VAR_DEFAULT ()
+# --------------------------------------------------------------------------------
+function __SHOW_VAR_DEFAULT () {
+#beginfunction
+    if [[ "$DEBUG" -eq 1 ]] ; then
+        echo DEBUG: procedure $FUNCNAME ... >$(tty)
+    fi
+
+    echo CURRENT_SYSTEM:$CURRENT_SYSTEM
+    echo UNAME:$UNAME
+    echo USERNAME:$USERNAME
+    echo SLEEP:$SLEEP
+    echo CURRENT_DIR:$CURRENT_DIR
+    echo TEMP_DIR:$TEMP_DIR
+
+    return 0
+}
+#endfunction
+
+# --------------------------------------------------------------------------------
+# procedure __SHOW_VAR_PROJECTS ()
+# --------------------------------------------------------------------------------
+function __SHOW_VAR_PROJECTS () {
+#beginfunction
+    if [[ "$DEBUG" -eq 1 ]] ; then
+        echo DEBUG: procedure $FUNCNAME ... >$(tty)
+    fi
+
+    echo PROJECTS_LYR_DIR:$PROJECTS_LYR_DIR
+    echo SCRIPTS_DIR:$SCRIPTS_DIR
+    echo PROJECTS_DIR:$PROJECTS_DIR
+    echo PROJECT_DIR:$PROJECT_DIR
+    echo PROJECT:$PROJECT
+    echo LIB_SH:$LIB_SH
+    #echo REPO_INI:$REPO_INI
+    #echo REPO_NAME:$REPO_NAME
+    #echo PROJECT_INI:$PROJECT_INI
+    #echo PROJECT_NAME:$PROJECT_NAME
+    #echo POETRY_INI:$POETRY_INI
+    #echo POETRY_NAME:$POETRY_NAME
+
+    return 0
+}
+#endfunction
+
+# --------------------------------------------------------------------------------
+# procedure __SHOW_LOG ()
+# --------------------------------------------------------------------------------
+function __SHOW_LOG () {
+#beginfunction
+    #echo LOG_FILESCRIPT:$LOG_FILESCRIPT
+    #echo LOG_STR:$LOG_STR
+    #echo LOG_DT_FORMAT_DEFAULT:$LOG_DT_FORMAT_DEFAULT
+    #echo LOG_FILE_ADD:$LOG_FILE_ADD
+    #echo LOG_FILE_DT:$LOG_FILE_DT
+    #echo LOG_DT_FORMAT:$LOG_DT_FORMAT
+    #echo LOG_FILENAME_FORMAT [FILENAME,DATETIME,...]:$LOG_FILENAME_FORMAT
+    echo LOG_DIR: $LOG_DIR
+    echo LOG_FILENAME:$LOG_FILENAME
+    echo LOG_FULLFILENAME: "$LOG_FULLFILENAME"
 
     return 0
 }
@@ -339,14 +402,19 @@ function SET_LIB () {
  
     ASCRIPT="$1"
 
+    #------------------------------
+    # ALL
+    #------------------------------
     #Lpath=$1
     #Lpath=${Lpath/:}
     #Lpath=/${Lpath//\\//}
     #LSCRIPT=$Lpath
-
-    LSCRIPT=$(PathWin2PathUnix "$1")
+    LSCRIPT=$(PathWin2PathUnix "$ASCRIPT")
     #echo LSCRIPT:$LSCRIPT
 
+    #------------------------------
+    # WINDOWS
+    #------------------------------
     #LSCRIPT=$(cygpath "$1")
     #echo LSCRIPT:$LSCRIPT
 
@@ -354,6 +422,7 @@ function SET_LIB () {
     __SET_VAR_DEFAULT
     __SET_VAR_PROJECTS
     __SET_LOG
+
     __SETVarLog
 
     return 0
