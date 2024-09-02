@@ -44,7 +44,7 @@ function MAIN_INIT () {
     # LIB_SH - каталог библиотеки скриптов
     # -------------------------------------------------------------------
     if [[ -z "$LIB_SH" ]] ; then
-        LIB_SH="$SCRIPTS_DIR/LIB"
+        LIB_SH="$SCRIPTS_DIR/SRC/LIB"
         #echo LIB_SH:$LIB_SH
     fi
     if [[ ! -d "$LIB_SH" ]] ; then

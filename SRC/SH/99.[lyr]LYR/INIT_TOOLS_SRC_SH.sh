@@ -82,7 +82,7 @@ function INIT_LIB () {
         # LIB_SH - каталог библиотеки скриптов
         # -------------------------------------------------------------------
         if [[ -z "$LIB_SH" ]] ; then
-            LIB_SH="$SCRIPTS_DIR/LIB"
+            LIB_SH="$SCRIPTS_DIR/SRC/LIB"
         fi
         if [[ ! -d "$LIB_SH" ]] ; then
             echo ERROR: Каталог библиотеки LYR $LIB_SH не существует...
