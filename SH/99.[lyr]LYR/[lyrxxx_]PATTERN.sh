@@ -92,7 +92,7 @@ function MAIN () {
     if [[ -r "$LFileNameINIT" ]] ; then
         source "./$LFileNameINIT" "$0"
     else
-        echo ERROR: Файл устаеовки $LFileNameINIT не существует ... >$(tty)
+        echo ERROR: Файл установки $LFileNameINIT не существует ... >$(tty)
         read -n 1 -s -r -p $'Press any key to continue ...\n'
         exit 1
     fi
