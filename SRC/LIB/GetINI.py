@@ -92,8 +92,8 @@ def main ():
         try:
             GINIFileName = sys.argv[1]
         except IndexError as ERROR:
-            GINIFileName = "/d/PROJECTS_LYR/CHECK_LIST/OS/03_UNIX/PROJECTS_UNIX/TOOLS_SRC_SH/REPO.ini"
-            GINIFileName = r"d:\PROJECTS_LYR\CHECK_LIST\OS\03_UNIX\PROJECTS_UNIX\TOOLS_SRC_SH\REPO.ini"
+            GINIFileName = "/d/PROJECTS_LYR/CHECK_LIST/OS/UNIX/PROJECTS_UNIX/TOOLS_SRC_SH/REPO.ini"
+            GINIFileName = r"d:\PROJECTS_LYR\CHECK_LIST\OS\UNIX\PROJECTS_UNIX\TOOLS_SRC_SH\REPO.ini"
         #endtry
         try:
             GSection = sys.argv[2]

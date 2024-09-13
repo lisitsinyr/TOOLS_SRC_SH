@@ -61,7 +61,7 @@ function CreateScriptDesktop () {
     # ------------------------------------------------------------------
     # 
     # ------------------------------------------------------------------
-    DIR_SH=~/PROJECTS_LYR/CHECK_LIST/OS/03_UNIX/PROJECTS_UNIX/TOOLS_SRC_SH
+    DIR_SH=~/PROJECTS_LYR/CHECK_LIST/OS/UNIX/PROJECTS_UNIX/TOOLS_SRC_SH
 
     LSCRIPT=$DIR_SH/SH/'99.[lyr]LYR'/PROJECTS_LYR_PULL.sh
     LSCRIPTdesktopName='PROJECTS_LYR_PULL'

@@ -23,13 +23,13 @@ function MAIN_INIT () {
             PROJECTS_LYR_ROOT=/d
             PROJECTS_LYR_ROOT=/d/WORK/UBU
             PROJECTS_LYR_DIR=$PROJECTS_LYR_ROOT/PROJECTS_LYR
-            SCRIPTS_DIR=$PROJECTS_LYR_DIR/CHECK_LIST/OS/03_UNIX/PROJECTS_UNIX/TOOLS_SRC_SH
-            SCRIPTS_DIR=/d/PROJECTS_LYR/CHECK_LIST/OS/03_UNIX/PROJECTS_UNIX/TOOLS_SRC_SH
+            SCRIPTS_DIR=$PROJECTS_LYR_DIR/CHECK_LIST/OS/UNIX/PROJECTS_UNIX/TOOLS_SRC_SH
+            SCRIPTS_DIR=/d/PROJECTS_LYR/CHECK_LIST/OS/UNIX/PROJECTS_UNIX/TOOLS_SRC_SH
             ;;
         'ASUS-U2204-VB' | 'ASUS-U2204-VM' | 'ASUS-U2404-VB' | 'ASUS-U2404-VM' | 'ASUS-U2310')
             PROJECTS_LYR_ROOT=/home/lyr
             PROJECTS_LYR_DIR=$PROJECTS_LYR_ROOT/PROJECTS_LYR
-            SCRIPTS_DIR=$PROJECTS_LYR_DIR/CHECK_LIST/OS/03_UNIX/PROJECTS_UNIX/TOOLS_SRC_SH
+            SCRIPTS_DIR=$PROJECTS_LYR_DIR/CHECK_LIST/OS/UNIX/PROJECTS_UNIX/TOOLS_SRC_SH
         ;;
         *)
             echo "ERROR: Компьютер не определен...!"
@@ -80,18 +80,18 @@ function MAIN_SET () {
     fi
 
     #------------------------------------------------
-    # 01_03_UNIX
+    # 01_UNIX
     #------------------------------------------------
-    DIR_COMMANDS_SH=$PROJECTS_LYR_DIR/CHECK_LIST/OS/03_UNIX/PROJECTS_UNIX/COMMANDS_SH
-    DIR_TOOLS_SRC_SH=$PROJECTS_LYR_DIR/CHECK_LIST/OS/03_UNIX/PROJECTS_UNIX/TOOLS_SRC_SH
-    DIR_TOOLS_SH=$PROJECTS_LYR_DIR/CHECK_LIST/OS/03_UNIX/TOOLS_SH
+    DIR_COMMANDS_SH=$PROJECTS_LYR_DIR/CHECK_LIST/OS/UNIX/PROJECTS_UNIX/COMMANDS_SH
+    DIR_TOOLS_SRC_SH=$PROJECTS_LYR_DIR/CHECK_LIST/OS/UNIX/PROJECTS_UNIX/TOOLS_SRC_SH
+    DIR_TOOLS_SH=$PROJECTS_LYR_DIR/CHECK_LIST/OS/UNIX/TOOLS_SH
 
     DIR_TOOLS_SH_=$PROJECTS_LYR_ROOT/TOOLS/TOOLS_SH
 
     #------------------------------------------------
-    # 05_02_Python
+    # 05_Python
     #------------------------------------------------
-    DIR_PYTHON=$PROJECTS_LYR_DIR/CHECK_LIST/DESKTOP/02_Python/PROJECTS_PY
+    DIR_PYTHON=$PROJECTS_LYR_DIR/CHECK_LIST/DESKTOP/Python/PROJECTS_PY
     DIR_EXAMPLES_PY=$DIR_PYTHON/EXAMPLES_PY
     DIR_MobileAPP_PY=$DIR_PYTHON/MobileAPP_PY
     DIR_PATTERN_PY=$DIR_PYTHON/PATTERN_PY
@@ -99,7 +99,7 @@ function MAIN_SET () {
     DIR_YOUTUBE_PY=$DIR_PYTHON/YOUTUBE_PY
     DIR_TESTS_PY=$DIR_PYTHON/TESTS_PY
     DIR_TOOLS_SRC_PY=$DIR_PYTHON/TOOLS_SRC_PY
-    DIR_TOOLS_PY=$PROJECTS_LYR_DIR/CHECK_LIST/DESKTOP/02_Python/TOOLS_PY
+    DIR_TOOLS_PY=$PROJECTS_LYR_DIR/CHECK_LIST/DESKTOP/Python/TOOLS_PY
     DIR_TOOLS_PY_=~/TOOLS/TOOLS_PY
 
     #------------------------------------------------
@@ -239,13 +239,13 @@ function REPO_WORK () {
     #PressAnyKey
 
     if [[ $APYTHON -eq 1 ]] ; then
-        DIR_TOOLS_SRC_PY=$PROJECTS_LYR_DIR/CHECK_LIST/DESKTOP/02_Python/PROJECTS_PY/TOOLS_SRC_PY
+        DIR_TOOLS_SRC_PY=$PROJECTS_LYR_DIR/CHECK_LIST/DESKTOP/Python/PROJECTS_PY/TOOLS_SRC_PY
         LFileName=$DIR_TOOLS_SRC_PY/SRC/BAT/PROJECT_PYupdate.sh
         #echo LFileName:$LFileName
         if [[ -f $LFileName ]] ; then
             cp $LFileName $ADirectory/
         fi
-        DIR_PYTHON=$PROJECTS_LYR_DIR/CHECK_LIST/DESKTOP/02_Python/PROJECTS_PY
+        DIR_PYTHON=$PROJECTS_LYR_DIR/CHECK_LIST/DESKTOP/Python/PROJECTS_PY
         LFileName=$DIR_PYTHON/PATTERN_PY/pyproject.toml
         #echo LFileName:$LFileName
         if [[ -f $LFileName ]] ; then
@@ -395,16 +395,16 @@ function UPDATE_TOOLS_GIT () {
 
 
 # --------------------------------------------------------------------------------
-# procedure MAIN_01_03_UNIX ()
+# procedure MAIN_01_UNIX ()
 # --------------------------------------------------------------------------------
-function MAIN_01_03_UNIX () {
+function MAIN_01_UNIX () {
 #beginfunction
     if [[ "$DEBUG" -eq 1 ]] ; then
         echo DEBUG: procedure $FUNCNAME ... >$(tty)
     fi
 
     echo ===============================
-    echo 01_03_UNIX ...
+    echo 01_UNIX ...
     echo ===============================
 
     REPO_WORK $DIR_COMMANDS_SH 0
@@ -419,16 +419,16 @@ function MAIN_01_03_UNIX () {
 #endfunction
 
 # --------------------------------------------------------------------------------
-# procedure MAIN_05_02_Python ()
+# procedure MAIN_05_Python ()
 # --------------------------------------------------------------------------------
-function MAIN_05_02_Python () {
+function MAIN_05_Python () {
 #beginfunction
     if [[ "$DEBUG" -eq 1 ]] ; then
         echo DEBUG: procedure $FUNCNAME ... >$(tty)
     fi
 
     echo ===============================
-    echo 05_02_Python ...
+    echo 05_Python ...
     echo ===============================
 
     REPO_WORK $DIR_EXAMPLES_PY 1
@@ -486,9 +486,9 @@ function MAIN_FUNC () {
     # запуск скриптов
     # -------------------------------------------------------------------
 
-    MAIN_01_03_UNIX
+    MAIN_01_UNIX
 
-    #MAIN_05_02_Python
+    #MAIN_05_Python
 
     #MAIN_GIT
 
