@@ -48,7 +48,7 @@ function INIT_PROJECT () {
         # Инициализация проекта PATTERN
         #-------------------------------------------------------------------
         PROJECT='TOOLS_SRC_SH'
-        PROJECTS_DIR="$PROJECTS_LYR_DIR"/'CHECK_LIST/01_OS/03_UNIX/PROJECTS_UNIX'
+        PROJECTS_DIR="$PROJECTS_LYR_DIR"/'CHECK_LIST/OS/03_UNIX/PROJECTS_UNIX'
         PROJECT_DIR="$PROJECTS_DIR"/$PROJECT
         LPROJECTSET="$PROJECT_DIR"/$PROJECT'_SET.sh'
         if [[ -r "$LPROJECTSET" ]] ; then
@@ -77,7 +77,7 @@ function INIT_LIB () {
         # -------------------------------------------------------------------
         # SCRIPTS_DIR - каталог скриптов
         # -------------------------------------------------------------------
-        SCRIPTS_DIR="$PROJECTS_LYR_DIR"'/CHECK_LIST/01_OS/03_UNIX/PROJECTS_UNIX/TOOLS_SRC_SH'
+        SCRIPTS_DIR="$PROJECTS_LYR_DIR"'/CHECK_LIST/OS/03_UNIX/PROJECTS_UNIX/TOOLS_SRC_SH'
         # -------------------------------------------------------------------
         # LIB_SH - каталог библиотеки скриптов
         # -------------------------------------------------------------------

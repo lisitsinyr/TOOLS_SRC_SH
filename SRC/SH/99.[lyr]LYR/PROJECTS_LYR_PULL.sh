@@ -25,17 +25,17 @@ function INIT_LIB () {
             PROJECTS_LYR_DIR=$PROJECTS_LYR_ROOT/PROJECTS_LYR
             PROJECTS_LYR_DIR='/d/PROJECTS_LYR'
 
-            SCRIPTS_DIR=$PROJECTS_LYR_DIR/CHECK_LIST/01_OS/03_UNIX/PROJECTS_UNIX/TOOLS_SRC_SH
-            SCRIPTS_DIR=/d/PROJECTS_LYR/CHECK_LIST/01_OS/03_UNIX/PROJECTS_UNIX/TOOLS_SRC_SH
-            SCRIPTS_DIR='/d/PROJECTS_LYR/CHECK_LIST/01_OS/03_UNIX/PROJECTS_UNIX/TOOLS_SRC_SH'
+            SCRIPTS_DIR=$PROJECTS_LYR_DIR/CHECK_LIST/OS/03_UNIX/PROJECTS_UNIX/TOOLS_SRC_SH
+            SCRIPTS_DIR=/d/PROJECTS_LYR/CHECK_LIST/OS/03_UNIX/PROJECTS_UNIX/TOOLS_SRC_SH
+            SCRIPTS_DIR='/d/PROJECTS_LYR/CHECK_LIST/OS/03_UNIX/PROJECTS_UNIX/TOOLS_SRC_SH'
             ;;
         'ASUS-U2204-VB' | 'ASUS-U2204-VM' | 'ASUS-U2404-VB' | 'ASUS-U2404-VM' | 'ASUS-U2310')
             PROJECTS_LYR_ROOT=/home/lyr
             PROJECTS_LYR_DIR=$PROJECTS_LYR_ROOT/PROJECTS_LYR
             PROJECTS_LYR_DIR='/home/lyr/PROJECTS_LYR'
 
-            SCRIPTS_DIR=$PROJECTS_LYR_DIR/CHECK_LIST/01_OS/03_UNIX/PROJECTS_UNIX/TOOLS_SRC_SH
-            SCRIPTS_DIR='/home/lyr/PROJECTS_LYR/CHECK_LIST/01_OS/03_UNIX/PROJECTS_UNIX/TOOLS_SRC_SH'
+            SCRIPTS_DIR=$PROJECTS_LYR_DIR/CHECK_LIST/OS/03_UNIX/PROJECTS_UNIX/TOOLS_SRC_SH
+            SCRIPTS_DIR='/home/lyr/PROJECTS_LYR/CHECK_LIST/OS/03_UNIX/PROJECTS_UNIX/TOOLS_SRC_SH'
         ;;
         *)
             echo "ERROR: Компьютер не определен...!"
@@ -105,13 +105,13 @@ function MAIN_INIT () {
             PROJECTS_LYR_ROOT=/d
             PROJECTS_LYR_ROOT=/d/WORK/UBU
             PROJECTS_LYR_DIR=$PROJECTS_LYR_ROOT/PROJECTS_LYR
-            SCRIPTS_DIR=$PROJECTS_LYR_DIR/CHECK_LIST/01_OS/03_UNIX/PROJECTS_UNIX/TOOLS_SRC_SH
-            SCRIPTS_DIR=/d/PROJECTS_LYR/CHECK_LIST/01_OS/03_UNIX/PROJECTS_UNIX/TOOLS_SRC_SH
+            SCRIPTS_DIR=$PROJECTS_LYR_DIR/CHECK_LIST/OS/03_UNIX/PROJECTS_UNIX/TOOLS_SRC_SH
+            SCRIPTS_DIR=/d/PROJECTS_LYR/CHECK_LIST/OS/03_UNIX/PROJECTS_UNIX/TOOLS_SRC_SH
             ;;
         'ASUS-U2204-VB' | 'ASUS-U2204-VM' | 'ASUS-U2404-VB' | 'ASUS-U2404-VM' | 'ASUS-U2310')
             PROJECTS_LYR_ROOT=/home/lyr
             PROJECTS_LYR_DIR=$PROJECTS_LYR_ROOT/PROJECTS_LYR
-            SCRIPTS_DIR=$PROJECTS_LYR_DIR/CHECK_LIST/01_OS/03_UNIX/PROJECTS_UNIX/TOOLS_SRC_SH
+            SCRIPTS_DIR=$PROJECTS_LYR_DIR/CHECK_LIST/OS/03_UNIX/PROJECTS_UNIX/TOOLS_SRC_SH
         ;;
         *)
             echo "ERROR: Компьютер не определен...!"
@@ -193,14 +193,14 @@ function MAIN_SET () {
     #------------------------------------------------
     # 01_03_UNIX
     #------------------------------------------------
-    DIR_COMMANDS_SH=$PROJECTS_LYR_DIR/CHECK_LIST/01_OS/03_UNIX/PROJECTS_UNIX/COMMANDS_SH
-    DIR_TOOLS_SRC_SH=$PROJECTS_LYR_DIR/CHECK_LIST/01_OS/03_UNIX/PROJECTS_UNIX/TOOLS_SRC_SH
-    DIR_TOOLS_SH=$PROJECTS_LYR_DIR/CHECK_LIST/01_OS/03_UNIX/TOOLS_SH
+    DIR_COMMANDS_SH=$PROJECTS_LYR_DIR/CHECK_LIST/OS/03_UNIX/PROJECTS_UNIX/COMMANDS_SH
+    DIR_TOOLS_SRC_SH=$PROJECTS_LYR_DIR/CHECK_LIST/OS/03_UNIX/PROJECTS_UNIX/TOOLS_SRC_SH
+    DIR_TOOLS_SH=$PROJECTS_LYR_DIR/CHECK_LIST/OS/03_UNIX/TOOLS_SH
 
     #------------------------------------------------
     # 05_02_Python
     #------------------------------------------------
-    DIR_PYTHON=$PROJECTS_LYR_DIR/CHECK_LIST/05_DESKTOP/02_Python/PROJECTS_PY
+    DIR_PYTHON=$PROJECTS_LYR_DIR/CHECK_LIST/DESKTOP/02_Python/PROJECTS_PY
     DIR_EXAMPLES_PY=$DIR_PYTHON/EXAMPLES_PY
     DIR_MobileAPP_PY=$DIR_PYTHON/MobileAPP_PY
     DIR_PATTERN_PY=$DIR_PYTHON/PATTERN_PY
@@ -208,13 +208,13 @@ function MAIN_SET () {
     DIR_YOUTUBE_PY=$DIR_PYTHON/YOUTUBE_PY
     DIR_TESTS_PY=$DIR_PYTHON/TESTS_PY
     DIR_TOOLS_SRC_PY=$DIR_PYTHON/TOOLS_SRC_PY
-    DIR_TOOLS_PY=$PROJECTS_LYR_DIR/CHECK_LIST/05_DESKTOP/02_Python/TOOLS_PY
+    DIR_TOOLS_PY=$PROJECTS_LYR_DIR/CHECK_LIST/DESKTOP/02_Python/TOOLS_PY
 
     #------------------------------------------------
-    # 07_GIT
+    # GIT
     #------------------------------------------------
-    DIR_TOOLS_SRC_GIT=$PROJECTS_LYR_DIR/CHECK_LIST/07_GIT/PROJECTS_GIT/TOOLS_SRC_GIT
-    DIR_TOOLS_GIT=$PROJECTS_LYR_DIR/CHECK_LIST/07_GIT/TOOLS_GIT
+    DIR_TOOLS_SRC_GIT=$PROJECTS_LYR_DIR/CHECK_LIST/GIT/PROJECTS_GIT/TOOLS_SRC_GIT
+    DIR_TOOLS_GIT=$PROJECTS_LYR_DIR/CHECK_LIST/GIT/TOOLS_GIT
 
     return 0
 }
@@ -325,7 +325,7 @@ function MAIN_01_03_UNIX () {
     echo 01_03_UNIX ...
     echo ===============================
 
-    DIR_03_UNIX=CHECK_LIST/01_OS/03_UNIX
+    DIR_03_UNIX=CHECK_LIST/OS/03_UNIX
 
     GDirectory=$DIR_03_UNIX/SOFTWARE
     GRepo=
@@ -408,7 +408,7 @@ function MAIN_05_02_Python () {
     echo 05_02_Python ...
     echo ===============================
 
-    DIR_05_02_Python=CHECK_LIST/05_DESKTOP/02_Python
+    DIR_05_02_Python=CHECK_LIST/DESKTOP/02_Python
 
     GDirectory=$DIR_05_02_Python/SOFTWARE
     GRepo=
@@ -495,62 +495,62 @@ function MAIN_05_02_Python () {
 #endfunction
 
 # -----------------------------------------------
-# procedure MAIN_07_GIT ()
+# procedure MAIN_GIT ()
 # -----------------------------------------------
-function MAIN_07_GIT () {
+function MAIN_GIT () {
 #beginfunction
     if [[ "$DEBUG" -eq 1 ]] ; then
         echo DEBUG: procedure $FUNCNAME ... >$(tty)
     fi
 
     echo ===============================
-    echo 07_GIT ...
+    echo GIT ...
     echo ===============================
 
-    DIR_07_GIT=CHECK_LIST/07_GIT
+    DIR_GIT=CHECK_LIST/GIT
 
-    GDirectory=$DIR_07_GIT/SOFTWARE
+    GDirectory=$DIR_GIT/SOFTWARE
     GRepo=
     MAIN_CreateDirectory
 
-    GDirectory=$DIR_07_GIT/ДОКУМЕНТАЦИЯ
+    GDirectory=$DIR_GIT/ДОКУМЕНТАЦИЯ
     GRepo=
     MAIN_CreateDirectory
 
-    GDirectory=$DIR_07_GIT/ДОКУМЕНТЫ
+    GDirectory=$DIR_GIT/ДОКУМЕНТЫ
     GRepo=
     MAIN_CreateDirectory
 
-    GDirectory=$DIR_07_GIT/КНИГИ
+    GDirectory=$DIR_GIT/КНИГИ
     GRepo=
     MAIN_CreateDirectory
 
-    GDirectory=$DIR_07_GIT/КУРСЫ
+    GDirectory=$DIR_GIT/КУРСЫ
     GRepo=
     MAIN_CreateDirectory
 
-    GDirectory=$DIR_07_GIT/СТАТЬИ
+    GDirectory=$DIR_GIT/СТАТЬИ
     GRepo=
     MAIN_CreateDirectory
 
-    GDirectory=$DIR_07_GIT/FRAMEWORK
+    GDirectory=$DIR_GIT/FRAMEWORK
     GRepo=
     MAIN_CreateDirectory
 
-    GDirectory=$DIR_07_GIT/LIBRARY
+    GDirectory=$DIR_GIT/LIBRARY
     GRepo=
     MAIN_CreateDirectory
 
-    GDirectory=$DIR_07_GIT/WORK
+    GDirectory=$DIR_GIT/WORK
     GRepo=
     MAIN_CreateDirectory
 
-    GDirectory=$DIR_07_GIT/TOOLS_GIT
+    GDirectory=$DIR_GIT/TOOLS_GIT
     #GRepo="git@github.com:lisitsinyr/TOOLS_GIT.git"
     GRepo=
     MAIN_CreateDirectory
 
-    GDirectory=$DIR_07_GIT/PROJECTS_GIT/TOOLS_SRC_GIT
+    GDirectory=$DIR_GIT/PROJECTS_GIT/TOOLS_SRC_GIT
     GRepo="git@github.com:lisitsinyr/TOOLS_SRC_GIT.git"
     MAIN_CreateDirectory
 
@@ -579,7 +579,7 @@ function MAIN_FUNC {
 
     MAIN_05_02_Python
 
-    MAIN_07_GIT
+    MAIN_GIT
 
     #PressAnyKey
 
