@@ -12,8 +12,8 @@ function MAIN () {
         echo DEBUG: procedure $FUNCNAME ... >$(tty)
     fi
 
-    BATNAME=$0
-    echo Start $BATNAME ...
+    BASHNAME=$0
+    echo Start $BASHNAME ...
 
     return 0
 }
@@ -30,5 +30,6 @@ function MAIN () {
     fi
 
     MAIN
+
     read -n 1 -s -r -p $'Press any key to continue ...\n'
 #end
